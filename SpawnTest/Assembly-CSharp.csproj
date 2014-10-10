@@ -47,9 +47,10 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\ConquerCity.cs" />
-     <Compile Include="Assets\Scripts\MoveSoldier.cs" />
      <Compile Include="Assets\Scripts\SoldierKill.cs" />
      <Compile Include="Assets\Scripts\SpawnSoldiers.cs" />
+     <Compile Include="Assets\Scripts\Unit.cs" />
+     <Compile Include="Assets\Scripts\UnitSpawner.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

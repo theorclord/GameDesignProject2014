@@ -3,15 +3,18 @@ using System.Collections;
 
 public class SpawnSoldiers : MonoBehaviour {
     public GameObject Soldier;
+    public GameObject spawner;
 
-    private int count;
 
     private float interval = 1.0f;
     private float timer = 0.0f;
+
+    private bool spawn;
 	// Use this for initialization
 	void Start () {
-        count = 0;
+        spawner.GetComponent<UnitSpawner>().setDirection(new Vector2(3.0f, 1.0f));
         timer = Time.time + interval;
+        spawn = false;
 	}
 	
 	// Update is called once per frame
@@ -19,18 +22,14 @@ public class SpawnSoldiers : MonoBehaviour {
         if (Time.time >= timer)
         {
             timer += interval;
-
+            spawn = true;
         }
         int spawnCount = (int) timer;
         Debug.Log(spawnCount);
-        if (spawnCount % 30 == 0)
+        if (spawnCount % 5 == 0 && spawn)
         {
-            count = 0;
-        }
-        if (count < 1)
-        {
-            Instantiate(Soldier, new Vector3(1.3f, 0.0f), Quaternion.identity);
-            count++;
+            spawner.GetComponent<UnitSpawner>().addUnits(Soldier, 10);
+            spawn = false;
         }
 	}
 }

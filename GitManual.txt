@@ -1,0 +1,9 @@
+If added new files:
+	git add . OR git add <filename>
+Changed files:
+	git commit -a -m"MESSAGE OF COMMIT"
+
+For updating:
+	git pull origin master
+	<Merge conflicts>
+	git push origin master
