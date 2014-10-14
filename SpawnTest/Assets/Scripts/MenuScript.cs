@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 public class MenuScript : MonoBehaviour
 {
-    public Rect windowRect = new Rect(20, 20, 120, 50);
+    public Rect windowRect = new Rect(20, 20, 250, 100);
     public List<string> options;
     void OnGUI()
     {
-        windowRect = GUI.Window(0, windowRect, WindowFunction, "");
+        windowRect = GUI.Window(0, windowRect, WindowFunction, "CastleMenu");
     }
 
     public void RecieveList(List<string> input)
@@ -17,18 +17,24 @@ public class MenuScript : MonoBehaviour
     }
     void WindowFunction(int windowID)
     {
-        if(options.Count>0)
+        float inc = 20;
+        if (options.Count > 0)
+        {
             foreach (string element in options)
             {
-                if (GUI.Button(new Rect(10, 20, 100, 20), element))
+                if (GUI.Button(new Rect(10, inc, 160, 20), element, "button"))
                     print("You selected: '" + element + "'"); //Issue command here
+                inc += 25;
             }
-        if (GUI.Button(new Rect(10, 20, 100, 20), "Close", "button"))
+            inc += 5;
+        }
+        if (GUI.Button(new Rect(10, inc, 160, 20), "Close", "button"))
         {
             print("You closed the window");
             Destroy(gameObject);
         }
-
+        windowRect.height = inc + 25;
+        windowRect.width = 180;
         GUI.DragWindow(new Rect(0, 0, 10000, 10000));
     }
 }
