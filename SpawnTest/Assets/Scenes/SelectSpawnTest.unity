@@ -399,6 +399,7 @@ GameObject:
   - 212: {fileID: 379132997}
   - 58: {fileID: 379133000}
   - 114: {fileID: 379132999}
+  - 114: {fileID: 379133001}
   m_Layer: 0
   m_Name: CastlePlayer
   m_TagString: Selectable
@@ -447,7 +448,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 379132996}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7186bf922d945f418f3db34024f5894, type: 3}
   m_Name: 
@@ -467,8 +468,23 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Radius: .5
+  m_Radius: 1
   m_Center: {x: 0, y: 0}
+--- !u!114 &379133001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 379132996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03cb8bdf3b8142144999e52571259d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Soldier: {fileID: 100000, guid: 1f63be2cfa9dc1d4a90a197efa67cc2d, type: 2}
+  spawners:
+  - {fileID: 1953827662}
+  - {fileID: 2221336}
 --- !u!1 &446991856
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,7 +860,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Radius: .5
+  m_Radius: 1
   m_Center: {x: 0, y: 0}
 --- !u!1001 &1429979105
 Prefab:
@@ -991,6 +1007,10 @@ Prefab:
       propertyPath: m_Name
       value: CastleEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5800000, guid: 4394da95d34eae84f83ca0313dabbebd, type: 2}
+      propertyPath: m_Radius
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4394da95d34eae84f83ca0313dabbebd, type: 2}
   m_RootGameObject: {fileID: 1055862043}
@@ -1097,6 +1117,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 9bc73ea78eaa1a24fa1338da6d081224,
         type: 3}
+    - target: {fileID: 5800000, guid: 4394da95d34eae84f83ca0313dabbebd, type: 2}
+      propertyPath: m_Radius
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4394da95d34eae84f83ca0313dabbebd, type: 2}
   m_RootGameObject: {fileID: 379132996}
