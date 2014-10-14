@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\ConquerCity.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\MenuScript.cs" />
+     <Compile Include="Assets\Scripts\SpawnPoint.cs" />
      <Compile Include="Assets\Scripts\OpenMenu.cs" />
      <Compile Include="Assets\Scripts\SpawnSoldiers.cs" />
      <Compile Include="Assets\Scripts\Unit.cs" />

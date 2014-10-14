@@ -31,6 +31,18 @@ public class UnitSpawner : MonoBehaviour
 
     }
 
+    public void addUnits(GameObject type)
+    {
+        if (spawnList.ContainsKey(type))
+        {
+            spawnList[type] = spawnList[type] + 1;
+        }
+        else
+        {
+            spawnList.Add(type, 1);
+        }
+    }
+
     public void addUnits(GameObject type, int Amount)
     {
         if (spawnList.ContainsKey(type))
