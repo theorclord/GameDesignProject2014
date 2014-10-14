@@ -127,7 +127,7 @@ GameObject:
   - 114: {fileID: 10157046}
   m_Layer: 0
   m_Name: Town5
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -220,6 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MouseCursor: {fileID: 100000, guid: aa21112fbfba39748b75bbafe8419a5a, type: 2}
+  castleMenu: {fileID: 100000, guid: 3883a25edb908db45af99e11fe5d7094, type: 2}
 --- !u!4 &100168302
 Transform:
   m_ObjectHideFlags: 0
@@ -245,7 +246,7 @@ GameObject:
   - 114: {fileID: 238219030}
   m_Layer: 0
   m_Name: Town4
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -323,7 +324,7 @@ GameObject:
   - 114: {fileID: 260326272}
   m_Layer: 0
   m_Name: Town6
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -397,10 +398,11 @@ GameObject:
   m_Component:
   - 4: {fileID: 379132998}
   - 212: {fileID: 379132997}
+  - 58: {fileID: 379133000}
   - 114: {fileID: 379132999}
   m_Layer: 0
   m_Name: CastlePlayer
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -426,7 +428,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9bc73ea78eaa1a24fa1338da6d081224, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6a490d8fedced2c47b4e6b5c53ea5ea3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &379132998
 Transform:
@@ -448,26 +450,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 379132996}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7186bf922d945f418f3db34024f5894, type: 3}
+  m_Script: {fileID: 11500000, guid: 03cb8bdf3b8142144999e52571259d35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Soldier: {fileID: 100000, guid: 1f63be2cfa9dc1d4a90a197efa67cc2d, type: 2}
-  spawner: {fileID: 2221336}
   spawners:
-  - {fileID: 2221336}
   - {fileID: 1953827662}
---- !u!114 &379133000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 379132996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d46306a27d64da4d9fdc8da058d45ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  castleMenu: {fileID: 100000, guid: 3883a25edb908db45af99e11fe5d7094, type: 2}
+  - {fileID: 2221336}
 --- !u!58 &379133000
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -493,7 +482,7 @@ GameObject:
   - 114: {fileID: 446991857}
   m_Layer: 0
   m_Name: Town2
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -704,7 +693,7 @@ GameObject:
   - 114: {fileID: 785147977}
   m_Layer: 0
   m_Name: Town1
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -778,11 +767,12 @@ GameObject:
   m_Component:
   - 4: {fileID: 1055862045}
   - 212: {fileID: 1055862044}
+  - 58: {fileID: 1055862048}
   - 114: {fileID: 1055862046}
   - 58: {fileID: 1055862047}
   m_Layer: 0
   m_Name: CastleEnemy
-  m_TagString: Untagged
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -843,6 +833,18 @@ CircleCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Radius: 1
+  m_Center: {x: 0, y: 0}
+--- !u!58 &1055862048
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 5800000, guid: 4394da95d34eae84f83ca0313dabbebd,
+    type: 2}
+  m_PrefabInternal: {fileID: 1526369157}
+  m_GameObject: {fileID: 1055862043}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Radius: .5
   m_Center: {x: 0, y: 0}
 --- !u!1001 &1429979105
 Prefab:
@@ -1085,7 +1087,7 @@ Prefab:
     - target: {fileID: 21200000, guid: 4394da95d34eae84f83ca0313dabbebd, type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 9bc73ea78eaa1a24fa1338da6d081224,
+      objectReference: {fileID: 21300000, guid: 6a490d8fedced2c47b4e6b5c53ea5ea3,
         type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4394da95d34eae84f83ca0313dabbebd, type: 2}

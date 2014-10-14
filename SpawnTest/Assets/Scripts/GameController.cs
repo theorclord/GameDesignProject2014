@@ -6,6 +6,8 @@ public class GameController : MonoBehaviour {
     public GameObject MouseCursor;
     private GameObject mouse;
 
+    public GameObject castleMenu;
+
 	// Use this for initialization
 	void Start () {
         //mouse = Instantiate(MouseCursor, Input.mousePosition, Quaternion.identity) as GameObject;
@@ -33,6 +35,8 @@ public class GameController : MonoBehaviour {
                     {
                         spawnNames.Add(spwn.gameObject.name);
                     }
+                    GameObject menu = Instantiate(castleMenu) as GameObject;
+                    menu.GetComponent<MenuScript>().RecieveList(spawnNames);
                     Debug.Log("Object selected");
                 }
                 else
