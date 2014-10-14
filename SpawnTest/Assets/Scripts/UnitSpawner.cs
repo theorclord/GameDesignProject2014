@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class UnitSpawner : MonoBehaviour {
 
     private Dictionary<GameObject, int> spawnList;
-    private Vector2 direction;
+    public Vector2 direction;
     
 	// Use this for initialization
 	void Start () {
@@ -18,7 +18,8 @@ public class UnitSpawner : MonoBehaviour {
         foreach (KeyValuePair<GameObject, int> kvp in spawnList)
         {
             GameObject troop = Instantiate(kvp.Key, new Vector3(transform.position.x, transform.position.y), Quaternion.identity) as GameObject;
-            troop.transform.rigidbody2D.velocity = (direction/10)*troop.GetComponent<Unit>().getMoveSpeed();
+            troop.GetComponent<Unit>().setdirection(direction);
+            //troop.transform.rigidbody2D.velocity = (direction / 10)*troop.GetComponent<Unit>().getMoveSpeed();
             list.Add(kvp.Key);
         }
         foreach (GameObject obj in list)

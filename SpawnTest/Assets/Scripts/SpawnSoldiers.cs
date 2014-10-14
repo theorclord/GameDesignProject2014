@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class SpawnSoldiers : MonoBehaviour {
     public GameObject Soldier;
     public GameObject spawner;
+    public List<GameObject> spawners;
 
 
     private float interval = 1.0f;
@@ -12,7 +14,6 @@ public class SpawnSoldiers : MonoBehaviour {
     private bool spawn;
 	// Use this for initialization
 	void Start () {
-        spawner.GetComponent<UnitSpawner>().setDirection(new Vector2(3.0f, 1.0f));
         timer = Time.time + interval;
         spawn = false;
 	}
@@ -25,10 +26,13 @@ public class SpawnSoldiers : MonoBehaviour {
             spawn = true;
         }
         int spawnCount = (int) timer;
-        Debug.Log(spawnCount);
+        //Debug.Log(spawnCount);
         if (spawnCount % 5 == 0 && spawn)
         {
-            spawner.GetComponent<UnitSpawner>().addUnits(Soldier, 10);
+            foreach (GameObject spw in spawners)
+            {
+                spw.GetComponent<UnitSpawner>().addUnits(Soldier, 10);
+            }
             spawn = false;
         }
 	}
