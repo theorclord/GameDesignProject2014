@@ -8,7 +8,7 @@ public class SpawnPoint : MonoBehaviour {
     //public GameObject spawner;
     public List<GameObject> spawners;
     // int is the path number, gameobject is the unit spawned.
-    private List<object[]> state;
+    private List<SpawnPair> state;
     
     private int numberOfPaths;
     private float interval = 1.0f;
@@ -18,14 +18,14 @@ public class SpawnPoint : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        state = new List<object[]>();
+        state = new List<SpawnPair>();
         numberOfPaths = spawners.Count;
         timer = Time.time + interval;
         spawn = false;
 
         //test code;
-        state.Add(new object[]{0, Soldier});
-        state.Add(new object[] { 1, Soldier });
+        state.Add(new SpawnPair(0, Soldier));
+        state.Add(new SpawnPair(1, Soldier));
     }
 
     // Update is called once per frame
@@ -40,11 +40,9 @@ public class SpawnPoint : MonoBehaviour {
         //Debug.Log(spawnCount);
         if (spawnCount % 5 == 0 && spawn)
         {
-            foreach (object[] objList in state)
+            foreach (SpawnPair pair in state)
             {
-                int path = (int) objList[0];
-                GameObject unit = (GameObject) objList[1];
-                spawners[path].GetComponent<UnitSpawner>().addUnits(unit);
+                spawners[pair.Path].GetComponent<UnitSpawner>().addUnits(pair.UnitType);
             }
             spawn = false;
         }
@@ -55,8 +53,8 @@ public class SpawnPoint : MonoBehaviour {
         return spawners;
     }
 
-    public void setState()
+    public void addState(GameObject unit, int path)
     {
-
+        state.Add(new SpawnPair( path, unit ));
     }
 }
