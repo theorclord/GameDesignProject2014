@@ -28,9 +28,16 @@ public class MenuScript : MonoBehaviour
     void WindowFunction(int windowID)
     {
         float inc = 20;
-        int units = 55;
-        GUI.Label(new Rect(10, inc, 160, 20), units.ToString() + " units available", centeredStyle);
-        inc += 30;
+        int units = 55; if (options.Count > 0)
+        {
+            for (int i = 0; i < options.Count; i++)
+            {
+                // Add label for each type of unit
+                GUI.Label(new Rect(10, inc, 160, 20), units.ToString() + " units available", centeredStyle);
+                inc += 25;
+            }
+            inc += 5;
+        }
         if (options.Count > 0)
         {
             for(int i = 0; i<options.Count; i++)
