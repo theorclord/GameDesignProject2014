@@ -18,10 +18,17 @@ public class SpawnPair{
         set;
     }
 
-    public SpawnPair(int path, GameObject unitType, int amount)
+    public Player Owner
+    {
+        get;
+        set;
+    }
+
+    public SpawnPair(int path, GameObject unitType, int amount, Player owner)
     {
         this.Path = path;
         this.UnitType = unitType;
         this.Amount = amount;
+        this.Owner = owner;
     }
 }
