@@ -222,6 +222,7 @@ MonoBehaviour:
   castleMenu: {fileID: 100000, guid: 3883a25edb908db45af99e11fe5d7094, type: 2}
   Soldier: {fileID: 100000, guid: 1f63be2cfa9dc1d4a90a197efa67cc2d, type: 2}
   PlayerCastle: {fileID: 379132996}
+  EnemyCastle: {fileID: 0}
 --- !u!4 &100168302
 Transform:
   m_ObjectHideFlags: 0
@@ -1079,6 +1080,18 @@ Prefab:
     - target: {fileID: 100000, guid: 785297ac724ae8b42977595b8292ab88, type: 2}
       propertyPath: m_Name
       value: Town1
+      objectReference: {fileID: 0}
+    - target: {fileID: 21200000, guid: 785297ac724ae8b42977595b8292ab88, type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 21200000, guid: 785297ac724ae8b42977595b8292ab88, type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 21200000, guid: 785297ac724ae8b42977595b8292ab88, type: 2}
+      propertyPath: m_Color.b
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400000, guid: 785297ac724ae8b42977595b8292ab88, type: 2}

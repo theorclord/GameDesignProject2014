@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class City : MonoBehaviour {
     public Vector2 Direction;
 
-    public GameObject Spawner;
+    public List<GameObject> spawners;
+    private List<SpawnPair> state;
 
     private int soldierCount;
     private bool owned;
@@ -22,7 +24,6 @@ public class City : MonoBehaviour {
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("PlayerCastleCircle", typeof(Sprite)) as Sprite;
             owned = true;
-            Debug.Log("City conquered");
         }
 
     }

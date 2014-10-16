@@ -2,7 +2,11 @@
 using System.Collections;
 
 public class Castle : MonoBehaviour {
-
+    public Player Owner
+    {
+        get;
+        set;
+    }
     private int soldierCount;
     private bool owned;
 	// Use this for initialization
@@ -23,8 +27,10 @@ public class Castle : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-        soldierCount++;
-        Destroy(coll.gameObject);
-        
+        Debug.Log(coll.gameObject.GetComponent<Unit>().Owner.Name);
+        if (coll.gameObject.GetComponent<Unit>().Owner.Name != this.Owner.Name)
+        {
+            Destroy(coll.gameObject);
+        }
     }
 }

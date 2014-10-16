@@ -51,12 +51,15 @@
      <Compile Include="Assets\Scripts\City.cs" />
      <Compile Include="Assets\Scripts\ConquerCity.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
-     <Compile Include="Assets\Scripts\MenuScript.cs" />
-     <Compile Include="Assets\Scripts\Player.cs" />
+<<<<<<< HEAD
      <Compile Include="Assets\Scripts\Soldier1.cs" />
      <Compile Include="Assets\Scripts\Soldier2.cs" />
+=======
+     <Compile Include="Assets\Scripts\MenuScript.cs" />
+     <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\SpawnPair.cs" />
      <Compile Include="Assets\Scripts\SpawnPoint.cs" />
+>>>>>>> ca1dd22502582f135c842fffd78c35ca87641b24
      <Compile Include="Assets\Scripts\SpawnSoldiers.cs" />
      <Compile Include="Assets\Scripts\Unit.cs" />
      <Compile Include="Assets\Scripts\UnitSpawner.cs" />

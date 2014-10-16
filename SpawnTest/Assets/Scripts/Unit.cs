@@ -4,6 +4,8 @@ using System.Collections;
 public class Unit : MonoBehaviour {
     public int Movespeed;
 
+    public Player Owner { get; set; }
+
     private Vector2 velocity;
 	// Use this for initialization
 	void Start () {
