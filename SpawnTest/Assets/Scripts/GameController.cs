@@ -48,10 +48,8 @@ public class GameController : MonoBehaviour {
                 Debug.Log("Hit " + hit.transform.gameObject.name);
                 if (hit.transform.gameObject.tag == "Selectable")
                 {
-                    List<GameObject> spawners = hit.transform.gameObject.GetComponent<SpawnPoint>().getSpawners();
                     GameObject menu = Instantiate(castleMenu) as GameObject;
-                    menu.GetComponent<MenuScript>().RecieveList(spawners);
-                    Debug.Log("Object selected");
+                    menu.GetComponent<MenuScript>().setSpawnPoint(hit.transform.gameObject.GetComponent<SpawnPoint>());
                 }
                 else
                 {

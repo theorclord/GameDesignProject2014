@@ -57,4 +57,14 @@ public class SpawnPoint : MonoBehaviour {
     {
         state.Add(spawn);
     }
+
+    public void clearStates()
+    {
+        state.Clear();
+    }
+
+    public List<SpawnPair> getStates()
+    {
+        return state;
+    }
 }

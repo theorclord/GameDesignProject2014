@@ -9,9 +9,6 @@ public class MenuScript : MonoBehaviour
     public List<string> options;
     public List<string> unitCounts = new List<string>();
     private GUIStyle centeredStyle;
-    private int units;
-
-    private SpawnPoint selected;
     void OnGUI()
     {
         windowRect = GUI.Window(0, windowRect, WindowFunction, "Menu");
@@ -19,44 +16,20 @@ public class MenuScript : MonoBehaviour
         centeredStyle.alignment = TextAnchor.MiddleCenter;
     }
 
-    public void setSpawnPoint(SpawnPoint point)
+    public void RecieveList(List<GameObject> input)
     {
-        selected = point;
-    }
-
-    void WindowFunction(int windowID)
-    {
-        float inc = 20;
-        // Get unit type and amount
-        List<SpawnPair> states = selected.getStates();
-        Dictionary<GameObject, int> availableUnits = new Dictionary<GameObject, int>();
-        foreach (SpawnPair sp in states)
-        {
-            if (availableUnits.ContainsKey(sp.UnitType))
-            {
-                availableUnits[sp.UnitType] += sp.Amount;
-            }
-            else
-            {
-                availableUnits.Add(sp.UnitType, sp.Amount);
-            }
-        }
-        foreach (KeyValuePair<GameObject, int> kvp in availableUnits)
-        {
-            units= kvp.Value;
-            // break for initial test
-            break;
-        }
-        GUI.Label(new Rect(10, inc, 160, 20), units.ToString() + " units available", centeredStyle);
-
-        // populate the path names
-        spawners = selected.getSpawners();
+        spawners = input;
         options = new List<string>();
         foreach (GameObject obj in spawners)
         {
             options.Add(obj.gameObject.name);
         }
-
+    }
+    void WindowFunction(int windowID)
+    {
+        float inc = 20;
+        int units = 55;
+        GUI.Label(new Rect(10, inc, 160, 20), units.ToString() + " units available", centeredStyle);
         inc += 30;
         if (options.Count > 0)
         {
@@ -65,8 +38,14 @@ public class MenuScript : MonoBehaviour
                 // Add buttons for spawning units
                 if (GUI.Button(new Rect(10, inc, 130, 20), options[i], "Button"))
                 {
+<<<<<<< HEAD
+                    //spawners[i].GetComponent<UnitSpawner>().addUnits(Resources.Load("Prefab/Soldier", typeof(GameObject)) as GameObject, 1);
+                    print("You selected: '" + options[i] + "'"); //Issue command here
+=======
                     //Issue command here
+                    spawners[i].GetComponent<UnitSpawner>().addUnits(Resources.Load("Prefab/Soldier", typeof(GameObject)) as GameObject, 1);
                     print("You selected: '" + options[i] + "'"); 
+>>>>>>> c654854b78529ddf10687eb6bf6f2ed1583a2604
                 }
                 // TextField for user input of # of units
                 unitCounts.Add(""); // TODO: Figure whether we want this as a field appended to the individual spawn directions
@@ -84,17 +63,6 @@ public class MenuScript : MonoBehaviour
         // Button for saving
         if (GUI.Button(new Rect(110, inc, 60, 20), "Save", "Button"))
         {
-            selected.clearStates();
-            for (int i = 0; i < unitCounts.Count; i++)
-            {
-                if (unitCounts[i] == "")
-                {
-                    continue;
-                }
-                selected.addState(new SpawnPair(i,
-                    Resources.Load("Prefab/Soldier", typeof(GameObject)) as GameObject,
-                    int.Parse(unitCounts[i]), selected.Owner));
-            }
             print("You successfully saved"); // TOADD: Add text from textbox and name of spawners?
             // TODO: Code for applying changes
         }
