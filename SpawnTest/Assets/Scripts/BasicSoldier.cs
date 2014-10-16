@@ -5,80 +5,70 @@ using System.Threading;
 public class BasicSoldier : MonoBehaviour
 {
 	
-/* MSV2	private Vector3 direction; */
 	public float movespeed = 0.0f;
-	public bool combatState = false;
-	public GameObject opponent;
+    public bool combatState
+    {
+        get;
+        set;
+    }
+	public GameObject CollChild;
 	
 	// Use this for initialization
 	void Start () {
-/* MSV2	direction = transform.position; */
+        combatState = false;
 	}
-	
-	/*	void OnCollisionEnter2D(Collision2D coll) {
-	//	if (coll.gameObject.tag == "soldier_two")
-			Debug.Log("soldier_one has attacked - Detect");
-	//	gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("soldier_form_c2", typeof(Sprite)) as Sprite;
-	} */
-	
+
+
 	void OnTriggerEnter2D(Collider2D coll)
 	{
-		if (coll.gameObject.tag == "soldier_two")
-			Debug.Log("soldier_one has attacked - Trigger");	
-		gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("soldier_form_c2", typeof(Sprite)) as Sprite;
-		opponent = coll.gameObject;
-		float tempMS = movespeed;
-		movespeed = 0;
-		fight ();
-//		Thread.Sleep (1500);
-		movespeed = tempMS;
+        check(coll);
+	}
 
-		
-		/* MSV2	direction = new Vector3(coll.transform.position.x, coll.transform.position.y);
-		movespeed = 0; */
-	}
-	
-	void die()
-	{
-		Object.Destroy (gameObject, 0.0F);
-	}
-	/* MSV2
-	private void move(Vector3 direction)
-	{
-		direction.y += movespeed;
-		Vector3.MoveTowards (transform.position, direction, 0.5f);
-	}
-*/
-	
+    private void check(Collider2D coll)
+    {
+        float tempMS = movespeed;
+
+        if (coll.gameObject.GetComponent<Unit>() != null)
+        {
+            if (coll.gameObject.GetComponent<Unit>().Owner != transform.parent.transform.gameObject.GetComponent<Unit>().Owner)
+            {
+                CollChild = coll.gameObject.transform.FindChild("Collision").transform.gameObject;
+                movespeed = 0;
+                fight();
+            }
+            movespeed = tempMS;
+        }
+    }
+
+
 	void move(float ms)
 	{
 		transform.position = new Vector3(transform.position.x, transform.position.y + ms);
 	}
 
-	void fight ()
+	private void fight ()
 	{
 		// if this unit or the detected unit is in combat, the following code will be skipped
-		if ((combatState == true) || (opponent.GetComponent<BasicSoldier> ().combatState == true))
-						;
-				else {
+        if (!((combatState == true) || (CollChild.GetComponent<BasicSoldier>().combatState == true)))
+        {
+            CollChild.GetComponent<BasicSoldier>().CollChild = gameObject;
+            CollChild.GetComponent<BasicSoldier>().combatState = true;
 
-						opponent.GetComponent<BasicSoldier> ().opponent = gameObject;
-						opponent.GetComponent<BasicSoldier> ().combatState = true;
+            float me = drawRandomInt();
 
-						float me = drawRandomInt ();
-						Debug.Log (gameObject.tag + " has drawn " + me);
+            float opp = drawRandomInt();
 
-						float opp = drawRandomInt ();
-						Debug.Log (opponent.tag + " has drawn " + opp);
-
-						if (me >= opp) {
-								Debug.Log (opponent.tag + " has died!");
-								opponent.GetComponent<BasicSoldier> ().die ();
-						} else {
-								Debug.Log (gameObject.tag + " has died!");
-								die ();
-						}
-				}
+            if (me >= opp)
+            {
+                Destroy(CollChild.transform.parent.gameObject);
+                combatState = false;
+            }
+            else
+            {
+                Destroy(transform.parent.gameObject);
+                CollChild.GetComponent<BasicSoldier>().combatState = false;
+            }
+        }
 	}
 
 	float drawRandomInt ()
@@ -88,8 +78,6 @@ public class BasicSoldier : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-		/* MSV2		move (direction); */
-		move (movespeed);
 	}
 
 }

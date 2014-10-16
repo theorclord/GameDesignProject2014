@@ -27,10 +27,13 @@ public class Castle : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-        Debug.Log(coll.gameObject.GetComponent<Unit>().Owner.Name);
-        if (coll.gameObject.GetComponent<Unit>().Owner.Name != this.Owner.Name)
+        //Debug.Log(coll.gameObject.GetComponent<Unit>().Owner.Name);
+        if (coll.gameObject.GetComponent<Unit>() != null)
         {
-            Destroy(coll.gameObject);
+            if (coll.gameObject.GetComponent<Unit>().Owner.Name != this.Owner.Name)
+            {
+                Destroy(coll.gameObject);
+            }
         }
     }
 }

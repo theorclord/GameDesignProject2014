@@ -24,7 +24,7 @@ public class SpawnPoint : MonoBehaviour {
     {
         numberOfPaths = spawners.Count;
         timer = Time.time + interval;
-        spawn = false;
+        spawn = true;
     }
 
     // Update is called once per frame
@@ -37,7 +37,7 @@ public class SpawnPoint : MonoBehaviour {
         }
         int spawnCount = (int)timer;
         //Debug.Log(spawnCount);
-        if (spawnCount % 15 == 0 && spawn)
+        if ((spawnCount % 15 == 0 || spawnCount < 2) && spawn)
         {
             foreach (SpawnPair pair in state)
             {

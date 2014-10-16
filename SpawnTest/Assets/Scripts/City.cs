@@ -39,22 +39,25 @@ public class City : MonoBehaviour {
         soldierCount++;
 
         Unit troop = coll.GetComponent<Unit>();
-        if (troop.Owner.Name == "player")
+        if (troop != null)
         {
-            troop.setdirection(DirectionPlayer[nextPathPlayer]);
-            nextPathPlayer++;
-            if (nextPathPlayer >= DirectionPlayer.Count)
+            if (troop != null && troop.Owner.Name == "player")
             {
-                nextPathPlayer = 0;
+                troop.setdirection(DirectionPlayer[nextPathPlayer]);
+                nextPathPlayer++;
+                if (nextPathPlayer >= DirectionPlayer.Count)
+                {
+                    nextPathPlayer = 0;
+                }
             }
-        }
-        else
-        {
-            troop.setdirection(DirectionEnemy[nextPathEnemy]);
-            nextPathEnemy++;
-            if (nextPathEnemy >= DirectionEnemy.Count)
+            else
             {
-                nextPathEnemy = 0;
+                troop.setdirection(DirectionEnemy[nextPathEnemy]);
+                nextPathEnemy++;
+                if (nextPathEnemy >= DirectionEnemy.Count)
+                {
+                    nextPathEnemy = 0;
+                }
             }
         }
         //coll.GetComponent<Unit>().setdirection(Direction);
