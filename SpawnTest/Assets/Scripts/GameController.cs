@@ -3,14 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class GameController : MonoBehaviour {
-    public GameObject MouseCursor;
-    private GameObject mouse;
-
     public GameObject castleMenu;
+
+    public GameObject Soldier;
+
+    public GameObject PlayerCastle;
 
 	// Use this for initialization
 	void Start () {
-        //mouse = Instantiate(MouseCursor, Input.mousePosition, Quaternion.identity) as GameObject;
+        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, Soldier, 10));
+        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, Soldier, 10));
 	
 	}
 
@@ -18,8 +20,6 @@ public class GameController : MonoBehaviour {
     {
         Vector3 camCoord = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos = new Vector2(camCoord.x,camCoord.y);
-        //mouse.transform.position = new Vector3(camCoord.x, camCoord.y);
-
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -30,23 +30,14 @@ public class GameController : MonoBehaviour {
                 if (hit.transform.gameObject.tag == "Selectable")
                 {
                     List<GameObject> spawners = hit.transform.gameObject.GetComponent<SpawnPoint>().getSpawners();
-                    List<string> spawnNames = new List<string>();
-                    foreach (GameObject spwn in spawners)
-                    {
-                        spawnNames.Add(spwn.gameObject.name);
-                    }
                     GameObject menu = Instantiate(castleMenu) as GameObject;
-                    menu.GetComponent<MenuScript>().RecieveList(spawnNames);
+                    menu.GetComponent<MenuScript>().RecieveList(spawners);
                     Debug.Log("Object selected");
                 }
                 else
                 {
                     Debug.Log("Non selectable");
                 }
-            }
-            else
-            {
-                Debug.Log("No hit");
             }
         }
     }

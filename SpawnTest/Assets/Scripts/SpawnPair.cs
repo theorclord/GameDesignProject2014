@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SpawnPair : MonoBehaviour {
+public class SpawnPair{
 
     public int Path{
         get;
@@ -12,20 +12,16 @@ public class SpawnPair : MonoBehaviour {
         get;
         set;
     }
+    public int Amount
+    {
+        get;
+        set;
+    }
 
-    public SpawnPair(int path, GameObject unitType)
+    public SpawnPair(int path, GameObject unitType, int amount)
     {
         this.Path = path;
         this.UnitType = unitType;
-
+        this.Amount = amount;
     }
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

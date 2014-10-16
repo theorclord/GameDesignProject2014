@@ -17,29 +17,26 @@ public class UnitSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //StartCoroutine(SpawnFunction());
         List<GameObject> list = new List<GameObject>();
         foreach (KeyValuePair<GameObject, int> kvp in spawnList)
         {
-            GameObject troop = Instantiate(kvp.Key, new Vector3(transform.position.x, transform.position.y), Quaternion.identity) as GameObject;
-            troop.GetComponent<Unit>().setdirection(direction);
+            StartCoroutine(SpawnFunction(kvp.Key, kvp.Value));
             list.Add(kvp.Key);
         }
         foreach (GameObject obj in list)
         {
             spawnList.Remove(obj);
         }
-
     }
 
-    public void addUnits(GameObject type)
+    IEnumerator SpawnFunction(GameObject obj, int amount)
     {
-        if (spawnList.ContainsKey(type))
+        for (int i = 0; i < amount; i++)
         {
-            spawnList[type] = spawnList[type] + 1;
-        }
-        else
-        {
-            spawnList.Add(type, 1);
+            GameObject troop = Instantiate(obj, new Vector3(transform.position.x, transform.position.y), Quaternion.identity) as GameObject;
+            troop.GetComponent<Unit>().setdirection(direction);
+            yield return new WaitForSeconds(0.5f);
         }
     }
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class MenuScript : MonoBehaviour
 {
+    private List<GameObject> spawners;
     public Rect windowRect = new Rect(20, 20, 250, 100);
     public List<string> options;
     void OnGUI()
@@ -11,19 +12,27 @@ public class MenuScript : MonoBehaviour
         windowRect = GUI.Window(0, windowRect, WindowFunction, "CastleMenu");
     }
 
-    public void RecieveList(List<string> input)
+    public void RecieveList(List<GameObject> input)
     {
-        options = input;
+        spawners = input;
+        options = new List<string>();
+        foreach (GameObject obj in spawners)
+        {
+            options.Add(obj.gameObject.name);
+        }
     }
     void WindowFunction(int windowID)
     {
         float inc = 20;
         if (options.Count > 0)
         {
-            foreach (string element in options)
+            for(int i = 0; i<options.Count; i++)
             {
-                if (GUI.Button(new Rect(10, inc, 160, 20), element, "button"))
-                    print("You selected: '" + element + "'"); //Issue command here
+                if (GUI.Button(new Rect(10, inc, 160, 20), options[i], "button"))
+                {
+                    spawners[i].GetComponent<UnitSpawner>().addUnits(Resources.Load("Prefab/Soldier", typeof(GameObject)) as GameObject, 1);
+                    print("You selected: '" + options[i] + "'"); //Issue command here
+                }
                 inc += 25;
             }
             inc += 5;
