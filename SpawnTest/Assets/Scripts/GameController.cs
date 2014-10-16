@@ -8,11 +8,30 @@ public class GameController : MonoBehaviour {
     public GameObject Soldier;
 
     public GameObject PlayerCastle;
+    public GameObject EnemyCastle;
+
+    private Player player;
+    private Player enemy;
 
 	// Use this for initialization
 	void Start () {
-        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, Soldier, 10));
-        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, Soldier, 10));
+        enemy = new Player();
+        enemy.playerColor = Color.red;
+        enemy.Name = "enemy";
+
+        player = new Player();
+        player.playerColor = Color.cyan;
+        player.Name = "player";
+
+        PlayerCastle.GetComponent<SpawnPoint>().Owner = player;
+        PlayerCastle.GetComponent<Castle>().Owner = player;
+        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, Soldier, 10, player));
+        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, Soldier, 10, player));
+
+        EnemyCastle.GetComponent<SpawnPoint>().Owner = enemy;
+        EnemyCastle.GetComponent<Castle>().Owner = enemy;
+        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, Soldier, 10, enemy));
+        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, Soldier, 10, enemy));
 	
 	}
 

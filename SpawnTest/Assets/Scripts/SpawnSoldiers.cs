@@ -31,7 +31,7 @@ public class SpawnSoldiers : MonoBehaviour {
         {
             foreach (GameObject spw in spawners)
             {
-                spw.GetComponent<UnitSpawner>().addUnits(Soldier, 10);
+                //spw.GetComponent<UnitSpawner>().addUnits(Soldier, 10);
             }
             spawn = false;
         }

@@ -8,6 +8,8 @@ public class UnitSpawner : MonoBehaviour
     private Dictionary<GameObject, int> spawnList;
     public Vector2 direction;
 
+    private Player owner;
+
     // Use this for initialization
     void Start()
     {
@@ -21,7 +23,7 @@ public class UnitSpawner : MonoBehaviour
         List<GameObject> list = new List<GameObject>();
         foreach (KeyValuePair<GameObject, int> kvp in spawnList)
         {
-            StartCoroutine(SpawnFunction(kvp.Key, kvp.Value));
+            StartCoroutine(SpawnFunction(kvp.Key, kvp.Value, owner));
             list.Add(kvp.Key);
         }
         foreach (GameObject obj in list)
@@ -30,18 +32,22 @@ public class UnitSpawner : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnFunction(GameObject obj, int amount)
+    IEnumerator SpawnFunction(GameObject obj, int amount, Player owner)
     {
         for (int i = 0; i < amount; i++)
         {
             GameObject troop = Instantiate(obj, new Vector3(transform.position.x, transform.position.y), Quaternion.identity) as GameObject;
-            troop.GetComponent<Unit>().setdirection(direction);
+            Unit troopUnit = troop.GetComponent<Unit>();
+            troopUnit.setdirection(direction);
+            troopUnit.Owner = owner;
+            troop.gameObject.GetComponent<SpriteRenderer>().color = owner.playerColor;
             yield return new WaitForSeconds(0.5f);
         }
     }
 
-    public void addUnits(GameObject type, int Amount)
+    public void addUnits(GameObject type, int Amount, Player owner)
     {
+        this.owner = owner;
         if (spawnList.ContainsKey(type))
         {
             spawnList[type] = spawnList[type] + Amount;

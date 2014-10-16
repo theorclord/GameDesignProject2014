@@ -222,7 +222,7 @@ MonoBehaviour:
   castleMenu: {fileID: 100000, guid: 3883a25edb908db45af99e11fe5d7094, type: 2}
   Soldier: {fileID: 100000, guid: 1f63be2cfa9dc1d4a90a197efa67cc2d, type: 2}
   PlayerCastle: {fileID: 379132996}
-  EnemyCastle: {fileID: 0}
+  EnemyCastle: {fileID: 1055862043}
 --- !u!4 &100168302
 Transform:
   m_ObjectHideFlags: 0
@@ -402,6 +402,7 @@ GameObject:
   - 212: {fileID: 379132997}
   - 58: {fileID: 379133000}
   - 114: {fileID: 379132999}
+  - 114: {fileID: 379133001}
   m_Layer: 0
   m_Name: CastlePlayer
   m_TagString: Selectable
@@ -470,6 +471,17 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_Radius: 1
   m_Center: {x: 0, y: 0}
+--- !u!114 &379133001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 379132996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd5b0694bcc57b14e9dfe4824789203d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &446991856
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,6 +838,7 @@ GameObject:
   - 4: {fileID: 1055862045}
   - 212: {fileID: 1055862044}
   - 58: {fileID: 1055862048}
+  - 114: {fileID: 1055862047}
   - 114: {fileID: 1055862046}
   m_Layer: 0
   m_Name: CastleEnemy
@@ -880,6 +893,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd5b0694bcc57b14e9dfe4824789203d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1055862047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1055862043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03cb8bdf3b8142144999e52571259d35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawners:
+  - {fileID: 1940868912}
+  - {fileID: 1879000592}
 --- !u!58 &1055862048
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1099,6 +1126,46 @@ Prefab:
   m_RootGameObject: {fileID: 785147974}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &1879000592
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1879000594}
+  - 114: {fileID: 1879000593}
+  m_Layer: 0
+  m_Name: SpawnCastleEnemyLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1879000593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1879000592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9221f6c7efd3a0a4e838ee5f586180e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: {x: -7, y: -3}
+--- !u!4 &1879000594
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1879000592}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6, y: 7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
 --- !u!1001 &1921462572
 Prefab:
   m_ObjectHideFlags: 0
@@ -1156,6 +1223,46 @@ Prefab:
   m_RootGameObject: {fileID: 379132996}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &1940868912
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1940868914}
+  - 114: {fileID: 1940868913}
+  m_Layer: 0
+  m_Name: SpawnCastleEnemyRight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1940868913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1940868912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9221f6c7efd3a0a4e838ee5f586180e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: {x: -4, y: -5}
+--- !u!4 &1940868914
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1940868912}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6, y: 7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
 --- !u!1 &1953827662
 GameObject:
   m_ObjectHideFlags: 0

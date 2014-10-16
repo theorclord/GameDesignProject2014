@@ -30,7 +30,7 @@ public class MenuScript : MonoBehaviour
             {
                 if (GUI.Button(new Rect(10, inc, 160, 20), options[i], "button"))
                 {
-                    spawners[i].GetComponent<UnitSpawner>().addUnits(Resources.Load("Prefab/Soldier", typeof(GameObject)) as GameObject, 1);
+                    //spawners[i].GetComponent<UnitSpawner>().addUnits(Resources.Load("Prefab/Soldier", typeof(GameObject)) as GameObject, 1);
                     print("You selected: '" + options[i] + "'"); //Issue command here
                 }
                 inc += 25;

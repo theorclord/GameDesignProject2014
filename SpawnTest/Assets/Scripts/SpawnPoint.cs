@@ -5,6 +5,12 @@ using System.Collections.Generic;
 public class SpawnPoint : MonoBehaviour {
 
     public List<GameObject> spawners;
+
+    public Player Owner
+    {
+        get;
+        set;
+    }
     private List<SpawnPair> state = new List<SpawnPair>();
     
     private int numberOfPaths;
@@ -12,6 +18,7 @@ public class SpawnPoint : MonoBehaviour {
     private float timer = 0.0f;
 
     private bool spawn;
+
     // Use this for initialization
     void Start()
     {
@@ -34,7 +41,7 @@ public class SpawnPoint : MonoBehaviour {
         {
             foreach (SpawnPair pair in state)
             {
-                spawners[pair.Path].GetComponent<UnitSpawner>().addUnits(pair.UnitType, pair.Amount);
+                spawners[pair.Path].GetComponent<UnitSpawner>().addUnits(pair.UnitType, pair.Amount, Owner);
             }
             spawn = false;
         }
