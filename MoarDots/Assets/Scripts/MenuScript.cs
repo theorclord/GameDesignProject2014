@@ -27,22 +27,36 @@ public class MenuScript : MonoBehaviour
     void WindowFunction(int windowID)
     {
         float inc = 20;
-<<<<<<< HEAD
-        int units = 55; if (options.Count > 0)
-        {
-            for (int i = 0; i < options.Count; i++)
-            {
-                // Add label for each type of unit
-                GUI.Label(new Rect(10, inc, 160, 20), units.ToString() + " units available", centeredStyle);
-                inc += 25;
-            }
-            inc += 5;
-        }
-=======
         // Get unit type and amount
         List<SpawnPair> states = selected.getStates();
         Dictionary<GameObject, int> availableUnits = new Dictionary<GameObject, int>();
         foreach (SpawnPair sp in states)
+        {
+            if (availableUnits.ContainsKey(sp.UnitType))
+            {
+                availableUnits[sp.UnitType] += sp.Amount;
+            }
+            else
+            {
+                availableUnits.Add(sp.UnitType, sp.Amount);
+            }
+        }
+        foreach (KeyValuePair<GameObject, int> kvp in availableUnits)
+        {
+            units= kvp.Value;
+            // break for initial test
+            break;
+        }
+                GUI.Label(new Rect(10, inc, 160, 20), units.ToString() + " units available", centeredStyle);
+
+        // populate the path names
+        spawners = selected.getSpawners();
+        options = new List<string>();
+        foreach (GameObject obj in spawners)
+        {
+            options.Add(obj.gameObject.name);
+        }
+
         {
             if (availableUnits.ContainsKey(sp.UnitType))
             {
@@ -70,7 +84,6 @@ public class MenuScript : MonoBehaviour
         }
 
         inc += 30;
->>>>>>> ca1dd22502582f135c842fffd78c35ca87641b24
         if (options.Count > 0)
         {
             for(int i = 0; i<options.Count; i++)
