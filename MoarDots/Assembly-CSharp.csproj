@@ -5,7 +5,7 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{0466C1BA-B53F-4B4F-9107-5964FBCB8AD0}</ProjectGuid>
+	<ProjectGuid>{B4358F0B-1A24-EBA7-2889-79D835ED190A}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
@@ -46,18 +46,17 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\BasicSoldier.cs" />
      <Compile Include="Assets\Scripts\Castle.cs" />
      <Compile Include="Assets\Scripts\City.cs" />
      <Compile Include="Assets\Scripts\ConquerCity.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
      <Compile Include="Assets\Scripts\MenuScript.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
-     <Compile Include="Assets\Scripts\SpawnPair.cs" />
      <Compile Include="Assets\Scripts\SpawnPoint.cs" />
-     <Compile Include="Assets\Scripts\SpawnSoldiers.cs" />
      <Compile Include="Assets\Scripts\Unit.cs" />
+     <Compile Include="Assets\Scripts\UnitCombat.cs" />
      <Compile Include="Assets\Scripts\UnitSpawner.cs" />
+     <Compile Include="Assets\Scripts\Utilities\SpawnPair.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
