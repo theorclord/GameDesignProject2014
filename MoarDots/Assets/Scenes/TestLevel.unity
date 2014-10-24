@@ -126,7 +126,7 @@ GameObject:
   - 58: {fileID: 10157047}
   - 114: {fileID: 10157046}
   m_Layer: 0
-  m_Name: Town5
+  m_Name: Town4
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -251,7 +251,7 @@ GameObject:
   - 58: {fileID: 238219031}
   - 114: {fileID: 238219030}
   m_Layer: 0
-  m_Name: Town4
+  m_Name: Town3
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -333,7 +333,7 @@ GameObject:
   - 58: {fileID: 260326273}
   - 114: {fileID: 260326272}
   m_Layer: 0
-  m_Name: Town6
+  m_Name: Town5
   m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

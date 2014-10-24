@@ -30,7 +30,7 @@ public class Castle : MonoBehaviour {
             if (name != this.Owner.Name)
             {
                 Destroy(coll.gameObject);
-                Debug.Log(name + "has won");
+                Debug.Log(name + " has won");
             }
         }
         

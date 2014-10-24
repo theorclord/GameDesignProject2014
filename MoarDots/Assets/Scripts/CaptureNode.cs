@@ -4,19 +4,24 @@ using System.Collections.Generic;
 
 public class CaptureNode : MonoBehaviour {
 
+    // Path selection
     public List<Vector2> DirectionPlayer;
     public List<Vector2> DirectionEnemy;
     int nextPathEnemy;
     int nextPathPlayer;
 
-
+    // attached spawners for unit spawning
     public List<GameObject> spawners;
-    private List<SpawnPair> state;
 
+    // capture variables
     private Dictionary<Player, List<GameObject>> ownedSoldierCount = new Dictionary<Player, List<GameObject>>();
     private bool contested = false;
     private bool owned;
     private Player owner;
+
+    // unit property change variables
+    private Dictionary<string, float> propertyChange = new Dictionary<string,float>();
+
     // Use this for initialization
     void Start()
     {
@@ -26,8 +31,10 @@ public class CaptureNode : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        // only updates if the city is contested
         if (contested)
         {
+            // counts number of contesters
             int count = ownedSoldierCount.Count;
             if (count > 0)
             {
@@ -54,20 +61,30 @@ public class CaptureNode : MonoBehaviour {
                         tempOwner = kvp.Key;
                     }
                 }
+                // check if owner is null, to prevent change if no units are nearby
                 if (tempOwner != null)
                 {
+                    //TODO if more players are present, need to update
+                    // removes add on
+                    if (owner != null)
+                    {
+                        setProperty(owner, -1.0f);
+                    }
+                    // adds add on
+                    setProperty(tempOwner, 1.0f);
                     owner = tempOwner;
                 }
             }
+            // changes color of the node
             transform.gameObject.GetComponent<SpriteRenderer>().color = owner.playerColor;
         }
-
     }
-
+    #region triggers
     void OnTriggerEnter2D(Collider2D coll)
     {
         
         Unit troop = coll.GetComponent<Unit>();
+        // checks if collider is non unit
         if (troop != null)
         {
             
@@ -118,5 +135,24 @@ public class CaptureNode : MonoBehaviour {
                 contested = false;
             }
         }
+    }
+    #endregion
+
+    private void setProperty(Player owner, float mod)
+    {
+        foreach (GameObject obj in owner.unitList)
+        {
+            Unit unit = obj.transform.GetComponent<Unit>();
+            foreach (KeyValuePair<string, float> kvp in propertyChange)
+            {
+                unit.updateUnit(kvp.Key, mod*kvp.Value);
+            }
+        }
+    }
+
+    public void setpropertyChange(string prop, float val)
+    {
+        // should never have to change after initialization
+        propertyChange.Add(prop, val);
     }
 }
