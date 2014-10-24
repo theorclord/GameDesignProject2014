@@ -19,12 +19,6 @@ public class UnitCombat : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D coll)
 	{
-        check(coll);
-	}
-
-    private void check(Collider2D coll)
-    {
-
         if (coll.gameObject.GetComponent<Unit>() != null)
         {
             if (coll.gameObject.GetComponent<Unit>().Owner != transform.parent.transform.gameObject.GetComponent<Unit>().Owner)
@@ -33,7 +27,7 @@ public class UnitCombat : MonoBehaviour
                 fight();
             }
         }
-    }
+	}
 
 
 	void move(float ms)
@@ -49,9 +43,9 @@ public class UnitCombat : MonoBehaviour
             CollChild.GetComponent<UnitCombat>().CollChild = gameObject;
             CollChild.GetComponent<UnitCombat>().combatState = true;
 
-            float me = drawRandomInt();
+            float me = Random.value;
 
-            float opp = drawRandomInt();
+            float opp = Random.value;
 
             if (me >= opp)
             {
@@ -65,12 +59,8 @@ public class UnitCombat : MonoBehaviour
             }
         }
 	}
-
-	float drawRandomInt ()
-	{
-		return Random.value;
-	}
 	
+
 	// Update is called once per frame
 	void Update () {
 	}

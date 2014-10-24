@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class City : MonoBehaviour {
+public class CaptureNode : MonoBehaviour {
 
     public List<Vector2> DirectionPlayer;
     public List<Vector2> DirectionEnemy;
@@ -112,6 +112,7 @@ public class City : MonoBehaviour {
         if (troop != null)
         {
             Player player = troop.Owner;
+            ownedSoldierCount[player].Remove(coll.gameObject);
             if (ownedSoldierCount.Count <= 1)
             {
                 contested = false;
