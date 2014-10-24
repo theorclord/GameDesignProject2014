@@ -41,13 +41,8 @@ public class MenuScript : MonoBehaviour
                 availableUnits.Add(sp.UnitType, sp.Amount);
             }
         }
-        foreach (KeyValuePair<GameObject, int> kvp in availableUnits)
-        {
-            units= kvp.Value;
-            // break for initial test
-            break;
-        }
-                GUI.Label(new Rect(10, inc, 160, 20), units.ToString() + " units available", centeredStyle);
+        
+        GUI.Label(new Rect(10, inc, 160, 20), units.ToString() + " units available", centeredStyle);
 
         // populate the path names
         spawners = selected.getSpawners();
@@ -57,22 +52,6 @@ public class MenuScript : MonoBehaviour
             options.Add(obj.gameObject.name);
         }
 
-        {
-            if (availableUnits.ContainsKey(sp.UnitType))
-            {
-                availableUnits[sp.UnitType] += sp.Amount;
-            }
-            else
-            {
-                availableUnits.Add(sp.UnitType, sp.Amount);
-            }
-        }
-        foreach (KeyValuePair<GameObject, int> kvp in availableUnits)
-        {
-            units= kvp.Value;
-            // break for initial test
-            break;
-        }
         GUI.Label(new Rect(10, inc, 160, 20), units.ToString() + " units available", centeredStyle);
 
         // populate the path names
