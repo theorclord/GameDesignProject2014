@@ -107,17 +107,12 @@ public class MenuScript : MonoBehaviour
     }
 
     void SaveFunction()
-    // TODO: Ensure that you don't change the actual units available at spawn and only send what is available (leaving the rest for defense?)
-        // Another possibility is to change the numbers in the TextFields corresponding to each unit to always divide all avaliable units
     {
         unitCounts = unitCounts.Where(i => i > 0).ToList(); //The list consists of a huge number of zeroes.. Blame unity for keeping accessing unitCounts.Add(0) in WindowFunction
         selected.clearStates();
         if (unitCounts.Sum() < units)
         {
-            Debug.Log(unitCounts.Count);
             int minimumValueIndex = unitCounts.IndexOf(unitCounts.Min());
-            //Debug.Log(unitCounts.IndexOf(unitCounts.Min())-1);
-            //unitCounts[unitCounts.IndexOf(unitCounts.Min())-1] += (units - unitCounts.Sum());
             unitCounts[minimumValueIndex] += (units - unitCounts.Sum());
         }
         for (int i = 0; i < unitCounts.Count; i++)
