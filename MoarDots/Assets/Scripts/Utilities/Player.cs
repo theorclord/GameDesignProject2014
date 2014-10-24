@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Player {
 
@@ -13,16 +14,17 @@ public class Player {
         get;
         set;
     }
-        
-	// Use this for initialization
-	void Start () {
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public List<GameObject> unitList
+    {
+        get;
+        private set;
+    }
+
+    public Player()
+    {
+        unitList = new List<GameObject>();
+    }
 
     public override string ToString()
     {

@@ -18,20 +18,35 @@ public class GameController : MonoBehaviour {
         enemy = new Player();
         enemy.playerColor = Color.red;
         enemy.Name = "enemy";
+        enemy.unitList.Add(Resources.Load("Prefab/Soldier", typeof(GameObject)) as GameObject);
 
         player = new Player();
         player.playerColor = Color.cyan;
         player.Name = "player";
+        player.unitList.Add(Resources.Load("Prefab/Skeleton",typeof(GameObject)) as GameObject);
 
         PlayerCastle.GetComponent<SpawnPoint>().Owner = player;
         PlayerCastle.GetComponent<Castle>().Owner = player;
-        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, Soldier, 10, player));
-        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, Soldier, 10, player));
+        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, Resources.Load("Prefab/Skeleton", typeof(GameObject)) as GameObject, 10, player));
+        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, Resources.Load("Prefab/Skeleton", typeof(GameObject)) as GameObject, 10, player));
 
         EnemyCastle.GetComponent<SpawnPoint>().Owner = enemy;
         EnemyCastle.GetComponent<Castle>().Owner = enemy;
         EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, Soldier, 10, enemy));
         EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, Soldier, 10, enemy));
+
+        //initialize towns:
+        List<GameObject> nodes = new List<GameObject>();
+        nodes.Add(GameObject.Find("Town1"));
+        nodes[0].GetComponent<CaptureNode>().setpropertyChange("Movespeed", 0);
+        nodes.Add(GameObject.Find("Town2"));
+        nodes[1].GetComponent<CaptureNode>().setpropertyChange("Movespeed", 0);
+        nodes.Add(GameObject.Find("Town3"));
+        nodes[2].GetComponent<CaptureNode>().setpropertyChange("Movespeed", 0);
+        nodes.Add(GameObject.Find("Town4"));
+        nodes[3].GetComponent<CaptureNode>().setpropertyChange("Movespeed", 0);
+        nodes.Add(GameObject.Find("Town5"));
+        nodes[4].GetComponent<CaptureNode>().setpropertyChange("Movespeed", 0);
 	
 	}
 

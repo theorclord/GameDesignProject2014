@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Unit : MonoBehaviour {
     public int Movespeed;
+    public float SpawnRate;
 
     public Player Owner { get; set; }
 
@@ -26,8 +27,16 @@ public class Unit : MonoBehaviour {
         transform.rigidbody2D.velocity = (newDirection / 10) * Movespeed;
     }
 
-    public int getMoveSpeed()
+    public void updateUnit(string prop, float val)
     {
-        return Movespeed;
+        switch (prop)
+        {
+            case "Movespeed":
+                Movespeed += (int)val;
+                break;
+            case "SpawnRate":
+                SpawnRate += val;
+                break;
+        }
     }
 }
