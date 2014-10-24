@@ -1,9 +1,18 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.Threading;
 
 public class BasicSoldier : MonoBehaviour
 {
+    
+    //Char Stats NEW
+    int health = 6;
+    int damage = 3;
+
+    int attackCD = 0; //new
+    int cdCounter = 0; //new
+    List<GameObject> targets = new List<GameObject>();
 	
 	public float movespeed = 0.0f;
     public bool combatState
@@ -16,6 +25,7 @@ public class BasicSoldier : MonoBehaviour
 	// Use this for initialization
 	void Start () {
         combatState = false;
+        attackCD = 30; //new - Add here to inheriting classes
 	}
 
 
@@ -24,18 +34,23 @@ public class BasicSoldier : MonoBehaviour
         check(coll);
 	}
 
+    /*
+    * CHANGED
+    * 
+    * */
     private void check(Collider2D coll)
     {
         float tempMS = movespeed;
-
+        
         if (coll.gameObject.GetComponent<Unit>() != null)
         {
             if (coll.gameObject.GetComponent<Unit>().Owner != transform.parent.transform.gameObject.GetComponent<Unit>().Owner)
             {
-                CollChild = coll.gameObject.transform.FindChild("Collision").transform.gameObject;
+                targets.Add(coll.gameObject.transform.FindChild("Collision").transform.gameObject);
                 movespeed = 0;
-                fight();
+                attack();
             }
+  
             movespeed = tempMS;
         }
     }
@@ -46,6 +61,9 @@ public class BasicSoldier : MonoBehaviour
 		transform.position = new Vector3(transform.position.x, transform.position.y + ms);
 	}
 
+    /*
+     * CHANGED
+     */
 	private void fight ()
 	{
 		// if this unit or the detected unit is in combat, the following code will be skipped
@@ -53,13 +71,14 @@ public class BasicSoldier : MonoBehaviour
         {
             CollChild.GetComponent<BasicSoldier>().CollChild = gameObject;
             CollChild.GetComponent<BasicSoldier>().combatState = true;
-
+/*
             float me = drawRandomInt();
 
             float opp = drawRandomInt();
 
             if (me >= opp)
             {
+                targets.Remove(CollChild);
                 Destroy(CollChild.transform.parent.gameObject);
                 combatState = false;
             }
@@ -68,6 +87,15 @@ public class BasicSoldier : MonoBehaviour
                 Destroy(transform.parent.gameObject);
                 CollChild.GetComponent<BasicSoldier>().combatState = false;
             }
+*/
+            CollChild.GetComponent<BasicSoldier>().health = CollChild.GetComponent<BasicSoldier>().health - damage;
+
+            if ( CollChild.GetComponent<BasicSoldier>().health <= 0)
+            {
+                targets.Remove(CollChild);
+                Destroy(CollChild.transform.parent.gameObject);
+                combatState = false;
+            }
         }
 	}
 
@@ -75,10 +103,28 @@ public class BasicSoldier : MonoBehaviour
 	{
 		return Random.value;
 	}
+
+    //new
+    void attack()
+    {
+        if (targets.Count > 0)
+        {
+            CollChild = targets[0];
+            if (cdCounter > 0)
+                attackCD--;
+            else
+            {
+                fight();
+                cdCounter = attackCD;
+            }
+        }
+     }
 	
 	// Update is called once per frame
 	void Update () {
-	}
+        attack(); //new
+    }
+
 
 }
 
