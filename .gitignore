@@ -3,6 +3,7 @@
 SpawnTest/Library/
 MoarDots/Library/
 
+*.meta
 # =============== #
 # Unity generated #
 # =============== #
