@@ -5,6 +5,12 @@ public class Unit : MonoBehaviour {
     public int Movespeed;
     public float SpawnRate;
 
+	public UnitType unittype;
+	public int atk;
+	public int health;
+	public int range;
+	public string name;
+
     public Player Owner { get; set; }
 
     private Vector2 velocity;
@@ -12,7 +18,16 @@ public class Unit : MonoBehaviour {
 	void Start () {
 	
 	}
-	
+
+	public void setUnitType(UnitType ut){
+		unittype = ut;
+		Movespeed = ut.speed;
+		atk = ut.atk;
+		health = ut.health;
+		name = ut.name;
+		range = ut.range;
+	}
+
 	// Update is called once per frame
 	void Update () {
 	
