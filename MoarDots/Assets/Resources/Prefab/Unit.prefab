@@ -30,7 +30,7 @@ GameObject:
   - 50: {fileID: 5000000}
   - 114: {fileID: 11400002}
   m_Layer: 0
-  m_Name: Skeleton
+  m_Name: Unit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 422126e424a239d498ed125bf77a35ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Movespeed: 10
+  Movespeed: 0
   SpawnRate: 0
   unittype: {fileID: 0}
   atk: 0
@@ -149,7 +149,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 27e61ff8d795617488ae79e00552fe5b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f11d76de14a64d04d84323af432bf6fe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

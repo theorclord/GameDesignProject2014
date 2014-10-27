@@ -1,19 +1,28 @@
 using UnityEngine;
 using System.Collections;
 using System.Threading;
+using System.Collections.Generic;
 
 public class UnitCombat : MonoBehaviour
 {
+    
+
+    int attackCD = 30; //new
+    int cdCounter = 0; //new
+    List<GameObject> targets = new List<GameObject>();
+
     public bool combatState
     {
         get;
         set;
     }
 	private GameObject CollChild;
+    private GameObject thisUnit; 
 	
 	// Use this for initialization
 	void Start () {
         combatState = false;
+        thisUnit = transform.parent.gameObject;
 	}
 
 
@@ -23,46 +32,55 @@ public class UnitCombat : MonoBehaviour
         {
             if (coll.gameObject.GetComponent<Unit>().Owner != transform.parent.transform.gameObject.GetComponent<Unit>().Owner)
             {
-                CollChild = coll.gameObject.transform.FindChild("Collision").transform.gameObject;
-                fight();
+                targets.Add(coll.gameObject);
             }
         }
 	}
 
-
-	void move(float ms)
-	{
-		transform.position = new Vector3(transform.position.x, transform.position.y + ms);
-	}
-
-	private void fight ()
+	private void fight (GameObject target)
 	{
 		// if this unit or the detected unit is in combat, the following code will be skipped
-        if (!((combatState == true) || (CollChild.GetComponent<UnitCombat>().combatState == true)))
+        if (combatState != true)
         {
-            CollChild.GetComponent<UnitCombat>().CollChild = gameObject;
-            CollChild.GetComponent<UnitCombat>().combatState = true;
+            target.GetComponent<Unit>().health -= gameObject.transform.parent.GetComponent<Unit>().damage;
+            Debug.Log("health is " + target.GetComponent<Unit>().health);
 
-            float me = Random.value;
 
-            float opp = Random.value;
-
-            if (me >= opp)
+            if (target.GetComponent<Unit>().health <= 0)
             {
-                Destroy(CollChild.transform.parent.gameObject);
+                targets.Remove(target);
+                Destroy(target);
                 combatState = false;
+            }
+        }
+	}
+
+    //new
+    void attack()
+    {
+        while (targets.Count>0 && targets[0] == null)
+        {
+            targets.RemoveAt(0);
+        }
+
+        if (targets.Count > 0)
+        {
+            if (cdCounter > 0)
+            {
+                cdCounter--;
             }
             else
             {
-                Destroy(transform.parent.gameObject);
-                CollChild.GetComponent<UnitCombat>().combatState = false;
+                fight(targets[0]);
+                cdCounter = attackCD;
             }
         }
-	}
+    }
 	
 
 	// Update is called once per frame
 	void Update () {
+        attack(); //new
 	}
 
 }
