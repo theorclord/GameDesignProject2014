@@ -1,11 +1,11 @@
-*/Library/
-*/Library/*
+**/Temp/*
+**/Library/*
 
 # =============== #
 # Unity generated #
 # =============== #
-Temp/
-Library/
+**/Temp/
+**/Library/
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
