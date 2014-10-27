@@ -4,6 +4,8 @@ using System.Collections;
 public class Unit : MonoBehaviour {
     public int Movespeed;
     public float SpawnRate;
+    public int health = 6; //new
+    public int damage = 3; //new
 
 	public UnitType unittype;
 	public int atk;
