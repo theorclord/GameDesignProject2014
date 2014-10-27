@@ -5,8 +5,7 @@ using System.Collections.Generic;
 
 public class UnitCombat : MonoBehaviour
 {
-    public int health = 0; //new
-    public int damage = 0; //new
+    
 
     int attackCD = 30; //new
     int cdCounter = 0; //new
@@ -33,28 +32,24 @@ public class UnitCombat : MonoBehaviour
         {
             if (coll.gameObject.GetComponent<Unit>().Owner != transform.parent.transform.gameObject.GetComponent<Unit>().Owner)
             {
-                targets.Add(coll.gameObject.transform.FindChild("Collision").transform.gameObject);
-                Debug.Log("target added");
+                targets.Add(coll.gameObject);
             }
         }
 	}
 
-	private void fight ()
+	private void fight (GameObject target)
 	{
 		// if this unit or the detected unit is in combat, the following code will be skipped
-        if (!((combatState == true) || (CollChild.GetComponent<UnitCombat>().combatState == true)))
+        if (combatState != true)
         {
-            CollChild.GetComponent<UnitCombat>().CollChild = gameObject;
-            CollChild.GetComponent<UnitCombat>().combatState = true;
+            target.GetComponent<Unit>().health -= gameObject.transform.parent.GetComponent<Unit>().damage;
+            Debug.Log("health is " + target.GetComponent<Unit>().health);
 
-            CollChild.GetComponent<UnitCombat>().health = CollChild.GetComponent<UnitCombat>().health - damage;
-            Debug.Log("Damage done");
-            Debug.Log("Health is " + CollChild.GetComponent<UnitCombat>().health);
 
-            if (CollChild.GetComponent<UnitCombat>().health <= 0)
+            if (target.GetComponent<Unit>().health <= 0)
             {
-                targets.Remove(CollChild);
-                Destroy(CollChild.transform.parent.gameObject);
+                targets.Remove(target);
+                Destroy(target);
                 combatState = false;
             }
         }
@@ -70,15 +65,13 @@ public class UnitCombat : MonoBehaviour
 
         if (targets.Count > 0)
         {
-            CollChild = targets[0];
             if (cdCounter > 0)
             {
                 cdCounter--;
-                Debug.Log("Thre remaining CD is: " + cdCounter);
             }
             else
             {
-                fight();
+                fight(targets[0]);
                 cdCounter = attackCD;
             }
         }
