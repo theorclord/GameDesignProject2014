@@ -18,17 +18,16 @@ public class GameController : MonoBehaviour {
         enemy = new Player();
         enemy.playerColor = Color.red;
         enemy.Name = "enemy";
-        enemy.unitList.Add(Resources.Load("Prefab/Soldier", typeof(GameObject)) as GameObject);
-
+        //enemy.unitList.Add(Instantiate(Resources.Load("Prefab/Soldier", typeof(GameObject)) as GameObject) as GameObject);
         player = new Player();
         player.playerColor = Color.cyan;
         player.Name = "player";
-        player.unitList.Add(Resources.Load("Prefab/Skeleton",typeof(GameObject)) as GameObject);
+        //player.unitList.Add(Instantiate(Resources.Load("Prefab/Skeleton",typeof(GameObject)) as GameObject) as GameObject);
 
         PlayerCastle.GetComponent<SpawnPoint>().Owner = player;
         PlayerCastle.GetComponent<Castle>().Owner = player;
-        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, Resources.Load("Prefab/Skeleton", typeof(GameObject)) as GameObject, 10, player));
-        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, Resources.Load("Prefab/Skeleton", typeof(GameObject)) as GameObject, 10, player));
+        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, Soldier, 10, player));
+        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, Soldier, 10, player));
 
         EnemyCastle.GetComponent<SpawnPoint>().Owner = enemy;
         EnemyCastle.GetComponent<Castle>().Owner = enemy;
