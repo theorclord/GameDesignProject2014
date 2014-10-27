@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class GameController : MonoBehaviour {
     public GameObject castleMenu;
+    public GameObject townMenu;
 
     public GameObject Soldier;
 
@@ -65,6 +66,11 @@ public class GameController : MonoBehaviour {
                 {
                     GameObject menu = Instantiate(castleMenu) as GameObject;
                     menu.GetComponent<MenuScript>().setSpawnPoint(hit.transform.gameObject.GetComponent<SpawnPoint>());
+                }
+                else if (hit.transform.gameObject.tag == "CaptureNode")
+                {
+                    GameObject menu = Instantiate(townMenu) as GameObject;
+                    menu.GetComponent<MenuPath>().setCaptureNode(hit.transform.gameObject.GetComponent<CaptureNode>());
                 }
                 else
                 {

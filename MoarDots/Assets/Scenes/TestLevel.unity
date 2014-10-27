@@ -127,7 +127,7 @@ GameObject:
   - 114: {fileID: 10157046}
   m_Layer: 0
   m_Name: Town4
-  m_TagString: Selectable
+  m_TagString: CaptureNode
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -224,6 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   castleMenu: {fileID: 100000, guid: 31799917bbd327648903f4671644fdda, type: 2}
+  townMenu: {fileID: 100000, guid: 44c630f79635aee4ca7e9a14d57685c7, type: 2}
   Soldier: {fileID: 100002, guid: 10c2c2ec3ca82dd4cad778d406e7887c, type: 2}
   PlayerCastle: {fileID: 379132996}
   EnemyCastle: {fileID: 1055862043}
@@ -252,7 +253,7 @@ GameObject:
   - 114: {fileID: 238219030}
   m_Layer: 0
   m_Name: Town3
-  m_TagString: Selectable
+  m_TagString: CaptureNode
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -334,7 +335,7 @@ GameObject:
   - 114: {fileID: 260326272}
   m_Layer: 0
   m_Name: Town5
-  m_TagString: Selectable
+  m_TagString: CaptureNode
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -509,7 +510,7 @@ GameObject:
   - 114: {fileID: 446991857}
   m_Layer: 0
   m_Name: Town2
-  m_TagString: Selectable
+  m_TagString: CaptureNode
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -766,7 +767,7 @@ GameObject:
   - 114: {fileID: 785147979}
   m_Layer: 0
   m_Name: Town1
-  m_TagString: Selectable
+  m_TagString: CaptureNode
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -980,7 +981,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 791212151
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 931826498e7e6b240a41c7c9a062a150, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bd4c1885fc91d304f94087df9ff734fe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1383965439
 Transform:
