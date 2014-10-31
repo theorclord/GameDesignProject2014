@@ -4,10 +4,8 @@ using System.Collections;
 public class Unit : MonoBehaviour {
     public int Movespeed;
     public float SpawnRate;
-    public int Health = 6000;
-    public int Damage = 3;
+    
     public bool IsRanged = false;
-
     public bool CloseCombat = false;
 
     public bool CombatState
@@ -15,6 +13,12 @@ public class Unit : MonoBehaviour {
         get;
         set;
     }
+
+	public UnitType unittype;
+    public int Health;
+	public int Attack;
+	public int Range;
+	public string Name;
 
     public Player Owner { get; set; }
 
@@ -28,7 +32,17 @@ public class Unit : MonoBehaviour {
 	void Start () {
 	
 	}
-	
+
+	public void setUnitType(UnitType ut){
+		unittype = ut;
+		Movespeed = ut.Speed;
+	    Attack = ut.Attack;
+		Health = ut.Health;
+		Name = ut.Name;
+		Range = ut.Range;
+        IsRanged = ut.IsRanged;
+	}
+
 	// Update is called once per frame
 	void Update () {
         if (CloseCombat)

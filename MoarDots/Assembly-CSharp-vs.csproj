@@ -50,11 +50,13 @@
      <Compile Include="Assets\Scripts\Castle.cs" />
      <Compile Include="Assets\Scripts\CombatCollision.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
+     <Compile Include="Assets\Scripts\MenuPath.cs" />
      <Compile Include="Assets\Scripts\MenuScript.cs" />
      <Compile Include="Assets\Scripts\SpawnPoint.cs" />
      <Compile Include="Assets\Scripts\Unit.cs" />
      <Compile Include="Assets\Scripts\UnitCombat.cs" />
      <Compile Include="Assets\Scripts\UnitSpawner.cs" />
+     <Compile Include="Assets\Scripts\UnitType.cs" />
      <Compile Include="Assets\Scripts\Utilities\Player.cs" />
      <Compile Include="Assets\Scripts\Utilities\SpawnPair.cs" />
   </ItemGroup>

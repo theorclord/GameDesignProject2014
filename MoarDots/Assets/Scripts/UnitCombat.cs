@@ -40,7 +40,7 @@ public class UnitCombat : MonoBehaviour
         {
             if (thisUnit.CloseCombat)
             {
-                target.GetComponent<Unit>().Health -= thisUnit.Damage;
+                target.GetComponent<Unit>().Health -= thisUnit.Attack;
 
 
                 if (target.GetComponent<Unit>().Health <= 0 || targets.Count == 0)

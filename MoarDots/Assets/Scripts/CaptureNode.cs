@@ -9,6 +9,8 @@ public class CaptureNode : MonoBehaviour {
     public List<Vector2> DirectionEnemy;
     int nextPathEnemy;
     int nextPathPlayer;
+    public List<int?> customDirection;
+    private int customCounter = 0;
 
     // attached spawners for unit spawning
     public List<GameObject> spawners;
@@ -104,11 +106,32 @@ public class CaptureNode : MonoBehaviour {
             // TODO player name should be generic
             if (troop != null && player.Name == "player")
             {
-                troop.setdirection(DirectionPlayer[nextPathPlayer]);
-                nextPathPlayer++;
-                if (nextPathPlayer >= DirectionPlayer.Count)
+                if (customDirection != null)
                 {
-                    nextPathPlayer = 0;
+                    int? count = 100;
+                    int random = (int)Random.Range(1,(int)count);
+                    
+                    for (int i = 0; i < customDirection.Count; i++)
+                    {
+                        if (random < customDirection[i])
+                        {
+                            troop.setdirection(DirectionPlayer[i]);
+                        }
+                        else
+                        {
+                            count -= customDirection[i];
+                            random = (int)Random.Range(1, (int)count);
+                        }
+                    }
+                }
+                else
+                {
+                    troop.setdirection(DirectionPlayer[nextPathPlayer]);
+                    nextPathPlayer++;
+                    if (nextPathPlayer >= DirectionPlayer.Count)
+                    {
+                        nextPathPlayer = 0;
+                    }
                 }
             }
             else
