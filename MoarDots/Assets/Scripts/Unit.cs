@@ -9,7 +9,6 @@ public class Unit : MonoBehaviour {
 
 	public UnitType unittype;
 	public int atk;
-	public int health;
 	public int range;
 	public string name;
 

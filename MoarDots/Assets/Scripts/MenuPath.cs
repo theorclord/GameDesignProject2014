@@ -91,7 +91,8 @@ public class MenuPath : MonoBehaviour
             {
                 paths[i] = 100 / pathList.Count;
             }
-        } else if (paths.Sum() < 100)
+        } 
+        else if (paths.Sum() < 100)
         {
             int minimumValueIndex = paths.IndexOf(paths.Min());
             paths[minimumValueIndex] += (100 - paths.Sum());

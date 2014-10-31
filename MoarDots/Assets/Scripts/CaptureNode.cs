@@ -108,25 +108,20 @@ public class CaptureNode : MonoBehaviour {
             {
                 if (customDirection != null)
                 {
-                    int random = (int)Random.Range(1,100);
+                    int? count = 100;
+                    int random = (int)Random.Range(1,(int)count);
                     
                     for (int i = 0; i < customDirection.Count; i++)
                     {
-                        if (i == 0)
+                        if (random < customDirection[i])
                         {
-                            if (random <=  100-customDirection[i])
-                            {
-                                troop.setdirection(DirectionPlayer[i]);
-                            }
+                            troop.setdirection(DirectionPlayer[i]);
                         }
                         else
                         {
-                            if (random > 100-customDirection[i-1])
-                            {
-                                troop.setdirection(DirectionPlayer[i-1]);
-                            }
+                            count -= customDirection[i];
+                            random = (int)Random.Range(1, (int)count);
                         }
-                        
                     }
                 }
                 else
