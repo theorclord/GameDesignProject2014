@@ -23,6 +23,9 @@ public class GameController : MonoBehaviour {
             new Vector3(-500.0f,-500.0f,100.0f),Quaternion.identity) as GameObject);
         enemy.unitList[0].gameObject.GetComponent<Unit>().Movespeed = 10;
         enemy.unitList[0].gameObject.GetComponent<Unit>().Owner = enemy;
+        enemy.unitList[0].gameObject.GetComponent<Unit>().Health = 20;
+        enemy.unitList[0].gameObject.GetComponent<Unit>().Damage = 3;
+        
         player = new Player();
         player.playerColor = Color.cyan;
         player.Name = "player";
@@ -30,13 +33,13 @@ public class GameController : MonoBehaviour {
 
         PlayerCastle.GetComponent<SpawnPoint>().Owner = player;
         PlayerCastle.GetComponent<Castle>().Owner = player;
-        //PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, Soldier, 10, player));
-        //PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, Soldier, 10, player));
+        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, enemy.unitList[0], 2, player));
+        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, enemy.unitList[0], 2, player));
 
         EnemyCastle.GetComponent<SpawnPoint>().Owner = enemy;
         EnemyCastle.GetComponent<Castle>().Owner = enemy;
-        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, enemy.unitList[0], 10, enemy));
-        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, enemy.unitList[0], 10, enemy));
+        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, enemy.unitList[0], 2, enemy));
+        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, enemy.unitList[0], 2, enemy));
 
         //initialize towns:
         List<GameObject> nodes = new List<GameObject>();
