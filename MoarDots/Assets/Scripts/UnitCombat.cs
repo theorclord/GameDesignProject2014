@@ -34,14 +34,31 @@ public class UnitCombat : MonoBehaviour
         Unit thisUnit = transform.parent.GetComponent<Unit>();
         if (thisUnit.IsRanged)
         {
-            //TODO Ranged combat check
+            if (Vector3.Distance(transform.position, target.transform.position) * 100 < thisUnit.Range)
+            {
+                gameObject.transform.parent.rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
+                //deal damage to enemy
+                target.GetComponent<Unit>().Health -= thisUnit.Attack;
+
+                if (target.GetComponent<Unit>().Health <= 0 || targets.Count == 0)
+                {
+                    targets.Remove(target);
+                    Destroy(target);
+                    transform.parent.GetComponent<Unit>().CombatState = false;
+                    thisUnit.setdirection(thisUnit.CurrentDestination, true);
+                }
+            }
+            else
+            {
+                thisUnit.setdirection(target.transform.position, true);
+            }
         }
         else
         {
             if (thisUnit.CloseCombat)
             {
+                //deal damage to enemy
                 target.GetComponent<Unit>().Health -= thisUnit.Attack;
-
 
                 if (target.GetComponent<Unit>().Health <= 0 || targets.Count == 0)
                 {
@@ -49,12 +66,12 @@ public class UnitCombat : MonoBehaviour
                     Destroy(target);
                     transform.parent.GetComponent<Unit>().CombatState = false;
                     thisUnit.CloseCombat = false;
-                    thisUnit.setdirection(thisUnit.CurrentDestination);
+                    thisUnit.setdirection(thisUnit.CurrentDestination, true);
                 }
             }
             else
             {
-                thisUnit.setdirection(target.transform.position);
+                thisUnit.setdirection(target.transform.position, true);
             }
         }
 	}
@@ -88,7 +105,7 @@ public class UnitCombat : MonoBehaviour
         else
         {
             thisUnit.CombatState = false;
-            thisUnit.setdirection(thisUnit.CurrentDestination);
+            thisUnit.setdirection(thisUnit.CurrentDestination, true);
         }
 	}
 

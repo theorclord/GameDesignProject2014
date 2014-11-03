@@ -56,9 +56,9 @@
      <Compile Include="Assets\Scripts\Unit.cs" />
      <Compile Include="Assets\Scripts\UnitCombat.cs" />
      <Compile Include="Assets\Scripts\UnitSpawner.cs" />
-     <Compile Include="Assets\Scripts\UnitType.cs" />
      <Compile Include="Assets\Scripts\Utilities\Player.cs" />
      <Compile Include="Assets\Scripts\Utilities\SpawnPair.cs" />
+     <Compile Include="Assets\Scripts\Utilities\UnitType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

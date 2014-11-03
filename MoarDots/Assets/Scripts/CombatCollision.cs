@@ -22,7 +22,8 @@ public class CombatCollision : MonoBehaviour {
             if (collUnit.Owner.Name != thisUnit.Owner.Name)
             {
                 thisUnit.CloseCombat = true;
-                Debug.Log("you woot mate");
+                gameObject.transform.parent.transform.parent.rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
+                //Debug.Log("you woot mate");
             }
         }
     }

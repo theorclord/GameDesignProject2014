@@ -126,7 +126,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Radius: 3
+  m_Radius: 8
   m_Center: {x: 0, y: 0}
 --- !u!58 &5800004
 CircleCollider2D:
@@ -150,8 +150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0958a494bab73c94bad8bd608772a797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  damage: 0
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -174,17 +172,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 422126e424a239d498ed125bf77a35ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Movespeed: 0
-  SpawnRate: 0
   Health: 6
-  Damage: 3
+  Attack: 0
+  Range: 0
+  Name: 
+  Movespeed: 0
   IsRanged: 0
-  CloseCombat: 0
-  unittype: {fileID: 0}
-  atk: 0
-  health: 0
-  range: 0
-  name: 
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -2,23 +2,25 @@
 using System.Collections;
 
 public class Unit : MonoBehaviour {
-    public int Movespeed;
-    public float SpawnRate;
-    
-    public bool IsRanged = false;
-    public bool CloseCombat = false;
 
+    public bool CloseCombat
+    {
+        get;
+        set;
+    }
     public bool CombatState
     {
         get;
         set;
     }
 
-	public UnitType unittype;
+	public UnitType Unittype;
     public int Health;
 	public int Attack;
 	public int Range;
 	public string Name;
+    public int Movespeed;
+    public bool IsRanged = false;
 
     public Player Owner { get; set; }
 
@@ -34,8 +36,8 @@ public class Unit : MonoBehaviour {
 	}
 
 	public void setUnitType(UnitType ut){
-		unittype = ut;
-		Movespeed = ut.Speed;
+		Unittype = ut;
+		Movespeed = ut.Movespeed;
 	    Attack = ut.Attack;
 		Health = ut.Health;
 		Name = ut.Name;
@@ -52,9 +54,9 @@ public class Unit : MonoBehaviour {
 	
 	}
 
-    public void setdirection(Vector2 dir)
+    public void setdirection(Vector2 dir, bool combat)
     {
-        if (!CombatState)
+        if (!combat)
         {
             CurrentDestination = dir;
         }
@@ -72,8 +74,11 @@ public class Unit : MonoBehaviour {
             case "Movespeed":
                 Movespeed += (int)val;
                 break;
-            case "SpawnRate":
-                SpawnRate += val;
+            case "Health":
+                Health += (int)val;
+                break;
+            case "Attack":
+                Attack += (int)val;
                 break;
         }
     }
