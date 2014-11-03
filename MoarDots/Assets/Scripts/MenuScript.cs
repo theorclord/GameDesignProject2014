@@ -11,7 +11,7 @@ public class MenuScript : MonoBehaviour
     public Rect windowRect = new Rect(20, 20, 250, 100);
     private GUIStyle centeredStyle;
 
-    public GameObject shopMenu;
+    public GameObject ShopMenu;
 
     // List of names for available Paths
     public List<string> options;
@@ -30,6 +30,10 @@ public class MenuScript : MonoBehaviour
         centeredStyle.alignment = TextAnchor.MiddleCenter;
     }
 
+    /// <summary>
+    /// Function for selecting SpawnPoint
+    /// </summary>
+    /// <param name="point">Spawn point for each wave</param>
     public void SetSpawnPoint(SpawnPoint point)
     {
         selected = point;
@@ -37,13 +41,13 @@ public class MenuScript : MonoBehaviour
 
     void WindowFunction(int windowID)
     {
-        float inc = 20; // Hello, I am the helpful float who add spacing (vertically) to the menu!
+        float inc = 20; // A float for adding spacing (vertically) to the menu!
         // Get unit type and amount
         List<SpawnPair> states = selected.getStates();
         availableUnits = new Dictionary<UnitType, int>();
         foreach (SpawnPair sp in states)
         {
-            
+            // NICE: Add current values to unitQueues
             if (availableUnits.ContainsKey(sp.UnitType))
             {
                 availableUnits[sp.UnitType] += sp.Amount; // Write each UnitType to a list or use from dictionary (if Amount>0 add)
@@ -79,7 +83,7 @@ public class MenuScript : MonoBehaviour
         {
             options.Add(obj.gameObject.name);
         }
-
+        #region Labels and textboxes for unit assignment
         if (options.Count > 0)
         {
             for (int i = 0; i < options.Count; i++)
@@ -98,7 +102,7 @@ public class MenuScript : MonoBehaviour
                     }
                     catch (Exception)
                     {
-                        kvp.Value.Add(null);
+                        kvp.Value.Add(null); // set default value; null if textbox should be <blank>
                         text = GUI.TextField(new Rect(140, inc, 30, 20), kvp.Value[i].ToString(), 3, centeredStyle);
                     }
 
@@ -106,17 +110,18 @@ public class MenuScript : MonoBehaviour
                     int temp;
                     if (int.TryParse(text, out temp))
                     {
-                        int maximumAvailableUnits = availableUnits[kvp.Key] - (int)kvp.Value.Sum() + temp; // Change to account for specific type of unit
+                        int maximumAvailableUnits = availableUnits[kvp.Key] - (int)kvp.Value.Sum() + temp;
 
                         kvp.Value[i] = Mathf.Clamp(temp, 0, maximumAvailableUnits);
                     }
                     else if (text == "") kvp.Value[i] = null; // Allow the user to delete/clear their input
-                    // TODO: Multiple lists, one for each spawn direction + Modify save to account for these lists
                     inc += 25;
                 }
             }
             inc += 5;
         }
+        #endregion
+
         //Button for buying
         if (GUI.Button(new Rect(10, inc, 160, 20), "Buy stuff", "Button"))
         {
@@ -142,12 +147,22 @@ public class MenuScript : MonoBehaviour
         GUI.DragWindow(new Rect(0, 0, 10000, 10000));
     }
 
+    /// <summary>
+    /// Function used by the Buy-button.
+    /// Used for initiating a new Window.
+    /// NB: Closes current menu!
+    /// </summary>
     private void buyFunction()
     {
-        GameObject menu = Instantiate(shopMenu) as GameObject;
-        Destroy(gameObject);
+        GameObject menu = Instantiate(ShopMenu) as GameObject;
+        menu.GetComponent<MenuShop>().SetSpawnPoint(selected);
+        Destroy(this);
     }
 
+    /// <summary>
+    /// Function used by the Save-button.
+    /// Checks the textfields and assign the waves.
+    /// </summary>
     private void saveFunction()
     {
         selected.clearStates();
@@ -162,7 +177,7 @@ public class MenuScript : MonoBehaviour
             }
             for (int i = 0; i < kvp.Value.Count; i++)
             {
-                if (kvp.Value[i] == null)
+                if (kvp.Value[i] == null) // FIXME: Ignores blank fields
                 {
                     continue;
                 }
@@ -171,21 +186,5 @@ public class MenuScript : MonoBehaviour
             }
         }
         print("You successfully saved");
-    }
-
-    /// <summary>
-    /// Function for buying new units
-    /// </summary>
-    /// <param name="ut">Type of the unit to buy</param>
-    /// <param name="path">path for the wave</param>
-    /// <param name="amount">amount of units bought</param>
-    private void buyUnit(UnitType ut, int path, int amount)
-    {
-        // checks if there is enough resources
-        if (selected.Owner.Resources >= ut.Price)
-        {
-            selected.Owner.Resources -= ut.Price;
-            selected.addState(new SpawnPair(path, ut, amount, selected.Owner));
-        }
     }
 }
