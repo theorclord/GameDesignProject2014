@@ -21,7 +21,9 @@ public class Tower : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-
-
+        Debug.Log(coll.gameObject.name);
+        if(coll.gameObject.GetComponent<Unit>() !=null){
+            Debug.Log(coll.GetComponent<Unit>());
+        }
     }
 }

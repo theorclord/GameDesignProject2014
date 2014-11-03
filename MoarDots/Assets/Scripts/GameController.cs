@@ -54,7 +54,12 @@ public class GameController : MonoBehaviour {
         playerList.Add(player);
 
         //Neutral
-
+        // should be used for initial control
+        /*
+        Player neutral = new Player();
+        player.playerColor = Color.gray;
+        player.Name = "neutral";
+        */
         //Setup basic spawn
         PlayerCastle.GetComponent<SpawnPoint>().Owner = player;
         PlayerCastle.GetComponent<Castle>().Owner = player;
