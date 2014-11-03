@@ -11,12 +11,13 @@ public class UnitType {
 	public float Health{ get; set; }
     public bool IsRanged { get; set; }
     //New
+    public int Price { get; set; }
     public float Armour { get; set; } // Reduces incomming damage by %
     public float ArmourPen { get; set; } // ignores target armour by %
     public float AttackSpeed { get; set; } // hits per second
 
     public UnitType(string name, int atk, float health, int range, int movespeed, bool isRanged, 
-                    float armour, float armourPen, float attackSpeed)
+                    float armour, float armourPen, float attackSpeed, int price)
     {
         Name = name;
         Attack = atk;
@@ -25,6 +26,7 @@ public class UnitType {
         Movespeed = movespeed;
         IsRanged = isRanged;
 
+        Price = price;
         //New
         Armour = armour;
         ArmourPen = armourPen;

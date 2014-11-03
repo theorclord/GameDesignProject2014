@@ -12,10 +12,13 @@ public class GameController : MonoBehaviour {
     private Player player;
     private Player enemy;
 
+    private List<Player> playerList = new List<Player>();
     //global timer
     private float interval = 1.0f;
     private float timer = 0.0f;
 
+    // Resource income
+    private bool goldIncome = false;
 	// Use this for initialization
 	void Start () {
         //Timer
@@ -35,13 +38,19 @@ public class GameController : MonoBehaviour {
                 UnitType skeletonArcherType = new UnitType("Skeleton Archer", 1, 10, 100, 10, true); */
 
         //Initialize players
+        //Ai
         enemy = new Player();
         enemy.playerColor = Color.red;
         enemy.Name = "enemy";
         enemy.unitTypeList.Add(soldierType);
         enemy.unitTypeList.Add(rangerType);
         enemy.unitTypeList.Add(armouredSoldieType);
-        
+        enemy.Income = 50;
+        enemy.Resources = 500;
+
+        playerList.Add(enemy);
+
+        //Player
         player = new Player();
         player.playerColor = Color.cyan;
         player.Name = "player";
@@ -49,7 +58,18 @@ public class GameController : MonoBehaviour {
         player.unitTypeList.Add(skeletonArcherType);
         player.unitTypeList.Add(armouredSkeletonType);
 
+        player.Income = 50;
+        player.Resources = 500;
 
+        playerList.Add(player);
+
+        //Neutral
+        // should be used for initial control
+        /*
+        Player neutral = new Player();
+        player.playerColor = Color.gray;
+        player.Name = "neutral";
+        */
         //Setup basic spawn
         PlayerCastle.GetComponent<SpawnPoint>().Owner = player;
         PlayerCastle.GetComponent<Castle>().Owner = player;
@@ -82,10 +102,24 @@ public class GameController : MonoBehaviour {
 
     void Update()
     {
+        // Update player resource display
+        //TODO should have a generic player lookup
+        GameObject.Find("PlayerResources").guiText.text = "Gold: " + playerList[1].Resources;
         //Global timer update
         if (Time.time >= timer)
         {
             timer += interval;
+            goldIncome = true;
+        }
+        //update gold
+
+        if ((int)timer % 15 == 0 && goldIncome)
+        {
+            foreach (Player play in playerList)
+            {
+                play.Resources += play.Income;
+            }
+            goldIncome = false;
         }
         //Gets the postion of the mouse on camera
         Vector3 camCoord = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -97,12 +131,13 @@ public class GameController : MonoBehaviour {
             if (hit)
             {
                 Debug.Log("Hit " + hit.transform.gameObject.name);
+                // TODO: Add external check if menu is open, and close it!
                 if (hit.transform.gameObject.tag == "Selectable")
                 {
                     GameObject menu = Instantiate(castleMenu) as GameObject;
                     menu.GetComponent<MenuScript>().setSpawnPoint(hit.transform.gameObject.GetComponent<SpawnPoint>());
                 }
-                else if (hit.transform.gameObject.tag == "CaptureNode")
+                else if (hit.transform.gameObject.tag == "CaptureNode" && hit.transform.gameObject.GetComponent<CaptureNode>().Owner == playerList[1]) //TODO fix for selecting player
                 {
                     GameObject menu = Instantiate(townMenu) as GameObject;
                     menu.GetComponent<MenuPath>().setCaptureNode(hit.transform.gameObject.GetComponent<CaptureNode>());

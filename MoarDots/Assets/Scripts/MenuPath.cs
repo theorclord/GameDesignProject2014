@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 public class MenuPath : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class MenuPath : MonoBehaviour
 
     void OnGUI()
     {
-        windowRect = GUI.Window(0, windowRect, WindowFunction, "Menu");
+        windowRect = GUI.Window(1, windowRect, WindowFunction, "Menu");
         centeredStyle = GUI.skin.GetStyle("TextField");
         centeredStyle.alignment = TextAnchor.MiddleCenter;
     }
@@ -44,11 +45,11 @@ public class MenuPath : MonoBehaviour
                 string text = "";
                 try
                 {
-                    paths.Add(0);
+                    text = GUI.TextField(new Rect(120, inc, 30, 20), paths[i].ToString(), 3, centeredStyle);
                 }
-                catch (MissingReferenceException) { }
-                finally
+                catch (Exception)
                 {
+                    paths.Add(0);
                     text = GUI.TextField(new Rect(120, inc, 30, 20), paths[i].ToString(), 3, centeredStyle);
                 }
                 GUI.Label(new Rect(150, inc, 20, 20), "%", centeredStyle);
@@ -57,7 +58,6 @@ public class MenuPath : MonoBehaviour
                 int temp;
                 if (int.TryParse(text, out temp))
                 {
-                    int maximumAvailableUnits = 100 - (int)paths.Sum() + temp;
                     paths[i] = Mathf.Clamp(temp, 0, 100);
                 }
                 else if (text == "") paths[i] = null;
@@ -74,7 +74,7 @@ public class MenuPath : MonoBehaviour
         // Button for saving
         if (GUI.Button(new Rect(110, inc, 60, 20), "Save", "Button"))
         {
-            SaveFunction();
+            saveFunction();
         }
         // Reapplying size of menu
         windowRect.height = inc + 25;
@@ -83,7 +83,7 @@ public class MenuPath : MonoBehaviour
         GUI.DragWindow(new Rect(0, 0, 10000, 10000));
     }
 
-    void SaveFunction()
+    private void saveFunction()
     {
         if (paths.Sum() <= 0)
         {

@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scripts\MenuPath.cs" />
      <Compile Include="Assets\Scripts\MenuScript.cs" />
      <Compile Include="Assets\Scripts\SpawnPoint.cs" />
+     <Compile Include="Assets\Scripts\Tower.cs" />
      <Compile Include="Assets\Scripts\Unit.cs" />
      <Compile Include="Assets\Scripts\UnitCombat.cs" />
      <Compile Include="Assets\Scripts\UnitSpawner.cs" />

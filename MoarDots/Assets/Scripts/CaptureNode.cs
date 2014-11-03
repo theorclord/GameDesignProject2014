@@ -10,7 +10,6 @@ public class CaptureNode : MonoBehaviour {
     int nextPathEnemy;
     int nextPathPlayer;
     public List<int?> customDirection;
-    private int customCounter = 0;
 
     // attached spawners for unit spawning
     public List<GameObject> spawners;
@@ -18,8 +17,11 @@ public class CaptureNode : MonoBehaviour {
     // capture variables
     private Dictionary<Player, List<GameObject>> ownedSoldierCount = new Dictionary<Player, List<GameObject>>();
     private bool contested = false;
-    private bool owned;
-    private Player owner;
+    public Player Owner
+    {
+        get;
+        private set;
+    }
 
     // unit property change variables
     private Dictionary<string, float> propertyChange = new Dictionary<string,float>();
@@ -27,7 +29,6 @@ public class CaptureNode : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        owned = false;
     }
 
     // Update is called once per frame
@@ -40,25 +41,29 @@ public class CaptureNode : MonoBehaviour {
             int count = ownedSoldierCount.Count;
             if (count > 0)
             {
+                // remove any null values:
+                foreach (KeyValuePair<Player, List<GameObject>> kvp in ownedSoldierCount)
+                {
+                    List<int> indexes = new List<int>();
+                    for (int i = 0; i < kvp.Value.Count; i++)
+                    {
+                        if (kvp.Value[i] == null)
+                        {
+                            indexes.Add(i);
+                        }
+                    }
+                    for (int i = indexes.Count - 1; i >= 0; i--)
+                    {
+                        kvp.Value.RemoveAt(indexes[i]);
+                    }
+                }
+                //check which owner has the most units
                 int max = 0;
                 Player tempOwner = null;
                 foreach (KeyValuePair<Player, List<GameObject>> kvp in ownedSoldierCount)
                 {
                     if (kvp.Value.Count > max)
                     {
-                        List<int> indexes = new List<int>();
-                        for (int i = 0; i < kvp.Value.Count; i++)
-                        {
-                            if (kvp.Value[i] == null)
-                            {
-                                indexes.Add(i);
-                            }
-                        }
-                        for (int i = indexes.Count-1; i >= 0; i--)
-                        {
-                            kvp.Value.RemoveAt(indexes[i]);
-                        }
-
                         max = kvp.Value.Count;
                         tempOwner = kvp.Key;
                     }
@@ -68,17 +73,18 @@ public class CaptureNode : MonoBehaviour {
                 {
                     //TODO if more players are present, need to update
                     // removes add on
-                    if (owner != null)
+                    if (Owner != null)
                     {
-                        setProperty(owner, -1.0f);
+                        setProperty(Owner, -1.0f);
                     }
                     // adds add on
                     setProperty(tempOwner, 1.0f);
-                    owner = tempOwner;
+                    Owner = tempOwner;
                 }
             }
             // changes color of the node
-            transform.gameObject.GetComponent<SpriteRenderer>().color = owner.playerColor;
+            transform.gameObject.GetComponent<SpriteRenderer>().color = Owner.playerColor;
+            contested = false;
         }
     }
     #region triggers
@@ -91,7 +97,7 @@ public class CaptureNode : MonoBehaviour {
         {
             
             Player player = troop.Owner;
-            if (!contested && (owner == null || owner.Name != player.Name))
+            if (!contested && (Owner == null || Owner.Name != player.Name))
             {
                 contested = true;
             }
