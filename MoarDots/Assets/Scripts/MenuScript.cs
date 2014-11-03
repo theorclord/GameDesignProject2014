@@ -144,4 +144,20 @@ public class MenuScript : MonoBehaviour
         }
         print("You successfully saved");
     }
+
+    /// <summary>
+    /// Function for buying new units
+    /// </summary>
+    /// <param name="ut">Type of the unit to buy</param>
+    /// <param name="path">path for the wave</param>
+    /// <param name="amount">amount of units bought</param>
+    private void buyUnit(UnitType ut, int path, int amount)
+    {
+        // checks if there is enough resources
+        if (selected.Owner.Resources >= ut.Price)
+        {
+            selected.Owner.Resources -= ut.Price;
+            selected.addState(new SpawnPair(path, ut, amount, selected.Owner));
+        }
+    }
 }
