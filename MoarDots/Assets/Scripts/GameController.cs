@@ -24,56 +24,29 @@ public class GameController : MonoBehaviour {
         enemy = new Player();
         enemy.playerColor = Color.red;
         enemy.Name = "enemy";
-        /*
         enemy.unitTypeList.Add(soldierType);
         enemy.unitTypeList.Add(rangerType);
-         */
-        
-        enemy.unitList.Add(
-            Instantiate(Resources.Load("Prefab/Unit", typeof(GameObject)) as GameObject,
-            new Vector3(-400.0f,-500.0f,100.0f),Quaternion.identity) as GameObject);
-        enemy.unitList[0].gameObject.GetComponent<Unit>().setUnitType(soldierType);
-        enemy.unitList[0].gameObject.rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
-        enemy.unitList.Add(
-            Instantiate(Resources.Load("Prefab/Unit", typeof(GameObject)) as GameObject,
-            new Vector3(-500.0f, -500.0f, 100.0f), Quaternion.identity) as GameObject);
-        enemy.unitList[1].gameObject.GetComponent<Unit>().setUnitType(rangerType);
-        enemy.unitList[1].gameObject.rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
-		
         
         player = new Player();
         player.playerColor = Color.cyan;
         player.Name = "player";
-        /*
         player.unitTypeList.Add(skeletonType);
         player.unitTypeList.Add(skeletonArcherType);
-         */
-        
-		player.unitList.Add(
-			Instantiate(Resources.Load("Prefab/Unit", typeof(GameObject)) as GameObject,
-		            new Vector3(400.0f,-500.0f,100.0f),Quaternion.identity) as GameObject);
-		player.unitList[0].gameObject.GetComponent<Unit>().setUnitType(skeletonType);
-        player.unitList[0].gameObject.rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
-        player.unitList.Add(
-            Instantiate(Resources.Load("Prefab/Unit", typeof(GameObject)) as GameObject,
-                    new Vector3(500.0f, -500.0f, 100.0f), Quaternion.identity) as GameObject);
-        player.unitList[1].gameObject.GetComponent<Unit>().setUnitType(skeletonArcherType);
-        player.unitList[1].gameObject.rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
-        
+
         //Setup basic spawn
         PlayerCastle.GetComponent<SpawnPoint>().Owner = player;
         PlayerCastle.GetComponent<Castle>().Owner = player;
-        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, player.unitList[0], 10, player));
-        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, player.unitList[1], 5, player));
-        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, player.unitList[0], 10, player));
-        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, player.unitList[1], 5, player));
+        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, player.unitTypeList[0], 10, player));
+        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, player.unitTypeList[1], 5, player));
+        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, player.unitTypeList[0], 10, player));
+        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, player.unitTypeList[1], 5, player));
 
         EnemyCastle.GetComponent<SpawnPoint>().Owner = enemy;
         EnemyCastle.GetComponent<Castle>().Owner = enemy;
-        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, enemy.unitList[0], 10, enemy));
-        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, enemy.unitList[1], 5, enemy));
-        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, enemy.unitList[0], 10, enemy));
-        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, enemy.unitList[1], 5, enemy));
+        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, enemy.unitTypeList[0], 10, enemy));
+        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, enemy.unitTypeList[1], 5, enemy));
+        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, enemy.unitTypeList[0], 10, enemy));
+        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, enemy.unitTypeList[1], 5, enemy));
 
         //initialize towns:
         List<GameObject> nodes = new List<GameObject>();
@@ -103,6 +76,7 @@ public class GameController : MonoBehaviour {
             if (hit)
             {
                 Debug.Log("Hit " + hit.transform.gameObject.name);
+                // TODO: Add external check if menu is open, and close it!
                 if (hit.transform.gameObject.tag == "Selectable")
                 {
                     GameObject menu = Instantiate(castleMenu) as GameObject;

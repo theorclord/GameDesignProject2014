@@ -15,7 +15,7 @@ public class MenuPath : MonoBehaviour
 
     void OnGUI()
     {
-        windowRect = GUI.Window(0, windowRect, WindowFunction, "Menu");
+        windowRect = GUI.Window(1, windowRect, WindowFunction, "Menu");
         centeredStyle = GUI.skin.GetStyle("TextField");
         centeredStyle.alignment = TextAnchor.MiddleCenter;
     }
