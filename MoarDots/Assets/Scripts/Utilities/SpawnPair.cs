@@ -7,7 +7,7 @@ public class SpawnPair{
         get;
         set;
     }
-    public GameObject UnitType
+    public UnitType UnitType
     {
         get;
         set;
@@ -24,7 +24,7 @@ public class SpawnPair{
         set;
     }
 
-    public SpawnPair(int path, GameObject unitType, int amount, Player owner)
+    public SpawnPair(int path, UnitType unitType, int amount, Player owner)
     {
         this.Path = path;
         this.UnitType = unitType;

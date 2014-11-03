@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class UnitSpawner : MonoBehaviour
 {
 
-    private Dictionary<GameObject, int> spawnList;
+    private Dictionary<UnitType, int> spawnList;
     public Vector2 direction;
 
     private Player owner;
@@ -13,31 +13,33 @@ public class UnitSpawner : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        spawnList = new Dictionary<GameObject, int>();
+        spawnList = new Dictionary<UnitType, int>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        List<GameObject> list = new List<GameObject>();
-        foreach (KeyValuePair<GameObject, int> kvp in spawnList)
+        List<UnitType> list = new List<UnitType>();
+        foreach (KeyValuePair<UnitType, int> kvp in spawnList)
         {
             // starts a sub thread for spawning units to ensure delay
             StartCoroutine(SpawnFunction(kvp.Key, kvp.Value, owner));
             list.Add(kvp.Key);
         }
-        foreach (GameObject obj in list)
+        foreach (UnitType type in list)
         {
-            spawnList.Remove(obj);
+            spawnList.Remove(type);
         }
     }
 
-    IEnumerator SpawnFunction(GameObject obj, int amount, Player owner)
+    IEnumerator SpawnFunction(UnitType type, int amount, Player owner)
     {
         for (int i = 0; i < amount; i++)
         {
-            GameObject troop = Instantiate(obj, new Vector3(transform.position.x, transform.position.y), Quaternion.identity) as GameObject;
+            GameObject troop = Instantiate(Resources.Load("Prefab/Unit", typeof(GameObject)) as GameObject,
+                    new Vector3(transform.position.x, transform.position.y), Quaternion.identity) as GameObject;
             Unit troopUnit = troop.GetComponent<Unit>();
+            troopUnit.setUnitType(type);
             troopUnit.setdirection(direction,false);
             troopUnit.Owner = owner;
             troop.gameObject.GetComponent<SpriteRenderer>().color = owner.playerColor;
@@ -45,7 +47,7 @@ public class UnitSpawner : MonoBehaviour
         }
     }
 
-    public void addUnits(GameObject type, int Amount, Player owner)
+    public void addUnits(UnitType type, int Amount, Player owner)
     {
         this.owner = owner;
         if (spawnList.ContainsKey(type))

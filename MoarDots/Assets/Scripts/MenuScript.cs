@@ -34,6 +34,7 @@ public class MenuScript : MonoBehaviour
         Dictionary<GameObject, int> availableUnits = new Dictionary<GameObject, int>();
         foreach (SpawnPair sp in states)
         {
+            /*
             if (availableUnits.ContainsKey(sp.UnitType))
             {
                 availableUnits[sp.UnitType] += sp.Amount; // Write each UnitType to a list or use from dictionary (if Amount>0 add)
@@ -42,6 +43,7 @@ public class MenuScript : MonoBehaviour
             {
                 availableUnits.Add(sp.UnitType, sp.Amount);
             }
+             */
         }
         foreach (KeyValuePair<GameObject, int> kvp in availableUnits)
         {
@@ -131,9 +133,11 @@ public class MenuScript : MonoBehaviour
             {
                 continue;
             }
+            /*
             selected.addState(new SpawnPair(i,
-                Resources.Load("Prefab/Soldier", typeof(GameObject)) as GameObject,
+                Resources.Load("Prefab/Unit", typeof(GameObject)) as GameObject,
                 (int)unitCounts[i], selected.Owner));
+             */
         }
         print("You successfully saved");
     }
