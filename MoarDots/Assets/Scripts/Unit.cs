@@ -66,20 +66,4 @@ public class Unit : MonoBehaviour {
         newDirection = newDirection * normFac;
         transform.rigidbody2D.velocity = (newDirection / 10) * Movespeed;
     }
-
-    public void updateUnit(string prop, float val)
-    {
-        switch (prop)
-        {
-            case "Movespeed":
-                Movespeed += (int)val;
-                break;
-            case "Health":
-                Health += (int)val;
-                break;
-            case "Attack":
-                Attack += (int)val;
-                break;
-        }
-    }
 }

@@ -225,7 +225,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   castleMenu: {fileID: 100000, guid: 31799917bbd327648903f4671644fdda, type: 2}
   townMenu: {fileID: 100000, guid: 44c630f79635aee4ca7e9a14d57685c7, type: 2}
-  Soldier: {fileID: 100002, guid: 10c2c2ec3ca82dd4cad778d406e7887c, type: 2}
   PlayerCastle: {fileID: 379132996}
   EnemyCastle: {fileID: 1055862043}
 --- !u!4 &100168302
@@ -753,6 +752,57 @@ Prefab:
   m_RootGameObject: {fileID: 10157045}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &716725423
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 716725425}
+  - 132: {fileID: 716725424}
+  m_Layer: 0
+  m_Name: PlayerResources
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!132 &716725424
+GUIText:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 716725423}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Text: 'Gold: XXX'
+  m_Anchor: 0
+  m_Alignment: 0
+  m_PixelOffset: {x: 175, y: -5}
+  m_LineSpacing: 1
+  m_TabSize: 4
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Material: {fileID: 0}
+  m_FontSize: 15
+  m_FontStyle: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4281396722
+  m_PixelCorrect: 1
+  m_RichText: 1
+--- !u!4 &716725425
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 716725423}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
 --- !u!1 &785147974
 GameObject:
   m_ObjectHideFlags: 0
