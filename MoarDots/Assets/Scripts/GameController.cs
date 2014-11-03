@@ -16,38 +16,34 @@ public class GameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
+        //initialize unit types
 		UnitType soldierType = new UnitType ();
 		UnitType skeletonType = new UnitType ();
 		
-		soldierType.setValues ("soldier",1,1,1,10);
-		skeletonType.setValues ("skeleton",1,1,1,10);
+		soldierType.setValues ("Soldier",1,10,1,10,false);
+		skeletonType.setValues ("Skeleton",1,10,1,10,false);
 
+
+        //Initialize players
         enemy = new Player();
         enemy.playerColor = Color.red;
         enemy.Name = "enemy";
         enemy.unitList.Add(
             Instantiate(Resources.Load("Prefab/Unit", typeof(GameObject)) as GameObject,
             new Vector3(-500.0f,-500.0f,100.0f),Quaternion.identity) as GameObject);
-		// Add the UnitType to the UnitList items
-
-
 		enemy.unitList[0].gameObject.GetComponent<Unit>().setUnitType(soldierType);
-        //enemy.unitList[0].gameObject.GetComponent<Unit>().Movespeed = 10;
         enemy.unitList[0].gameObject.GetComponent<Unit>().Owner = enemy;
-
-
+        
         player = new Player();
         player.playerColor = Color.cyan;
         player.Name = "player";
 		player.unitList.Add(
 			Instantiate(Resources.Load("Prefab/Unit", typeof(GameObject)) as GameObject,
 		            new Vector3(500.0f,-500.0f,100.0f),Quaternion.identity) as GameObject);
-		//player.unitList.Add(Instantiate(Resources.Load("Prefab/Skeleton",typeof(GameObject)) as GameObject) as GameObject);
 		player.unitList[0].gameObject.GetComponent<Unit>().setUnitType(skeletonType);
-		//player.unitList[0].gameObject.GetComponent<Unit>().Movespeed = 10;
 		player.unitList[0].gameObject.GetComponent<Unit>().Owner = player;
 
+        //Setup basic spawn
         PlayerCastle.GetComponent<SpawnPoint>().Owner = player;
         PlayerCastle.GetComponent<Castle>().Owner = player;
         PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, player.unitList[0], 10, player));
@@ -75,6 +71,7 @@ public class GameController : MonoBehaviour {
 
     void Update()
     {
+        //Gets the postion of the mouse on camera
         Vector3 camCoord = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos = new Vector2(camCoord.x,camCoord.y);
 

@@ -1,31 +1,23 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class UnitType : MonoBehaviour {
+public class UnitType {
 
 
-	public string name{ get; set; }
-	public int atk{ get; set; }
-	public int range{ get; set; }
-	public int speed{ get; set; }
-	public int health{ get; set; }
+	public string Name{ get; set; }
+	public int Attack{ get; set; }
+	public int Range{ get; set; }
+	public int Speed{ get; set; }
+	public int Health{ get; set; }
+    public bool IsRanged { get; set; }
 
+	public void setValues(string name, int atk,int health, int range, int speed, bool isRanged){
+		Name = name;
+		Attack = atk;
+		Health = health;
+		Range = range;
+		Speed = speed;
+        IsRanged = isRanged;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-
-	public void setValues(string name, int atk,int health, int range, int speed){
-		this.name = name;
-		this.atk = atk;
-		this.health = health;
-		this.range = range;
-		this.speed = speed;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 }

@@ -5,23 +5,15 @@ using System.Collections.Generic;
 
 public class UnitCombat : MonoBehaviour
 {
-    
-
-    int attackCD = 30; //new
-    int cdCounter = 0; //new
+    int attackCD = 30;
+    int cdCounter = 0;
     List<GameObject> targets = new List<GameObject>();
 
-    public bool combatState
-    {
-        get;
-        set;
-    }
 	private GameObject CollChild;
     private GameObject thisUnit; 
 	
 	// Use this for initialization
 	void Start () {
-        combatState = false;
         thisUnit = transform.parent.gameObject;
 	}
 
@@ -39,32 +31,50 @@ public class UnitCombat : MonoBehaviour
 
 	private void fight (GameObject target)
 	{
-		// if this unit or the detected unit is in combat, the following code will be skipped
-        if (combatState != true)
+        Unit thisUnit = transform.parent.GetComponent<Unit>();
+        if (thisUnit.IsRanged)
         {
-            target.GetComponent<Unit>().health -= gameObject.transform.parent.GetComponent<Unit>().damage;
-            Debug.Log("health is " + target.GetComponent<Unit>().health);
-
-
-            if (target.GetComponent<Unit>().health <= 0)
+            //TODO Ranged combat check
+        }
+        else
+        {
+            if (thisUnit.CloseCombat)
             {
-                targets.Remove(target);
-                Destroy(target);
-                combatState = false;
+                target.GetComponent<Unit>().Health -= thisUnit.Attack;
+
+
+                if (target.GetComponent<Unit>().Health <= 0 || targets.Count == 0)
+                {
+                    targets.Remove(target);
+                    Destroy(target);
+                    transform.parent.GetComponent<Unit>().CombatState = false;
+                    thisUnit.CloseCombat = false;
+                    thisUnit.setdirection(thisUnit.CurrentDestination);
+                }
+            }
+            else
+            {
+                thisUnit.setdirection(target.transform.position);
             }
         }
 	}
+	
 
-    //new
-    void attack()
-    {
-        while (targets.Count>0 && targets[0] == null)
+	// Update is called once per frame
+	void Update () {
+        // remove empty targets
+        while (targets.Count > 0 && targets[0] == null)
         {
             targets.RemoveAt(0);
         }
 
+        Unit thisUnit = transform.parent.GetComponent<Unit>();
+        // if there is more than one target available fight it
         if (targets.Count > 0)
         {
+            thisUnit.CombatState = true;
+            // checks for the attack cooldown
+            //TODO should work on a timer
             if (cdCounter > 0)
             {
                 cdCounter--;
@@ -75,12 +85,11 @@ public class UnitCombat : MonoBehaviour
                 cdCounter = attackCD;
             }
         }
-    }
-	
-
-	// Update is called once per frame
-	void Update () {
-        attack(); //new
+        else
+        {
+            thisUnit.CombatState = false;
+            thisUnit.setdirection(thisUnit.CurrentDestination);
+        }
 	}
 
 }
