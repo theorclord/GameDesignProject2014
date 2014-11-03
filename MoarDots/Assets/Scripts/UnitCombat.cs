@@ -10,11 +10,9 @@ public class UnitCombat : MonoBehaviour
     List<GameObject> targets = new List<GameObject>();
 
 	private GameObject CollChild;
-    private GameObject thisUnit; 
 	
 	// Use this for initialization
 	void Start () {
-        thisUnit = transform.parent.gameObject;
 	}
 
 

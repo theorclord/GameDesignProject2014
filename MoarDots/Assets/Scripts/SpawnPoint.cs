@@ -12,27 +12,23 @@ public class SpawnPoint : MonoBehaviour {
         set;
     }
     private List<SpawnPair> state = new List<SpawnPair>();
-    
-    private int numberOfPaths;
-    private float interval = 1.0f;
-    private float timer = 0.0f;
 
+    private float lastSpawn;
     private bool spawn;
 
     // Use this for initialization
     void Start()
     {
-        numberOfPaths = spawners.Count;
-        timer = Time.time + interval;
         spawn = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Time.time >= timer)
+        float timer = GameObject.Find("GameController").GetComponent<GameController>().GetTimer();
+        if (lastSpawn < timer)
         {
-            timer += interval;
+            lastSpawn = timer;
             spawn = true;
         }
         int spawnCount = (int)timer;

@@ -3,7 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Player {
-
+    public int Income
+    {
+        get;
+        set;
+    }
+    public int Resources
+    {
+        get;
+        set;
+    }
     public string Name
     {
         get;
