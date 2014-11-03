@@ -21,9 +21,16 @@ public class Player {
         private set;
     }
 
+    public List<UnitType> unitTypeList
+    {
+        get;
+        private set;
+    }
+
     public Player()
     {
         unitList = new List<GameObject>();
+        unitTypeList = new List<UnitType>();
     }
 
     public override string ToString()

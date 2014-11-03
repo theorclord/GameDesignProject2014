@@ -115,7 +115,7 @@ public class CaptureNode : MonoBehaviour {
                     {
                         if (random < customDirection[i])
                         {
-                            troop.setdirection(DirectionPlayer[i]);
+                            troop.setdirection(DirectionPlayer[i],false);
                         }
                         else
                         {
@@ -126,7 +126,7 @@ public class CaptureNode : MonoBehaviour {
                 }
                 else
                 {
-                    troop.setdirection(DirectionPlayer[nextPathPlayer]);
+                    troop.setdirection(DirectionPlayer[nextPathPlayer],false);
                     nextPathPlayer++;
                     if (nextPathPlayer >= DirectionPlayer.Count)
                     {
@@ -136,7 +136,7 @@ public class CaptureNode : MonoBehaviour {
             }
             else
             {
-                troop.setdirection(DirectionEnemy[nextPathEnemy]);
+                troop.setdirection(DirectionEnemy[nextPathEnemy],false);
                 nextPathEnemy++;
                 if (nextPathEnemy >= DirectionEnemy.Count)
                 {

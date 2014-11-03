@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Castle : MonoBehaviour {
 
@@ -26,11 +27,21 @@ public class Castle : MonoBehaviour {
         //Debug.Log(coll.gameObject.GetComponent<Unit>().Owner.Name);
         if (coll.gameObject.GetComponent<Unit>() != null)
         {
-            string name = coll.gameObject.GetComponent<Unit>().Owner.Name;
-            if (name != this.Owner.Name)
+            try
             {
-                Destroy(coll.gameObject);
-                Debug.Log(name + " has won");
+                string name = coll.gameObject.GetComponent<Unit>().Owner.Name;
+                if (name != this.Owner.Name)
+                {
+                    Destroy(coll.gameObject);
+                    Debug.Log(name + " has won");
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.Log(e.Message);
+                Debug.Log(coll.transform.position);
+                Debug.LogError("Object name" + coll.gameObject.name);
+                
             }
         }
         

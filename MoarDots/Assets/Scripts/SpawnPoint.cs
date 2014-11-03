@@ -36,7 +36,6 @@ public class SpawnPoint : MonoBehaviour {
             spawn = true;
         }
         int spawnCount = (int)timer;
-        //Debug.Log(spawnCount);
         if ((spawnCount % 15 == 0 || spawnCount < 2) && spawn)
         {
             foreach (SpawnPair pair in state)
