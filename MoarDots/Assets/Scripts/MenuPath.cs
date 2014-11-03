@@ -58,7 +58,6 @@ public class MenuPath : MonoBehaviour
                 int temp;
                 if (int.TryParse(text, out temp))
                 {
-                    int maximumAvailableUnits = 100 - (int)paths.Sum() + temp;
                     paths[i] = Mathf.Clamp(temp, 0, 100);
                 }
                 else if (text == "") paths[i] = null;
@@ -75,7 +74,7 @@ public class MenuPath : MonoBehaviour
         // Button for saving
         if (GUI.Button(new Rect(110, inc, 60, 20), "Save", "Button"))
         {
-            SaveFunction();
+            saveFunction();
         }
         // Reapplying size of menu
         windowRect.height = inc + 25;
@@ -84,7 +83,7 @@ public class MenuPath : MonoBehaviour
         GUI.DragWindow(new Rect(0, 0, 10000, 10000));
     }
 
-    void SaveFunction()
+    private void saveFunction()
     {
         if (paths.Sum() <= 0)
         {

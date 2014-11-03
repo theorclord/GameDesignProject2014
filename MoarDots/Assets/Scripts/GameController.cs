@@ -31,6 +31,7 @@ public class GameController : MonoBehaviour {
         UnitType skeletonArcherType = new UnitType("Skeleton Archer", 1, 10, 100, 10, true,175);
 
         //Initialize players
+        //Ai
         enemy = new Player();
         enemy.playerColor = Color.red;
         enemy.Name = "enemy";
@@ -41,6 +42,7 @@ public class GameController : MonoBehaviour {
 
         playerList.Add(enemy);
 
+        //Player
         player = new Player();
         player.playerColor = Color.cyan;
         player.Name = "player";
@@ -51,6 +53,13 @@ public class GameController : MonoBehaviour {
 
         playerList.Add(player);
 
+        //Neutral
+        // should be used for initial control
+        /*
+        Player neutral = new Player();
+        player.playerColor = Color.gray;
+        player.Name = "neutral";
+        */
         //Setup basic spawn
         PlayerCastle.GetComponent<SpawnPoint>().Owner = player;
         PlayerCastle.GetComponent<Castle>().Owner = player;
@@ -118,7 +127,7 @@ public class GameController : MonoBehaviour {
                     GameObject menu = Instantiate(castleMenu) as GameObject;
                     menu.GetComponent<MenuScript>().SetSpawnPoint(hit.transform.gameObject.GetComponent<SpawnPoint>());
                 }
-                else if (hit.transform.gameObject.tag == "CaptureNode")
+                else if (hit.transform.gameObject.tag == "CaptureNode" && hit.transform.gameObject.GetComponent<CaptureNode>().Owner == playerList[1]) //TODO fix for selecting player
                 {
                     GameObject menu = Instantiate(townMenu) as GameObject;
                     menu.GetComponent<MenuPath>().setCaptureNode(hit.transform.gameObject.GetComponent<CaptureNode>());
