@@ -163,12 +163,11 @@ public class CaptureNode : MonoBehaviour {
 
     private void setProperty(Player owner, float mod)
     {
-        foreach (GameObject obj in owner.unitList)
+        foreach (UnitType type in owner.unitTypeList)
         {
-            Unit unit = obj.transform.GetComponent<Unit>();
             foreach (KeyValuePair<string, float> kvp in propertyChange)
             {
-                unit.updateUnit(kvp.Key, mod*kvp.Value);
+                type.updateUnitType(kvp.Key, mod*kvp.Value);
             }
         }
     }

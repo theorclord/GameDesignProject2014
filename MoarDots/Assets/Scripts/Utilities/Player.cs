@@ -15,12 +15,6 @@ public class Player {
         set;
     }
 
-    public List<GameObject> unitList
-    {
-        get;
-        private set;
-    }
-
     public List<UnitType> unitTypeList
     {
         get;
@@ -29,7 +23,6 @@ public class Player {
 
     public Player()
     {
-        unitList = new List<GameObject>();
         unitTypeList = new List<UnitType>();
     }
 

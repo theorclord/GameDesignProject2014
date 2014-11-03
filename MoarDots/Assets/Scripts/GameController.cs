@@ -12,8 +12,15 @@ public class GameController : MonoBehaviour {
     private Player player;
     private Player enemy;
 
+    //global timer
+    private float interval = 1.0f;
+    private float timer = 0.0f;
+
 	// Use this for initialization
 	void Start () {
+        //Timer
+        timer = Time.time + interval;
+        
         //initialize unit types
         UnitType soldierType = new UnitType("Soldier", 1, 10, 1, 10, false);
         UnitType skeletonType = new UnitType("Skeleton", 1, 10, 1, 10, false);
@@ -65,7 +72,11 @@ public class GameController : MonoBehaviour {
 
     void Update()
     {
-
+        //Global timer update
+        if (Time.time >= timer)
+        {
+            timer += interval;
+        }
         //Gets the postion of the mouse on camera
         Vector3 camCoord = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos = new Vector2(camCoord.x,camCoord.y);
@@ -92,5 +103,11 @@ public class GameController : MonoBehaviour {
                 }
             }
         }
+    }
+
+
+    public float GetTimer()
+    {
+        return timer;
     }
 }

@@ -20,4 +20,20 @@ public class UnitType {
         Movespeed = movespeed;
         IsRanged = isRanged;
     }
+
+    public void updateUnitType(string prop, float val)
+    {
+        switch (prop)
+        {
+            case "Movespeed":
+                Movespeed += (int)val;
+                break;
+            case "Health":
+                Health += (int)val;
+                break;
+            case "Attack":
+                Attack += (int)val;
+                break;
+        }
+    }
 }
