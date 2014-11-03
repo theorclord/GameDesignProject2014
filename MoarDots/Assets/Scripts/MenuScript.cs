@@ -95,7 +95,6 @@ public class MenuScript : MonoBehaviour
                     int temp;
                     if (int.TryParse(text, out temp))
                     {
-                        Debug.Log(kvp.Key.Name);
                         int au = availableUnits[kvp.Key];
                         int tot = (int)kvp.Value.Sum();
                         int maximumAvailableUnits = au - tot + temp; // Change to account for specific type of unit
@@ -118,7 +117,7 @@ public class MenuScript : MonoBehaviour
         // Button for saving
         if (GUI.Button(new Rect(110, inc, 60, 20), "Save", "Button"))
         {
-            SaveFunction();
+            saveFunction();
         }
         // Reapplying size of menu
         windowRect.height = inc + 25;
@@ -127,24 +126,20 @@ public class MenuScript : MonoBehaviour
         GUI.DragWindow(new Rect(0, 0, 10000, 10000));
     }
 
-    void SaveFunction()
+    private void saveFunction()
     {
         selected.clearStates();
-        foreach (KeyValuePair<UnitType, int> kvp in availableUnits)
+        foreach (KeyValuePair<UnitType, List<int?>> kvp in unitQueues)
         {
-            List<int?> unitCounts = unitQueues[kvp.Key];
-            if (unitCounts.Sum() < kvp.Value)
+            int unitCounts = availableUnits[kvp.Key];
+            if (kvp.Value.Sum() < unitCounts)
             {
-                int minimumValueIndex = unitCounts.IndexOf(unitCounts.Min());
-                unitCounts[minimumValueIndex] += (kvp.Value - unitCounts.Sum());
+                int minimumValueIndex = kvp.Value.IndexOf(kvp.Value.Min());
+                kvp.Value[minimumValueIndex] += (unitCounts - kvp.Value.Sum());
             }
-            for (int i = 0; i < unitCounts.Count; i++)
+            for (int i = 0; i < kvp.Value.Count; i++)
             {
-                /*
-                selected.addState(new SpawnPair(i,
-                    Resources.Load("Prefab/Unit", typeof(GameObject)) as GameObject,
-                    (int)unitCounts[i], selected.Owner));
-                 */
+                selected.addState(new SpawnPair(i, kvp.Key, (int)kvp.Value[i], selected.Owner));
             }
         }
         print("You successfully saved");
