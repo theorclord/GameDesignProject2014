@@ -22,10 +22,17 @@ public class GameController : MonoBehaviour {
         timer = Time.time + interval;
         
         //initialize unit types
-        UnitType soldierType = new UnitType("Soldier", 1, 10, 1, 10, false);
-        UnitType skeletonType = new UnitType("Skeleton", 1, 10, 1, 10, false);
-        UnitType rangerType = new UnitType("Ranger", 1,10,100,10,true);
-        UnitType skeletonArcherType = new UnitType("Skeleton Archer", 1, 10, 100, 10, true);
+        UnitType soldierType = new UnitType("Soldier", 7, 11f, 1, 15, false, 25f, 30f, 1.5f);
+        UnitType skeletonType = new UnitType("Skeleton", 7, 11f, 1, 15, false, 25f, 30f, 1.5f);
+        UnitType rangerType = new UnitType("Ranger", 5,5f,100,12,true, 5f, 0f, 1.2f);
+        UnitType skeletonArcherType = new UnitType("Skeleton Archer", 5, 5f, 100, 12, true, 5f, 0f, 1.2f);
+        UnitType armouredSoldieType = new UnitType("Armoured Soldier", 3, 20f, 1, 10, false, 50f, 10f, 0.8f);
+        UnitType armouredSkeletonType = new UnitType("Armoured Skeleton", 3, 20f, 1, 10, false, 50f, 10f, 0.8f);
+        /*        UnitType soldierType = new UnitType("Soldier", 1, 10, 1, 10, false);
+                UnitType soldierType = new UnitType("Soldier", 1, 10, 1, 10, false);
+                UnitType skeletonType = new UnitType("Skeleton", 1, 10, 1, 10, false);
+                UnitType rangerType = new UnitType("Ranger", 1,10,100,10,true);
+                UnitType skeletonArcherType = new UnitType("Skeleton Archer", 1, 10, 100, 10, true); */
 
         //Initialize players
         enemy = new Player();
@@ -33,12 +40,15 @@ public class GameController : MonoBehaviour {
         enemy.Name = "enemy";
         enemy.unitTypeList.Add(soldierType);
         enemy.unitTypeList.Add(rangerType);
+        enemy.unitTypeList.Add(armouredSoldieType);
         
         player = new Player();
         player.playerColor = Color.cyan;
         player.Name = "player";
         player.unitTypeList.Add(skeletonType);
         player.unitTypeList.Add(skeletonArcherType);
+        player.unitTypeList.Add(armouredSkeletonType);
+
 
         //Setup basic spawn
         PlayerCastle.GetComponent<SpawnPoint>().Owner = player;
