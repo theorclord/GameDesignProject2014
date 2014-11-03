@@ -45,7 +45,7 @@ MonoBehaviour:
     y: 20
     width: 250
     height: 100
-  CastleMenu: {fileID: 0}
+  CastleMenu: {fileID: 100000, guid: 31799917bbd327648903f4671644fdda, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -109,7 +109,7 @@ public class MenuPath : MonoBehaviour
             {
                 continue;
             }
-            captureNode.customDirection = paths;
+            captureNode.CustomDirection = paths;
         }
         print("You successfully saved");
     }

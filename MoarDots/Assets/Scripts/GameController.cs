@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour {
 
     private Player player;
     private Player enemy;
+    private Player neutral;
 
     private List<Player> playerList = new List<Player>();
     //global timer
@@ -25,10 +26,23 @@ public class GameController : MonoBehaviour {
         timer = Time.time + interval;
         
         //initialize unit types
-        UnitType soldierType = new UnitType("Soldier", 1, 10, 1, 10, false, 100);
-        UnitType skeletonType = new UnitType("Skeleton", 1, 10, 1, 10, false, 100);
-        UnitType rangerType = new UnitType("Ranger", 1,10,100,10,true, 175);
-        UnitType skeletonArcherType = new UnitType("Skeleton Archer", 1, 10, 100, 10, true,175);
+        // string name, int atk, float health, int range, int movespeed, bool isRanged, int price, bool isStructure
+        //,float armour, float armourPen, float attackSpeed
+        UnitType soldierType = new UnitType("Soldier", 7, 11f, 0, 15, false,100, false, 0, 0, 10);
+        UnitType skeletonType = new UnitType("Skeleton", 7, 11f, 0, 15, false, 100, false, 0, 0, 10);
+        UnitType rangerType = new UnitType("Ranger", 5, 5f, 100, 12, true, 175,false, 0, 0f, 10);
+        UnitType skeletonArcherType = new UnitType("Skeleton Archer", 5, 5f, 100, 12, true, 175, false, 0, 0f, 10);
+        UnitType armouredSoldieType = new UnitType("Armoured Soldier", 3, 20f, 1, 10, false, 250, false, 0, 0, 10);
+        UnitType armouredSkeletonType = new UnitType("Armoured Skeleton", 3, 20f, 1, 10, false, 250, false, 0, 0, 10);
+
+        //initialize structure types
+        UnitType towerSimple = new UnitType("Tower", 20, 100f, 150, 0, true, 500, true, 15f,10f,1.2f);
+        
+        /*        UnitType soldierType = new UnitType("Soldier", 1, 10, 1, 10, false);
+                UnitType soldierType = new UnitType("Soldier", 1, 10, 1, 10, false);
+                UnitType skeletonType = new UnitType("Skeleton", 1, 10, 1, 10, false);
+                UnitType rangerType = new UnitType("Ranger", 1,10,100,10,true);
+                UnitType skeletonArcherType = new UnitType("Skeleton Archer", 1, 10, 100, 10, true); */
 
         //Initialize players
         //Ai
@@ -37,6 +51,7 @@ public class GameController : MonoBehaviour {
         enemy.Name = "enemy";
         enemy.unitTypeList.Add(soldierType);
         enemy.unitTypeList.Add(rangerType);
+        enemy.unitTypeList.Add(armouredSoldieType);
         enemy.Income = 50;
         enemy.Resources = 500;
 
@@ -48,6 +63,8 @@ public class GameController : MonoBehaviour {
         player.Name = "player";
         player.unitTypeList.Add(skeletonType);
         player.unitTypeList.Add(skeletonArcherType);
+        player.unitTypeList.Add(armouredSkeletonType);
+
         player.Income = 50;
         player.Resources = 500;
 
@@ -55,11 +72,12 @@ public class GameController : MonoBehaviour {
 
         //Neutral
         // should be used for initial control
-        /*
-        Player neutral = new Player();
-        player.playerColor = Color.gray;
-        player.Name = "neutral";
-        */
+        neutral = new Player();
+        neutral.playerColor = Color.gray;
+        neutral.Name = "neutral";
+
+        playerList.Add(neutral);
+        
         //Setup basic spawn
         PlayerCastle.GetComponent<SpawnPoint>().Owner = player;
         PlayerCastle.GetComponent<Castle>().Owner = player;
@@ -87,7 +105,13 @@ public class GameController : MonoBehaviour {
         nodes[3].GetComponent<CaptureNode>().setpropertyChange("Movespeed", 5);
         nodes.Add(GameObject.Find("Town5"));
         nodes[4].GetComponent<CaptureNode>().setpropertyChange("Health", 4);
-	
+
+        //initialize towers:
+        /*
+        GameObject tower = GameObject.Find("TowerSimple");
+        tower.GetComponent<Unit>().Owner = neutral;
+        tower.GetComponent<Unit>().Unittype = towerSimple;
+	    */
 	}
 
     void Update()
@@ -120,7 +144,7 @@ public class GameController : MonoBehaviour {
             RaycastHit2D hit = Physics2D.Raycast(mousePos,new Vector2(0.0f,0.0f));
             if (hit)
             {
-                Debug.Log("Hit " + hit.transform.gameObject.name);
+                //Debug.Log("Hit " + hit.transform.gameObject.name);
                 // TODO: Add external check if menu is open, and close it!
                 if (hit.transform.gameObject.tag == "Selectable")
                 {

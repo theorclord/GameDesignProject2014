@@ -97,7 +97,9 @@ public class MenuShop : MonoBehaviour {
         {
             for (int i = 0; i < availableUnits.Count; i++)
             {
-                if(units[i] != 0)
+                if (units[i] == null)
+                    units[i] = 0;
+                if (units[i] != 0)
                     buyUnit(availableUnits[i], path, (int)units[i]);
             }
             close();
@@ -118,9 +120,9 @@ public class MenuShop : MonoBehaviour {
     private void buyUnit(UnitType ut, int path, int amount)
     {
         // checks if there is enough resources
-        if (selected.Owner.Resources >= ut.Price)
+        if (selected.Owner.Resources >= ut.Price * amount)
         {
-            selected.Owner.Resources -= ut.Price;
+            selected.Owner.Resources -= ut.Price * amount;
             selected.addState(new SpawnPair(path, ut, amount, selected.Owner));
         }
     }

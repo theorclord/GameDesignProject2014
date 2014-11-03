@@ -15,12 +15,16 @@ public class Unit : MonoBehaviour {
     }
 
 	public UnitType Unittype;
-    public int Health;
+    public float Health;
 	public int Attack;
 	public int Range;
 	public string Name;
-    public int Movespeed;
-    public bool IsRanged = false;
+    public float Movespeed;
+    public bool IsRanged;
+    public bool IsStructure;
+    public float Armour;
+    public float ArmourPen;
+    public float AttackSpeed;
 
     public Player Owner { get; set; }
 
@@ -43,6 +47,10 @@ public class Unit : MonoBehaviour {
 		Name = ut.Name;
 		Range = ut.Range;
         IsRanged = ut.IsRanged;
+        IsStructure = ut.IsStructure;
+        Armour = ut.Armour;
+        ArmourPen = ut.ArmourPen;
+        AttackSpeed = ut.AttackSpeed;
 	}
 
 	// Update is called once per frame

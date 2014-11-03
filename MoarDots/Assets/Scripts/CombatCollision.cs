@@ -15,14 +15,14 @@ public class CombatCollision : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D coll)
     {
-        Unit thisUnit = gameObject.transform.parent.transform.parent.GetComponent<Unit>();
-        Unit collUnit = coll.gameObject.transform.parent.transform.parent.GetComponent<Unit>();
+        Unit thisUnit = gameObject.transform.parent.GetComponent<Unit>();
+        Unit collUnit = coll.gameObject.transform.parent.GetComponent<Unit>();
         if (collUnit != null)
         {
             if (collUnit.Owner.Name != thisUnit.Owner.Name)
             {
                 thisUnit.CloseCombat = true;
-                gameObject.transform.parent.transform.parent.rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
+                gameObject.transform.parent.rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
                 //Debug.Log("you woot mate");
             }
         }
