@@ -2,7 +2,8 @@ fileFormatVersion: 2
 guid: 2cd9ade81c48b1c498e491d279eed90d
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - shopMenu: {fileID: 100000, guid: f3005b62eafc0aa408d46a6691918b0e, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

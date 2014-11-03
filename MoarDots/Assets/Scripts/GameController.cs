@@ -116,7 +116,7 @@ public class GameController : MonoBehaviour {
                 if (hit.transform.gameObject.tag == "Selectable")
                 {
                     GameObject menu = Instantiate(castleMenu) as GameObject;
-                    menu.GetComponent<MenuScript>().setSpawnPoint(hit.transform.gameObject.GetComponent<SpawnPoint>());
+                    menu.GetComponent<MenuScript>().SetSpawnPoint(hit.transform.gameObject.GetComponent<SpawnPoint>());
                 }
                 else if (hit.transform.gameObject.tag == "CaptureNode")
                 {

@@ -6,14 +6,23 @@ using System;
 
 public class MenuScript : MonoBehaviour
 {
+    // GUI stuff
     private List<GameObject> spawners;
     public Rect windowRect = new Rect(20, 20, 250, 100);
-    public List<string> options;
     private GUIStyle centeredStyle;
+
+    public GameObject shopMenu;
+
+    // List of names for available Paths
+    public List<string> options;
+    private SpawnPoint selected;
+
+    // List of total available and selected units
     private Dictionary<UnitType, int> availableUnits;
     private Dictionary<UnitType, List<int?>> unitQueues = new Dictionary<UnitType, List<int?>>();
 
-    private SpawnPoint selected;
+    private string pathName = "Path ";
+
     void OnGUI()
     {
         windowRect = GUI.Window(0, windowRect, WindowFunction, "Menu");
@@ -21,7 +30,7 @@ public class MenuScript : MonoBehaviour
         centeredStyle.alignment = TextAnchor.MiddleCenter;
     }
 
-    public void setSpawnPoint(SpawnPoint point)
+    public void SetSpawnPoint(SpawnPoint point)
     {
         selected = point;
     }
@@ -46,9 +55,12 @@ public class MenuScript : MonoBehaviour
 
             if (!unitQueues.ContainsKey(sp.UnitType))
             {
+                // Add unitTypes to unitQueues
                 unitQueues.Add(sp.UnitType, new List<int?>());
             }
         }
+
+        // Write Label telling total available units (and types)
         string units = "Available Units:";
         int siz = 20;
         foreach (KeyValuePair<UnitType, int> kvp in availableUnits)
@@ -60,7 +72,7 @@ public class MenuScript : MonoBehaviour
 
         inc += siz + 5;
 
-        // populate the path names
+        // Populate the path names
         spawners = selected.getSpawners();
         options = new List<string>();
         foreach (GameObject obj in spawners)
@@ -73,13 +85,12 @@ public class MenuScript : MonoBehaviour
             for (int i = 0; i < options.Count; i++)
             {
                 // Add labels for each location
-                GUI.Label(new Rect(10, inc, 130, 20), options[i], centeredStyle);
+                GUI.Label(new Rect(10, inc, 130, 20), pathName + i.ToString(), centeredStyle);
                 inc += 25;
                 foreach (KeyValuePair<UnitType, List<int?>> kvp in unitQueues)
                 {
                     GUI.Label(new Rect(30, inc, 105, 20), kvp.Key.Name, centeredStyle);
                     // TextField for user input of # of units
-                    //unitCounts.Add(null);'
                     string text = "";
                     try
                     {
@@ -95,9 +106,7 @@ public class MenuScript : MonoBehaviour
                     int temp;
                     if (int.TryParse(text, out temp))
                     {
-                        int au = availableUnits[kvp.Key];
-                        int tot = (int)kvp.Value.Sum();
-                        int maximumAvailableUnits = au - tot + temp; // Change to account for specific type of unit
+                        int maximumAvailableUnits = availableUnits[kvp.Key] - (int)kvp.Value.Sum() + temp; // Change to account for specific type of unit
 
                         kvp.Value[i] = Mathf.Clamp(temp, 0, maximumAvailableUnits);
                     }
@@ -108,6 +117,13 @@ public class MenuScript : MonoBehaviour
             }
             inc += 5;
         }
+        //Button for buying
+        if (GUI.Button(new Rect(10, inc, 160, 20), "Buy stuff", "Button"))
+        {
+            print("You bought stuff!");
+            buyFunction();
+        }
+        inc += 25;
         // Button for closing menu
         if (GUI.Button(new Rect(10, inc, 60, 20), "Close", "Button"))
         {
@@ -126,11 +142,18 @@ public class MenuScript : MonoBehaviour
         GUI.DragWindow(new Rect(0, 0, 10000, 10000));
     }
 
+    private void buyFunction()
+    {
+        GameObject menu = Instantiate(shopMenu) as GameObject;
+        Destroy(gameObject);
+    }
+
     private void saveFunction()
     {
         selected.clearStates();
         foreach (KeyValuePair<UnitType, List<int?>> kvp in unitQueues)
         {
+            // Fill in minimum value
             int unitCounts = availableUnits[kvp.Key];
             if (kvp.Value.Sum() < unitCounts)
             {
@@ -139,6 +162,11 @@ public class MenuScript : MonoBehaviour
             }
             for (int i = 0; i < kvp.Value.Count; i++)
             {
+                if (kvp.Value[i] == null)
+                {
+                    continue;
+                }
+                // Send units
                 selected.addState(new SpawnPair(i, kvp.Key, (int)kvp.Value[i], selected.Owner));
             }
         }
