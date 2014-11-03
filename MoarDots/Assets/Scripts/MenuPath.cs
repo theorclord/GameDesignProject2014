@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 public class MenuPath : MonoBehaviour
 {
@@ -44,11 +45,11 @@ public class MenuPath : MonoBehaviour
                 string text = "";
                 try
                 {
-                    paths.Add(0);
+                    text = GUI.TextField(new Rect(120, inc, 30, 20), paths[i].ToString(), 3, centeredStyle);
                 }
-                catch (MissingReferenceException) { }
-                finally
+                catch (Exception)
                 {
+                    paths.Add(0);
                     text = GUI.TextField(new Rect(120, inc, 30, 20), paths[i].ToString(), 3, centeredStyle);
                 }
                 GUI.Label(new Rect(150, inc, 20, 20), "%", centeredStyle);

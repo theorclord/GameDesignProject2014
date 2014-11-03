@@ -70,7 +70,7 @@ public class MenuScript : MonoBehaviour
                 inc += 25;
                 foreach (var entry in availableUnits)
                 {
-                    GUI.Label(new Rect(30, inc, 105, 20), entry.Key.ToString(), centeredStyle);
+                    GUI.Label(new Rect(30, inc, 105, 20), entry.Key.GetComponent<Unit>().Name, centeredStyle);
                     // TextField for user input of # of units
                     //unitCounts.Add(null);'
                     string text = "";
