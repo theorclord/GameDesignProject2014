@@ -9,6 +9,7 @@ public class MenuScript : MonoBehaviour
     private List<GameObject> spawners;
     public Rect windowRect = new Rect(20, 20, 250, 100);
     public List<string> options;
+    //public List<int?> unitCounts = new List<int?>();
     public List<int?> unitCounts = new List<int?>();
     private GUIStyle centeredStyle;
     private int units;
@@ -78,7 +79,7 @@ public class MenuScript : MonoBehaviour
                     {
                         text = GUI.TextField(new Rect(140, inc, 30, 20), unitCounts[i].ToString(), 3, centeredStyle);
                     }
-                    catch (Exception e)
+                    catch (Exception)
                     {
                         unitCounts.Add(0);
                         text = GUI.TextField(new Rect(140, inc, 30, 20), unitCounts[i].ToString(), 3, centeredStyle);
