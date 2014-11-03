@@ -20,7 +20,8 @@ public class Unit : MonoBehaviour {
 	public int Range;
 	public string Name;
     public int Movespeed;
-    public bool IsRanged = false;
+    public bool IsRanged;
+    public bool IsStructure;
 
     public Player Owner { get; set; }
 
@@ -43,6 +44,7 @@ public class Unit : MonoBehaviour {
 		Name = ut.Name;
 		Range = ut.Range;
         IsRanged = ut.IsRanged;
+        IsStructure = ut.IsStructure;
 	}
 
 	// Update is called once per frame

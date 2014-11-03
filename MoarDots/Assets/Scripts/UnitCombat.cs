@@ -18,6 +18,7 @@ public class UnitCombat : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D coll)
 	{
+        //Checks if a unit enters detection range
         if (coll.gameObject.GetComponent<Unit>() != null)
         {
             if (coll.gameObject.GetComponent<Unit>().Owner != transform.parent.transform.gameObject.GetComponent<Unit>().Owner)
@@ -41,7 +42,10 @@ public class UnitCombat : MonoBehaviour
                 if (target.GetComponent<Unit>().Health <= 0 || targets.Count == 0)
                 {
                     targets.Remove(target);
-                    Destroy(target);
+                    if (!target.GetComponent<Unit>().IsStructure)
+                    {
+                        Destroy(target);
+                    }
                     transform.parent.GetComponent<Unit>().CombatState = false;
                     thisUnit.setdirection(thisUnit.CurrentDestination, true);
                 }
@@ -61,7 +65,14 @@ public class UnitCombat : MonoBehaviour
                 if (target.GetComponent<Unit>().Health <= 0 || targets.Count == 0)
                 {
                     targets.Remove(target);
-                    Destroy(target);
+                    if (target.GetComponent<Unit>().Unittype.IsStructure)
+                    {
+                        target.GetComponent<Tower>().IsRuin = true;
+                    }
+                    else
+                    {
+                        Destroy(target);
+                    }
                     transform.parent.GetComponent<Unit>().CombatState = false;
                     thisUnit.CloseCombat = false;
                     thisUnit.setdirection(thisUnit.CurrentDestination, true);

@@ -9,7 +9,7 @@ public class CaptureNode : MonoBehaviour {
     public List<Vector2> DirectionEnemy;
     int nextPathEnemy;
     int nextPathPlayer;
-    public List<int?> customDirection;
+    public List<int?> CustomDirection;
 
     // attached spawners for unit spawning
     public List<GameObject> spawners;
@@ -71,7 +71,6 @@ public class CaptureNode : MonoBehaviour {
                 // check if owner is null, to prevent change if no units are nearby
                 if (tempOwner != null)
                 {
-                    //TODO if more players are present, need to update
                     // removes add on
                     if (Owner != null)
                     {
@@ -90,12 +89,10 @@ public class CaptureNode : MonoBehaviour {
     #region triggers
     void OnTriggerEnter2D(Collider2D coll)
     {
-        
         Unit troop = coll.GetComponent<Unit>();
         // checks if collider is non unit
         if (troop != null)
         {
-            
             Player player = troop.Owner;
             if (!contested && (Owner == null || Owner.Name != player.Name))
             {
@@ -112,20 +109,20 @@ public class CaptureNode : MonoBehaviour {
             // TODO player name should be generic
             if (troop != null && player.Name == "player")
             {
-                if (customDirection != null)
+                if (CustomDirection != null)
                 {
                     int? count = 100;
                     int random = (int)Random.Range(1,(int)count);
                     
-                    for (int i = 0; i < customDirection.Count; i++)
+                    for (int i = 0; i < CustomDirection.Count; i++)
                     {
-                        if (random < customDirection[i])
+                        if (random < CustomDirection[i])
                         {
                             troop.setdirection(DirectionPlayer[i],false);
                         }
                         else
                         {
-                            count -= customDirection[i];
+                            count -= CustomDirection[i];
                             random = (int)Random.Range(1, (int)count);
                         }
                     }

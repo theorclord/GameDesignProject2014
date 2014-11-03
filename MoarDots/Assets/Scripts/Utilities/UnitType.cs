@@ -11,8 +11,9 @@ public class UnitType {
 	public int Health{ get; set; }
     public bool IsRanged { get; set; }
     public int Price { get; set; }
+    public bool IsStructure { get; set; }
 
-    public UnitType(string name, int atk, int health, int range, int movespeed, bool isRanged, int price)
+    public UnitType(string name, int atk, int health, int range, int movespeed, bool isRanged, int price, bool isStructure)
     {
         Name = name;
         Attack = atk;
@@ -21,6 +22,7 @@ public class UnitType {
         Movespeed = movespeed;
         IsRanged = isRanged;
         Price = price;
+        IsStructure = isStructure;
     }
 
     public void updateUnitType(string prop, float val)
