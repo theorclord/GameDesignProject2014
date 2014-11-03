@@ -24,6 +24,11 @@ public class GameController : MonoBehaviour {
         enemy = new Player();
         enemy.playerColor = Color.red;
         enemy.Name = "enemy";
+        /*
+        enemy.unitTypeList.Add(soldierType);
+        enemy.unitTypeList.Add(rangerType);
+         */
+        
         enemy.unitList.Add(
             Instantiate(Resources.Load("Prefab/Unit", typeof(GameObject)) as GameObject,
             new Vector3(-400.0f,-500.0f,100.0f),Quaternion.identity) as GameObject);
@@ -39,6 +44,11 @@ public class GameController : MonoBehaviour {
         player = new Player();
         player.playerColor = Color.cyan;
         player.Name = "player";
+        /*
+        player.unitTypeList.Add(skeletonType);
+        player.unitTypeList.Add(skeletonArcherType);
+         */
+        
 		player.unitList.Add(
 			Instantiate(Resources.Load("Prefab/Unit", typeof(GameObject)) as GameObject,
 		            new Vector3(400.0f,-500.0f,100.0f),Quaternion.identity) as GameObject);
@@ -49,7 +59,7 @@ public class GameController : MonoBehaviour {
                     new Vector3(500.0f, -500.0f, 100.0f), Quaternion.identity) as GameObject);
         player.unitList[1].gameObject.GetComponent<Unit>().setUnitType(skeletonArcherType);
         player.unitList[1].gameObject.rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
-
+        
         //Setup basic spawn
         PlayerCastle.GetComponent<SpawnPoint>().Owner = player;
         PlayerCastle.GetComponent<Castle>().Owner = player;
