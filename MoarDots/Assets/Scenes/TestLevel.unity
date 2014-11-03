@@ -1459,6 +1459,9 @@ MonoBehaviour:
   Movespeed: 0
   IsRanged: 1
   IsStructure: 1
+  Armour: 0
+  ArmourPen: 0
+  AttackSpeed: 0
 --- !u!50 &1729729365
 Rigidbody2D:
   m_ObjectHideFlags: 0

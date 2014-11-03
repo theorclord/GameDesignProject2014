@@ -5,14 +5,17 @@ using System.Collections.Generic;
 
 public class UnitCombat : MonoBehaviour
 {
-    int attackCD = 30;
+    int attackCD;
     int cdCounter = 0;
     List<GameObject> targets = new List<GameObject>();
 
 	private GameObject CollChild;
+    private Unit thisUnit; 
 	
 	// Use this for initialization
 	void Start () {
+        thisUnit = transform.parent.GetComponent<Unit>();
+        attackCD = (int) (30 * (1 / thisUnit.AttackSpeed));
 	}
 
 
@@ -36,9 +39,12 @@ public class UnitCombat : MonoBehaviour
             if (Vector3.Distance(transform.position, target.transform.position) * 100 < thisUnit.Range)
             {
                 gameObject.transform.parent.rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
-                //deal damage to enemy
-                target.GetComponent<Unit>().Health -= thisUnit.Attack;
 
+                //deal damage to enemy
+                //target.GetComponent<Unit>().Health -= thisUnit.Attack;
+                target.GetComponent<Unit>().Health -= thisUnit.Attack * ((target.GetComponent<Unit>().Armour * (thisUnit.ArmourPen/100)) / 100);
+
+                
                 if (target.GetComponent<Unit>().Health <= 0 || targets.Count == 0)
                 {
                     targets.Remove(target);
@@ -61,6 +67,7 @@ public class UnitCombat : MonoBehaviour
             {
                 //deal damage to enemy
                 target.GetComponent<Unit>().Health -= thisUnit.Attack;
+                //target.GetComponent<Unit>().Health -= thisUnit.Attack * ((target.GetComponent<Unit>().Armour * (thisUnit.ArmourPen / 100)) / 100);
 
                 if (target.GetComponent<Unit>().Health <= 0 || targets.Count == 0)
                 {
@@ -84,7 +91,7 @@ public class UnitCombat : MonoBehaviour
             }
         }
 	}
-	
+
 
 	// Update is called once per frame
 	void Update () {

@@ -26,13 +26,23 @@ public class GameController : MonoBehaviour {
         timer = Time.time + interval;
         
         //initialize unit types
-        UnitType soldierType = new UnitType("Soldier", 1, 10, 1, 10, false, 100,false);
-        UnitType skeletonType = new UnitType("Skeleton", 1, 10, 1, 10, false, 100,false);
-        UnitType rangerType = new UnitType("Ranger", 1,10,100,10,true, 175,false);
-        UnitType skeletonArcherType = new UnitType("Skeleton Archer", 1, 10, 100, 10, true,175,false);
+        // string name, int atk, float health, int range, int movespeed, bool isRanged, int price, bool isStructure
+        //,float armour, float armourPen, float attackSpeed
+        UnitType soldierType = new UnitType("Soldier", 7, 11f, 0, 15, false,100, false, 0, 0, 10);
+        UnitType skeletonType = new UnitType("Skeleton", 7, 11f, 0, 15, false, 100, false, 0, 0, 10);
+        UnitType rangerType = new UnitType("Ranger", 5, 5f, 100, 12, true, 175,false, 0, 0f, 10);
+        UnitType skeletonArcherType = new UnitType("Skeleton Archer", 5, 5f, 100, 12, true, 175, false, 0, 0f, 10);
+        UnitType armouredSoldieType = new UnitType("Armoured Soldier", 3, 20f, 1, 10, false, 250, false, 0, 0, 10);
+        UnitType armouredSkeletonType = new UnitType("Armoured Skeleton", 3, 20f, 1, 10, false, 250, false, 0, 0, 10);
 
         //initialize structure types
-        UnitType towerSimple = new UnitType("Tower", 5, 100, 150, 0, true, 500, true);
+        UnitType towerSimple = new UnitType("Tower", 20, 100f, 150, 0, true, 500, true, 15f,10f,1.2f);
+        
+        /*        UnitType soldierType = new UnitType("Soldier", 1, 10, 1, 10, false);
+                UnitType soldierType = new UnitType("Soldier", 1, 10, 1, 10, false);
+                UnitType skeletonType = new UnitType("Skeleton", 1, 10, 1, 10, false);
+                UnitType rangerType = new UnitType("Ranger", 1,10,100,10,true);
+                UnitType skeletonArcherType = new UnitType("Skeleton Archer", 1, 10, 100, 10, true); */
 
         //Initialize players
         //Ai
@@ -41,6 +51,7 @@ public class GameController : MonoBehaviour {
         enemy.Name = "enemy";
         enemy.unitTypeList.Add(soldierType);
         enemy.unitTypeList.Add(rangerType);
+        enemy.unitTypeList.Add(armouredSoldieType);
         enemy.Income = 50;
         enemy.Resources = 500;
 
@@ -52,6 +63,8 @@ public class GameController : MonoBehaviour {
         player.Name = "player";
         player.unitTypeList.Add(skeletonType);
         player.unitTypeList.Add(skeletonArcherType);
+        player.unitTypeList.Add(armouredSkeletonType);
+
         player.Income = 50;
         player.Resources = 500;
 
