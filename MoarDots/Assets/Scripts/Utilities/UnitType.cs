@@ -15,9 +15,9 @@ public class UnitType {
     public bool IsRanged { get; set; }
     public int Price { get; set; }
     public bool IsStructure { get; set; }
-    public float Armour { get; set; } // Reduces incomming damage by %
-    public float ArmourPen { get; set; } // ignores target armour by %
-    public float AttackSpeed { get; set; } // hits per second
+    public float Armour { get; set; }
+    public float ArmourPen { get; set; }
+    public float AttackSpeed { get; set; }
     public int Tier { get; set; } // determines the strength of the unit
 
     public UnitType(string name, float atk, float health, int range, int movespeed, bool isRanged, int price, bool isStructure

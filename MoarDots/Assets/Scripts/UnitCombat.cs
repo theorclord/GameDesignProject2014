@@ -20,10 +20,12 @@ public class UnitCombat : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D coll)
 	{
+        Unit collUnit = coll.gameObject.GetComponent<Unit>();
         //Checks if a unit enters detection range
-        if (coll.gameObject.GetComponent<Unit>() != null)
+        if (collUnit != null)
         {
-            if (coll.gameObject.GetComponent<Unit>().Owner != transform.parent.transform.gameObject.GetComponent<Unit>().Owner)
+            if (collUnit.Owner != transform.parent.transform.gameObject.GetComponent<Unit>().Owner
+                && collUnit.Health > 0)
             {
                 targets.Add(coll.gameObject);
             }
@@ -39,7 +41,6 @@ public class UnitCombat : MonoBehaviour
         //Ranged combat
         if (thisUnit.IsRanged)
         {
-            Debug.Log(Vector3.Distance(transform.position, target.transform.position)*100);
             if (Vector3.Distance(transform.position, target.transform.position) * 100 < thisUnit.Range)
             {
                 gameObject.transform.parent.rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
@@ -71,7 +72,7 @@ public class UnitCombat : MonoBehaviour
 	// Update is called once per frame
 	void Update () {
         // remove empty targets
-        while (targets.Count > 0 && targets[0] == null)
+        while (targets.Count > 0 && (targets[0] == null || targets[0].GetComponent<Unit>().Health <0))
         {
             targets.RemoveAt(0);
         }
@@ -110,10 +111,9 @@ public class UnitCombat : MonoBehaviour
         if (targetUnit.Health <= 0 || targets.Count == 0)
         {
             targets.Remove(target);
-            if (target.GetComponent<Unit>().Unittype.IsStructure)
+            if (target.GetComponent<Building>() != null)
             {
-                Destroy(target);
-                //target.GetComponent<Tower>().IsRuin = true;
+                target.GetComponent<Building>().setRuin(true, thisUnit.Owner);
             }
             else
             {

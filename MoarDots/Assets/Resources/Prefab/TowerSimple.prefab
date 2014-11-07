@@ -11,10 +11,11 @@ GameObject:
   - 212: {fileID: 21200000}
   - 58: {fileID: 5800000}
   - 50: {fileID: 5000000}
+  - 114: {fileID: 11400002}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: Unit Working
-  m_TagString: Untagged
+  m_Name: TowerSimple
+  m_TagString: Selectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,10 +28,10 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400002}
-  - 114: {fileID: 11400002}
   - 58: {fileID: 5800002}
-  m_Layer: 0
-  m_Name: Detection
+  - 114: {fileID: 11400004}
+  m_Layer: 11
+  m_Name: CollisionCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,16 +39,16 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &100004
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 400004}
+  - 114: {fileID: 11400006}
   - 58: {fileID: 5800004}
-  - 114: {fileID: 11400004}
-  m_Layer: 11
-  m_Name: CollisionCollider
+  m_Layer: 0
+  m_Name: Detection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60,9 +61,10 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: .200000003, y: .200000003, z: 1}
+  m_LocalPosition: {x: 2.5, y: 6.4000001, z: 0}
+  m_LocalScale: {x: .400000006, y: .400000006, z: 1}
   m_Children:
+  - {fileID: 400004}
   - {fileID: 400002}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -75,10 +77,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 400004}
+  m_Children: []
   m_Father: {fileID: 400000}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!4 &400004
 Transform:
   m_ObjectHideFlags: 1
@@ -89,7 +90,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 400002}
+  m_Father: {fileID: 400000}
   m_RootOrder: 0
 --- !u!50 &5000000
 Rigidbody2D:
@@ -126,7 +127,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Radius: 8
+  m_Radius: 1
   m_Center: {x: 0, y: 0}
 --- !u!58 &5800004
 CircleCollider2D:
@@ -137,9 +138,20 @@ CircleCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Radius: 1
+  m_Radius: 8
   m_Center: {x: 0, y: 0}
 --- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc4554bbf50b2cd438dbffa7b4be9169, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -150,14 +162,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 422126e424a239d498ed125bf77a35ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 6
-  Attack: 0
-  Range: 0
-  Name: 
+  Health: 100
+  Attack: 10
+  Range: 150
+  Name: Tower
   Movespeed: 0
-  IsRanged: 0
-  IsStructure: 0
---- !u!114 &11400002
+  IsRanged: 1
+  IsStructure: 1
+  Armour: 0
+  ArmourPen: 0
+  AttackSpeed: 10
+--- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -165,10 +180,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 100002}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ef39e5fb667de54d9b646b9f9d7d9b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 0958a494bab73c94bad8bd608772a797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11400004
+--- !u!114 &11400006
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -176,7 +191,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100004}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0958a494bab73c94bad8bd608772a797, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ef39e5fb667de54d9b646b9f9d7d9b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &21200000
@@ -199,7 +214,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f11d76de14a64d04d84323af432bf6fe, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fd72246513db1224aa4eabad575396d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
