@@ -3,9 +3,9 @@ using System.Collections;
 
 public class UnitType {
 
-    public static const int HIGHER_TIER = 3;
-    public static const int MIDDLE_TIER = 2;
-    public static const int LOWER_TIER = 1;
+    public const int HIGHER_TIER = 3;
+    public const int MIDDLE_TIER = 2;
+    public const int LOWER_TIER = 1;
 
 	public string Name{ get; set; }
 	public float Attack{ get; set; }

@@ -77,8 +77,4 @@ public class Unit : MonoBehaviour {
         transform.rigidbody2D.velocity = (newDirection / 10) * Movespeed;
     }
 
-    public void upgrade()
-    {
-        Attack += (float) (UpgradeLevel * (Tier * 0.05)) * Attack;
-    }
 }

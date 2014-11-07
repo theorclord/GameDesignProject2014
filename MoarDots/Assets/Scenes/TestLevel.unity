@@ -422,7 +422,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 231513172}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc4554bbf50b2cd438dbffa7b4be9169, type: 3}
+  m_Script: {fileID: 11500000, guid: 90d532ea4f7d8e64fb9f5d0e57c97b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &231513174
@@ -447,6 +447,8 @@ MonoBehaviour:
   Armour: 0
   ArmourPen: 0
   AttackSpeed: 10
+  Tier: 0
+  UpgradeLevel: 0
 --- !u!50 &231513175
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -719,7 +721,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 298133773}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc4554bbf50b2cd438dbffa7b4be9169, type: 3}
+  m_Script: {fileID: 11500000, guid: 90d532ea4f7d8e64fb9f5d0e57c97b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &298133776
@@ -744,6 +746,8 @@ MonoBehaviour:
   Armour: 0
   ArmourPen: 0
   AttackSpeed: 10
+  Tier: 0
+  UpgradeLevel: 0
 --- !u!50 &298133777
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -1621,7 +1625,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 892949912}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc4554bbf50b2cd438dbffa7b4be9169, type: 3}
+  m_Script: {fileID: 11500000, guid: 90d532ea4f7d8e64fb9f5d0e57c97b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &892949914
@@ -1646,6 +1650,8 @@ MonoBehaviour:
   Armour: 0
   ArmourPen: 0
   AttackSpeed: 10
+  Tier: 0
+  UpgradeLevel: 0
 --- !u!50 &892949915
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -1754,7 +1760,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1050149096}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc4554bbf50b2cd438dbffa7b4be9169, type: 3}
+  m_Script: {fileID: 11500000, guid: 90d532ea4f7d8e64fb9f5d0e57c97b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1050149099
@@ -1779,6 +1785,8 @@ MonoBehaviour:
   Armour: 0
   ArmourPen: 0
   AttackSpeed: 10
+  Tier: 0
+  UpgradeLevel: 0
 --- !u!50 &1050149100
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -2243,6 +2251,8 @@ MonoBehaviour:
   Armour: 0
   ArmourPen: 0
   AttackSpeed: 10
+  Tier: 0
+  UpgradeLevel: 0
 --- !u!50 &1434067189
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -2303,7 +2313,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1434067186}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc4554bbf50b2cd438dbffa7b4be9169, type: 3}
+  m_Script: {fileID: 11500000, guid: 90d532ea4f7d8e64fb9f5d0e57c97b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1474237779
@@ -2774,6 +2784,8 @@ MonoBehaviour:
   Armour: 0
   ArmourPen: 0
   AttackSpeed: 0
+  Tier: 0
+  UpgradeLevel: 0
 --- !u!50 &1729729365
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -3265,7 +3277,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2092591380}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc4554bbf50b2cd438dbffa7b4be9169, type: 3}
+  m_Script: {fileID: 11500000, guid: 90d532ea4f7d8e64fb9f5d0e57c97b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &2092591383
@@ -3290,6 +3302,8 @@ MonoBehaviour:
   Armour: 0
   ArmourPen: 0
   AttackSpeed: 10
+  Tier: 0
+  UpgradeLevel: 0
 --- !u!50 &2092591384
 Rigidbody2D:
   m_ObjectHideFlags: 0
