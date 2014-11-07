@@ -36,7 +36,7 @@ public class GameController : MonoBehaviour {
         UnitType armouredSkeletonType = new UnitType("Armoured Skeleton", 3, 20f, 1, 10, false, 250, false, 0, 0, 1);
 
         //initialize structure types
-        UnitType towerSimple = new UnitType("Tower", 20, 100f, 150, 0, true, 500, true, 15f,10f,1.2f);
+        UnitType towerSimple = new UnitType("Tower", 20, 500f, 200, 0, true, 500, true, 15f,10f,1f);
         
         //Initialize players
         //Ai
@@ -101,12 +101,26 @@ public class GameController : MonoBehaviour {
         nodes[4].GetComponent<CaptureNode>().setpropertyChange("Health", 4);
 
         //initialize towers:
-        /*
-        GameObject tower = GameObject.Find("TowerSimple");
-        tower.GetComponent<Unit>().Owner = neutral;
-        tower.GetComponent<Unit>().Unittype = towerSimple;
-	    */
+        
+        setTower("Tower1", towerSimple);
+        setTower("Tower2", towerSimple);
+        setTower("Tower3", towerSimple);
+        setTower("Tower4", towerSimple);
+        setTower("Tower5", towerSimple);
+        setTower("Tower6", towerSimple);
+	    
 	}
+
+    private void setTower(string Name, UnitType type)
+    {
+        GameObject tower = GameObject.Find(Name);
+        tower.GetComponent<Unit>().Owner = neutral;
+        tower.GetComponent<Unit>().Unittype = type;
+        tower.GetComponent<Building>().RuinSprite = "Sprites/TowerRuin";
+        tower.GetComponent<Building>().BuildingSprite = "Sprites/Tower";
+        tower.GetComponent<Building>().Name = "Tower";
+        tower.GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/Tower", typeof(Sprite)) as Sprite;
+    }
 
     void Update()
     {
