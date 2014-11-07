@@ -28,12 +28,12 @@ public class GameController : MonoBehaviour {
         //initialize unit types
         // string name, int atk, float health, int range, int movespeed, bool isRanged, int price, bool isStructure
         //,float armour, float armourPen, float attackSpeed
-        UnitType soldierType = new UnitType("Soldier", 1, 50f, 0, 15, false,100, false, 0, 0, 10);
-        UnitType skeletonType = new UnitType("Skeleton", 1, 50f, 0, 15, false, 100, false, 0, 0, 10);
-        UnitType rangerType = new UnitType("Ranger", 1, 25f, 100, 12, true, 175,false, 0, 0f, 10);
-        UnitType skeletonArcherType = new UnitType("Skeleton Archer", 1, 25f, 100, 12, true, 175, false, 0, 0f, 10);
-        UnitType armouredSoldieType = new UnitType("Armoured Soldier", 3, 20f, 1, 10, false, 250, false, 0, 0, 10);
-        UnitType armouredSkeletonType = new UnitType("Armoured Skeleton", 3, 20f, 1, 10, false, 250, false, 0, 0, 10);
+        UnitType soldierType = new UnitType("Soldier", 10, 50f, 0, 15, false,100, false, 0, 0, 1);
+        UnitType skeletonType = new UnitType("Skeleton", 10, 50f, 0, 15, false, 100, false, 0, 0, 1);
+        UnitType rangerType = new UnitType("Ranger", 7, 25f, 100, 12, true, 175,false, 0, 0f, 1);
+        UnitType skeletonArcherType = new UnitType("Skeleton Archer", 7, 25f, 100, 12, true, 175, false, 0, 0f, 1);
+        UnitType armouredSoldieType = new UnitType("Armoured Soldier", 3, 20f, 1, 10, false, 250, false, 0, 0, 1);
+        UnitType armouredSkeletonType = new UnitType("Armoured Skeleton", 3, 20f, 1, 10, false, 250, false, 0, 0, 1);
 
         //initialize structure types
         UnitType towerSimple = new UnitType("Tower", 20, 100f, 150, 0, true, 500, true, 15f,10f,1.2f);
@@ -158,7 +158,10 @@ public class GameController : MonoBehaviour {
         }
     }
 
-
+    /// <summary>
+    /// gets the global timer
+    /// </summary>
+    /// <returns>time in floating value</returns>
     public float GetTimer()
     {
         return timer;

@@ -59,7 +59,6 @@ public class Unit : MonoBehaviour {
         {
             transform.rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
         }
-	
 	}
 
     public void setdirection(Vector2 dir, bool combat)

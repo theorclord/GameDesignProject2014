@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 public class UnitCombat : MonoBehaviour
 {
-    int attackCD;
-    int cdCounter = 0;
-    List<GameObject> targets = new List<GameObject>();
+    private bool combatInitialized;
+    private float localTimer;
+    private List<GameObject> targets = new List<GameObject>();
 
 	private GameObject CollChild;
     private Unit thisUnit; 
@@ -15,7 +15,6 @@ public class UnitCombat : MonoBehaviour
 	// Use this for initialization
 	void Start () {
         thisUnit = transform.parent.GetComponent<Unit>();
-        attackCD = (int) (30 * (1 / thisUnit.AttackSpeed));
 	}
 
 
@@ -31,30 +30,22 @@ public class UnitCombat : MonoBehaviour
         }
 	}
 
+    /// <summary>
+    /// Function for determining damage to enemy target
+    /// </summary>
+    /// <param name="target">current target</param>
 	private void fight (GameObject target)
 	{
-        Unit thisUnit = transform.parent.GetComponent<Unit>();
+        //Ranged combat
         if (thisUnit.IsRanged)
         {
+            Debug.Log(Vector3.Distance(transform.position, target.transform.position)*100);
             if (Vector3.Distance(transform.position, target.transform.position) * 100 < thisUnit.Range)
             {
                 gameObject.transform.parent.rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
 
-                //deal damage to enemy
-                //target.GetComponent<Unit>().Health -= thisUnit.Attack;
-                target.GetComponent<Unit>().Health -= thisUnit.Attack * ((target.GetComponent<Unit>().Armour * (thisUnit.ArmourPen/100)) / 100);
-
-                
-                if (target.GetComponent<Unit>().Health <= 0 || targets.Count == 0)
-                {
-                    targets.Remove(target);
-                    if (!target.GetComponent<Unit>().IsStructure)
-                    {
-                        Destroy(target);
-                    }
-                    transform.parent.GetComponent<Unit>().CombatState = false;
-                    thisUnit.setdirection(thisUnit.CurrentDestination, true);
-                }
+                //Execute combat
+                executeCombat(target);
             }
             else
             {
@@ -63,28 +54,11 @@ public class UnitCombat : MonoBehaviour
         }
         else
         {
+            //close combat
             if (thisUnit.CloseCombat)
             {
-                //deal damage to enemy
-                target.GetComponent<Unit>().Health -= thisUnit.Attack;
-                //target.GetComponent<Unit>().Health -= thisUnit.Attack * ((target.GetComponent<Unit>().Armour * (thisUnit.ArmourPen / 100)) / 100);
-
-                if (target.GetComponent<Unit>().Health <= 0 || targets.Count == 0)
-                {
-                    targets.Remove(target);
-                    if (target.GetComponent<Unit>().Unittype.IsStructure)
-                    {
-                        Destroy(target);
-                        //target.GetComponent<Tower>().IsRuin = true;
-                    }
-                    else
-                    {
-                        Destroy(target);
-                    }
-                    transform.parent.GetComponent<Unit>().CombatState = false;
-                    thisUnit.CloseCombat = false;
-                    thisUnit.setdirection(thisUnit.CurrentDestination, true);
-                }
+                //Execute combat
+                executeCombat(target);
             }
             else
             {
@@ -107,17 +81,7 @@ public class UnitCombat : MonoBehaviour
         if (targets.Count > 0)
         {
             thisUnit.CombatState = true;
-            // checks for the attack cooldown
-            //TODO should work on a timer
-            if (cdCounter > 0)
-            {
-                cdCounter--;
-            }
-            else
-            {
-                fight(targets[0]);
-                cdCounter = attackCD;
-            }
+            fight(targets[0]);
         }
         else
         {
@@ -126,5 +90,40 @@ public class UnitCombat : MonoBehaviour
         }
 	}
 
+
+    private void executeCombat(GameObject target)
+    {
+        if (!combatInitialized)
+        {
+            combatInitialized = true;
+            localTimer = Time.time;
+        }
+
+        Unit targetUnit = target.GetComponent<Unit>();
+        if (localTimer < Time.time)
+        {
+            float damage = thisUnit.Attack + thisUnit.Attack * 0.1f * Random.Range(-1, 1);
+            targetUnit.Health -= 1 +
+                        (damage - targetUnit.Armour) / (1 + Mathf.Exp(-damage + targetUnit.Armour));
+            localTimer += thisUnit.AttackSpeed;
+        }
+        if (targetUnit.Health <= 0 || targets.Count == 0)
+        {
+            targets.Remove(target);
+            if (target.GetComponent<Unit>().Unittype.IsStructure)
+            {
+                Destroy(target);
+                //target.GetComponent<Tower>().IsRuin = true;
+            }
+            else
+            {
+                Destroy(target);
+            }
+            transform.parent.GetComponent<Unit>().CombatState = false;
+            thisUnit.CloseCombat = false;
+            combatInitialized = false;
+            thisUnit.setdirection(thisUnit.CurrentDestination, true);
+        }
+    }
 }
 
