@@ -74,7 +74,8 @@ public class UnitCombat : MonoBehaviour
                     targets.Remove(target);
                     if (target.GetComponent<Unit>().Unittype.IsStructure)
                     {
-                        target.GetComponent<Tower>().IsRuin = true;
+                        Destroy(target);
+                        //target.GetComponent<Tower>().IsRuin = true;
                     }
                     else
                     {
