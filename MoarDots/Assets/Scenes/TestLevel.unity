@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a95ce9e63b2fe845b66f3ac0aa74da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Technologi: 
   DirectionPlayer:
   - {x: 18, y: 21}
   DirectionEnemy:
@@ -329,6 +330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1c2a2c4a52bf884d80202e999f694f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpawnTimer: 10
   castleMenu: {fileID: 100000, guid: 31799917bbd327648903f4671644fdda, type: 2}
   townMenu: {fileID: 100000, guid: 44c630f79635aee4ca7e9a14d57685c7, type: 2}
   PlayerCastle: {fileID: 379132996}
@@ -388,6 +390,10 @@ Prefab:
       propertyPath: m_Name
       value: Tower4
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a445565925bc09439cbf7f62e1ba5b4, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a445565925bc09439cbf7f62e1ba5b4, type: 2}
   m_RootGameObject: {fileID: 892949912}
@@ -412,7 +418,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &231513173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,6 +443,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 422126e424a239d498ed125bf77a35ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CloseCombat: 0
+  CombatState: 0
   Health: 100
   Attack: 10
   Range: 150
@@ -447,6 +455,8 @@ MonoBehaviour:
   Armour: 0
   ArmourPen: 0
   AttackSpeed: 10
+  Tier: 0
+  UpgradeLevel: 0
 --- !u!50 &231513175
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -541,6 +551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a95ce9e63b2fe845b66f3ac0aa74da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Technologi: 
   DirectionPlayer:
   - {x: 18, y: 21}
   DirectionEnemy:
@@ -623,6 +634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a95ce9e63b2fe845b66f3ac0aa74da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Technologi: 
   DirectionPlayer:
   - {x: 9, y: 9}
   - {x: 12, y: 15}
@@ -695,7 +707,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &298133774
 Transform:
   m_ObjectHideFlags: 0
@@ -734,6 +746,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 422126e424a239d498ed125bf77a35ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CloseCombat: 0
+  CombatState: 0
   Health: 100
   Attack: 10
   Range: 150
@@ -744,6 +758,8 @@ MonoBehaviour:
   Armour: 0
   ArmourPen: 0
   AttackSpeed: 10
+  Tier: 0
+  UpgradeLevel: 0
 --- !u!50 &298133777
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -891,6 +907,10 @@ Prefab:
       propertyPath: m_Name
       value: Tower6
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a445565925bc09439cbf7f62e1ba5b4, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a445565925bc09439cbf7f62e1ba5b4, type: 2}
   m_RootGameObject: {fileID: 2092591380}
@@ -908,6 +928,7 @@ GameObject:
   - 58: {fileID: 379133000}
   - 114: {fileID: 379132999}
   - 114: {fileID: 379133001}
+  - 114: {fileID: 379133002}
   m_Layer: 0
   m_Name: CastlePlayer
   m_TagString: Selectable
@@ -989,6 +1010,18 @@ MonoBehaviour:
   spawners:
   - {fileID: 2221336}
   - {fileID: 1953827662}
+--- !u!114 &379133002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 379132996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c09e5b71e7cb36641b7164b720bd9783, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toolTipText: Click to manage waves
 --- !u!1001 &428956434
 Prefab:
   m_ObjectHideFlags: 0
@@ -1031,6 +1064,10 @@ Prefab:
     - target: {fileID: 100000, guid: 4a445565925bc09439cbf7f62e1ba5b4, type: 2}
       propertyPath: m_Name
       value: Tower3
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a445565925bc09439cbf7f62e1ba5b4, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a445565925bc09439cbf7f62e1ba5b4, type: 2}
@@ -1119,6 +1156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a95ce9e63b2fe845b66f3ac0aa74da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Technologi: 
   DirectionPlayer:
   - {x: 21, y: 9}
   - {x: 12, y: 15}
@@ -1340,6 +1378,10 @@ Prefab:
       propertyPath: m_Name
       value: Tower5
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a445565925bc09439cbf7f62e1ba5b4, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a445565925bc09439cbf7f62e1ba5b4, type: 2}
   m_RootGameObject: {fileID: 231513172}
@@ -1421,7 +1463,7 @@ GUIText:
   m_Text: 'Gold: XXX'
   m_Anchor: 0
   m_Alignment: 0
-  m_PixelOffset: {x: 175, y: -5}
+  m_PixelOffset: {x: 5, y: -5}
   m_LineSpacing: 1
   m_TabSize: 4
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
@@ -1487,6 +1529,10 @@ Prefab:
     - target: {fileID: 100000, guid: 4a445565925bc09439cbf7f62e1ba5b4, type: 2}
       propertyPath: m_Name
       value: Tower2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a445565925bc09439cbf7f62e1ba5b4, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a445565925bc09439cbf7f62e1ba5b4, type: 2}
@@ -1560,6 +1606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a95ce9e63b2fe845b66f3ac0aa74da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Technologi: 
   DirectionPlayer:
   - {x: 9, y: 9}
   - {x: 21, y: 9}
@@ -1611,7 +1658,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &892949913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1636,6 +1683,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 422126e424a239d498ed125bf77a35ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CloseCombat: 0
+  CombatState: 0
   Health: 100
   Attack: 10
   Range: 150
@@ -1646,6 +1695,8 @@ MonoBehaviour:
   Armour: 0
   ArmourPen: 0
   AttackSpeed: 10
+  Tier: 0
+  UpgradeLevel: 0
 --- !u!50 &892949915
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -1730,7 +1781,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1050149097
 Transform:
   m_ObjectHideFlags: 0
@@ -1769,6 +1820,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 422126e424a239d498ed125bf77a35ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CloseCombat: 0
+  CombatState: 0
   Health: 100
   Attack: 10
   Range: 150
@@ -1779,6 +1832,8 @@ MonoBehaviour:
   Armour: 0
   ArmourPen: 0
   AttackSpeed: 10
+  Tier: 0
+  UpgradeLevel: 0
 --- !u!50 &1050149100
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -1842,6 +1897,7 @@ GameObject:
   - 58: {fileID: 1055862048}
   - 114: {fileID: 1055862047}
   - 114: {fileID: 1055862046}
+  - 114: {fileID: 1055862049}
   m_Layer: 0
   m_Name: CastleEnemy
   m_TagString: Selectable
@@ -1923,6 +1979,18 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_Radius: 1
   m_Center: {x: 0, y: 0}
+--- !u!114 &1055862049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1055862043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c09e5b71e7cb36641b7164b720bd9783, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toolTipText: Enemy Castle, capture to win
 --- !u!1 &1383965437
 GameObject:
   m_ObjectHideFlags: 0
@@ -2206,7 +2274,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1434067187
 Transform:
   m_ObjectHideFlags: 0
@@ -2233,6 +2301,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 422126e424a239d498ed125bf77a35ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CloseCombat: 0
+  CombatState: 0
   Health: 100
   Attack: 10
   Range: 150
@@ -2243,6 +2313,8 @@ MonoBehaviour:
   Armour: 0
   ArmourPen: 0
   AttackSpeed: 10
+  Tier: 0
+  UpgradeLevel: 0
 --- !u!50 &1434067189
 Rigidbody2D:
   m_ObjectHideFlags: 0
@@ -2949,6 +3021,10 @@ Prefab:
       propertyPath: m_Name
       value: Tower1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4a445565925bc09439cbf7f62e1ba5b4, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a445565925bc09439cbf7f62e1ba5b4, type: 2}
   m_RootGameObject: {fileID: 298133773}
@@ -3007,6 +3083,57 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_Radius: 1
   m_Center: {x: 0, y: 0}
+--- !u!1 &2016173457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2016173459}
+  - 132: {fileID: 2016173458}
+  m_Layer: 0
+  m_Name: Timer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!132 &2016173458
+GUIText:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2016173457}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Text: 'Timer: xx:xx:xx'
+  m_Anchor: 0
+  m_Alignment: 0
+  m_PixelOffset: {x: -115, y: -5}
+  m_LineSpacing: 1
+  m_TabSize: 4
+  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Material: {fileID: 0}
+  m_FontSize: 15
+  m_FontStyle: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4279762688
+  m_PixelCorrect: 1
+  m_RichText: 1
+--- !u!4 &2016173459
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2016173457}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
 --- !u!1001 &2051492649
 Prefab:
   m_ObjectHideFlags: 0
@@ -3075,7 +3202,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2092591381
 Transform:
   m_ObjectHideFlags: 0
@@ -3114,6 +3241,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 422126e424a239d498ed125bf77a35ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CloseCombat: 0
+  CombatState: 0
   Health: 100
   Attack: 10
   Range: 150
@@ -3124,6 +3253,8 @@ MonoBehaviour:
   Armour: 0
   ArmourPen: 0
   AttackSpeed: 10
+  Tier: 0
+  UpgradeLevel: 0
 --- !u!50 &2092591384
 Rigidbody2D:
   m_ObjectHideFlags: 0

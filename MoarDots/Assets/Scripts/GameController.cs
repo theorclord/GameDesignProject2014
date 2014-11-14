@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class GameController : MonoBehaviour {
+    private float GoldTimer = 5;
+    public float SpawnTimer = 15;
     public GameObject castleMenu;
     public GameObject townMenu;
 
@@ -18,7 +20,7 @@ public class GameController : MonoBehaviour {
     private float interval = 1.0f;
     private float timer = 0.0f;
 
-    // Resource income
+    // Resource income checker
     private bool goldIncome = false;
 	// Use this for initialization
 	void Start () {
@@ -27,16 +29,16 @@ public class GameController : MonoBehaviour {
         
         //initialize unit types
         // string name, int atk, float health, int range, int movespeed, bool isRanged, int price, bool isStructure
-        //,float armour, float armourPen, float attackSpeed
-        UnitType soldierType = new UnitType("Soldier", 10, 50f, 0, 15, false,100, false, 0, 0, 1);
-        UnitType skeletonType = new UnitType("Zombie", 10, 50f, 0, 15, false, 100, false, 0, 0, 1);
-        UnitType rangerType = new UnitType("Ranger", 7, 25f, 100, 12, true, 175,false, 0, 0f, 1);
-        UnitType skeletonArcherType = new UnitType("Skeleton Archer", 7, 25f, 100, 12, true, 175, false, 0, 0f, 1);
-        UnitType armouredSoldieType = new UnitType("Armoured Soldier", 3, 20f, 1, 10, false, 250, false, 0, 0, 1);
-        UnitType armouredSkeletonType = new UnitType("Armoured Skeleton", 3, 20f, 1, 10, false, 250, false, 0, 0, 1);
+        //,float armour, float armourPen, float attackSpeed, unit tier
+        UnitType soldierType = new UnitType("Soldier", 10f, 50f, 0, 15, false,100, false, 0, 0, 1, UnitType.LOWER_TIER);
+        UnitType skeletonType = new UnitType("Zombie", 10, 50f, 0, 15, false, 100, false, 0, 0, 1, UnitType.LOWER_TIER);
+        UnitType rangerType = new UnitType("Ranger", 7f, 25f, 100, 12, true, 175, false, 0, 0f, 1, UnitType.LOWER_TIER);
+        UnitType skeletonArcherType = new UnitType("Skeleton Archer", 7f, 25f, 100, 12, true, 175, false, 0, 0f, 1, UnitType.LOWER_TIER);
+        UnitType armouredSoldieType = new UnitType("Armoured Soldier", 3f, 20f, 1, 10, false, 250, false, 0, 0, 1, UnitType.LOWER_TIER);
+        UnitType armouredSkeletonType = new UnitType("Armoured Skeleton", 3f, 20f, 1, 10, false, 250, false, 0, 0, 1, UnitType.LOWER_TIER);
 
         //initialize structure types
-        UnitType towerSimple = new UnitType("Tower", 20, 500f, 200, 0, true, 500, true, 15f,10f,1f);
+        UnitType towerSimple = new UnitType("Tower", 20, 500f, 200, 0, true, 500, true, 15f, 10f, 1f, UnitType.LOWER_TIER);
         
         //Initialize players
         //Ai
@@ -82,33 +84,34 @@ public class GameController : MonoBehaviour {
 
         EnemyCastle.GetComponent<SpawnPoint>().Owner = enemy;
         EnemyCastle.GetComponent<Castle>().Owner = enemy;
-        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, enemy.unitTypeList[0], 15, enemy));
+        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, enemy.unitTypeList[0], 10, enemy));
         //EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, enemy.unitTypeList[1], 5, enemy));
-        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, enemy.unitTypeList[0], 15, enemy));
+        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, enemy.unitTypeList[0], 10, enemy));
         //EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, enemy.unitTypeList[1], 5, enemy));
 
         //initialize towns:
         List<GameObject> nodes = new List<GameObject>();
         nodes.Add(GameObject.Find("Town1"));
-        nodes[0].GetComponent<CaptureNode>().setpropertyChange("Movespeed", 5);
+        nodes[0].GetComponent<CaptureNode>().setpropertyChange(false,"Movespeed", 5);
+        nodes[0].GetComponent<CaptureNode>().setpropertyChange(true, "Forest", 0);
         nodes.Add(GameObject.Find("Town2"));
-        nodes[1].GetComponent<CaptureNode>().setpropertyChange("Attack", 1);
+        nodes[1].GetComponent<CaptureNode>().setpropertyChange(false,"Attack", 1);
         nodes.Add(GameObject.Find("Town3"));
-        nodes[2].GetComponent<CaptureNode>().setpropertyChange("Health", 4);
+        nodes[2].GetComponent<CaptureNode>().setpropertyChange(false,"Health", 4);
         nodes.Add(GameObject.Find("Town4"));
-        nodes[3].GetComponent<CaptureNode>().setpropertyChange("Movespeed", 5);
+        nodes[3].GetComponent<CaptureNode>().setpropertyChange(false,"Movespeed", 5);
         nodes.Add(GameObject.Find("Town5"));
-        nodes[4].GetComponent<CaptureNode>().setpropertyChange("Health", 4);
+        nodes[4].GetComponent<CaptureNode>().setpropertyChange(false,"Health", 4);
 
         //initialize towers:
-        
+        /*
         setTower("Tower1", towerSimple);
         setTower("Tower2", towerSimple);
         setTower("Tower3", towerSimple);
         setTower("Tower4", towerSimple);
         setTower("Tower5", towerSimple);
         setTower("Tower6", towerSimple);
-	    
+	    */
 	}
 
     private void setTower(string Name, UnitType type)
@@ -133,9 +136,46 @@ public class GameController : MonoBehaviour {
             timer += interval;
             goldIncome = true;
         }
+        if (timer >= 60)
+        {
+            
+            string min = "";
+            if (Mathf.Floor(timer / 60) > 0)
+            {
+                min = "0" + Mathf.Floor(timer / 60);
+            }
+            else if(Mathf.Floor(timer /60) >9)
+            {
+                min = "" + Mathf.Floor(timer / 60);
+            }
+            string sec = "";
+            if (timer % 60 < 10)
+            {
+                sec = "0" + timer % 60;
+            }
+            else
+            {
+                sec = "" + timer % 60;
+            }
+            GameObject.Find("Timer").guiText.text = "Timer: " + min + ":" + sec;
+        }
+        else
+        {
+            string str = "";
+            if (timer % 60 < 10)
+            {
+                str = "0" + timer % 60;
+            }
+            else
+            {
+                str = ""+timer % 60;
+            }
+            GameObject.Find("Timer").guiText.text = "Timer: " + "00:" + str;
+            
+        }
         //update gold
 
-        if ((int)timer % 15 == 0 && goldIncome)
+        if ((int)timer % GoldTimer == 0 && goldIncome)
         {
             foreach (Player play in playerList)
             {
@@ -181,4 +221,6 @@ public class GameController : MonoBehaviour {
     {
         return timer;
     }
+
+    
 }

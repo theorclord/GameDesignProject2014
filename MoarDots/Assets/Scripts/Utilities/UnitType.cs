@@ -3,9 +3,12 @@ using System.Collections;
 
 public class UnitType {
 
+    public const int HIGHER_TIER = 3;
+    public const int MIDDLE_TIER = 2;
+    public const int LOWER_TIER = 1;
 
 	public string Name{ get; set; }
-	public int Attack{ get; set; }
+	public float Attack{ get; set; }
 	public int Range{ get; set; }
 	public int Movespeed{ get; set; }
 	public float Health{ get; set; }
@@ -15,9 +18,10 @@ public class UnitType {
     public float Armour { get; set; }
     public float ArmourPen { get; set; }
     public float AttackSpeed { get; set; }
+    public int Tier { get; set; } // determines the strength of the unit
 
-    public UnitType(string name, int atk, float health, int range, int movespeed, bool isRanged, int price, bool isStructure
-        ,float armour, float armourPen, float attackSpeed)
+    public UnitType(string name, float atk, float health, int range, int movespeed, bool isRanged, int price, bool isStructure
+        ,float armour, float armourPen, float attackSpeed, int tier)
     {
         Name = name;
         Attack = atk;
@@ -31,6 +35,7 @@ public class UnitType {
         Armour = armour;
         ArmourPen = armourPen;
         AttackSpeed = attackSpeed;
+        Tier = tier;
     }
 
     public void updateUnitType(string prop, float val)

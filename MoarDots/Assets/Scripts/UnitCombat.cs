@@ -71,6 +71,7 @@ public class UnitCombat : MonoBehaviour
 
 	// Update is called once per frame
 	void Update () {
+        
         // remove empty targets
         while (targets.Count > 0 && (targets[0] == null || targets[0].GetComponent<Unit>().Health <0))
         {
@@ -103,7 +104,8 @@ public class UnitCombat : MonoBehaviour
         Unit targetUnit = target.GetComponent<Unit>();
         if (localTimer < Time.time)
         {
-            float damage = thisUnit.Attack + thisUnit.Attack * 0.1f * Random.Range(-1, 1);
+            float damage = thisUnit.Attack + thisUnit.Attack * 0.1f * Random.Range(-1, 2);
+            damage += (thisUnit.UpgradeLevel * (thisUnit.Tier * 0.05f)) * damage; //Damage is increased based on upgrade level and class (class is constant)
             targetUnit.Health -= 1 +
                         (damage - targetUnit.Armour) / (1 + Mathf.Exp(-damage + targetUnit.Armour));
             localTimer += thisUnit.AttackSpeed;

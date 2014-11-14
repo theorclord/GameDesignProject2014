@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\AI.cs" />
      <Compile Include="Assets\Scripts\Building.cs" />
      <Compile Include="Assets\Scripts\CaptureNode.cs" />
      <Compile Include="Assets\Scripts\Castle.cs" />
@@ -55,11 +56,13 @@
      <Compile Include="Assets\Scripts\MenuScript.cs" />
      <Compile Include="Assets\Scripts\MenuShop.cs" />
      <Compile Include="Assets\Scripts\SpawnPoint.cs" />
+     <Compile Include="Assets\Scripts\ToolTip.cs" />
      <Compile Include="Assets\Scripts\Tower.cs" />
      <Compile Include="Assets\Scripts\Unit.cs" />
      <Compile Include="Assets\Scripts\UnitCombat.cs" />
      <Compile Include="Assets\Scripts\UnitSpawner.cs" />
      <Compile Include="Assets\Scripts\Utilities\Player.cs" />
+     <Compile Include="Assets\Scripts\Utilities\PropertyPair.cs" />
      <Compile Include="Assets\Scripts\Utilities\SpawnPair.cs" />
      <Compile Include="Assets\Scripts\Utilities\UnitType.cs" />
   </ItemGroup>

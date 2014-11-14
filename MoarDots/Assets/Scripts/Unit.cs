@@ -3,20 +3,12 @@ using System.Collections;
 
 public class Unit : MonoBehaviour {
 
-    public bool CloseCombat
-    {
-        get;
-        set;
-    }
-    public bool CombatState
-    {
-        get;
-        set;
-    }
+    public bool CloseCombat;
+    public bool CombatState;
 
 	public UnitType Unittype;
     public float Health;
-	public int Attack;
+	public float Attack;
 	public int Range;
 	public string Name;
     public float Movespeed;
@@ -25,6 +17,8 @@ public class Unit : MonoBehaviour {
     public float Armour;
     public float ArmourPen;
     public float AttackSpeed;
+    public int Tier;
+    public int UpgradeLevel = 0;
 
     public Player Owner { get; set; }
 
@@ -51,6 +45,7 @@ public class Unit : MonoBehaviour {
         Armour = ut.Armour;
         ArmourPen = ut.ArmourPen;
         AttackSpeed = ut.AttackSpeed;
+        Tier = ut.Tier;
 	}
 
 	// Update is called once per frame
@@ -75,4 +70,5 @@ public class Unit : MonoBehaviour {
         newDirection = newDirection * normFac;
         transform.rigidbody2D.velocity = (newDirection / 10) * Movespeed;
     }
+
 }
