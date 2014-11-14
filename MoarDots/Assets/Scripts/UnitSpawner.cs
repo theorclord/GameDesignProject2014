@@ -38,11 +38,11 @@ public class UnitSpawner : MonoBehaviour
         {
             GameObject troop = Instantiate(Resources.Load("Prefab/Unit", typeof(GameObject)) as GameObject,
                     new Vector3(transform.position.x, transform.position.y), Quaternion.identity) as GameObject;
-            Unit troopUnit = troop.GetComponent<Unit>();
+            Unit troopUnit = troop.GetComponent<Unit>();            
             troopUnit.setUnitType(type);
             troopUnit.setdirection(direction,false);
             troopUnit.Owner = owner;
-            troop.gameObject.GetComponent<SpriteRenderer>().color = owner.playerColor;
+            troop.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/" + troopUnit.Name, typeof(Sprite)) as Sprite;
             yield return new WaitForSeconds(0.2f);
         }
     }

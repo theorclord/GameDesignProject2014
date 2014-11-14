@@ -55,10 +55,12 @@ public class Unit : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        /*
         if (CloseCombat)
         {
             transform.rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
         }
+         */
 	}
 
     public void setdirection(Vector2 dir, bool combat)

@@ -29,7 +29,7 @@ public class GameController : MonoBehaviour {
         // string name, int atk, float health, int range, int movespeed, bool isRanged, int price, bool isStructure
         //,float armour, float armourPen, float attackSpeed
         UnitType soldierType = new UnitType("Soldier", 10, 50f, 0, 15, false,100, false, 0, 0, 1);
-        UnitType skeletonType = new UnitType("Skeleton", 10, 50f, 0, 15, false, 100, false, 0, 0, 1);
+        UnitType skeletonType = new UnitType("Zombie", 10, 50f, 0, 15, false, 100, false, 0, 0, 1);
         UnitType rangerType = new UnitType("Ranger", 7, 25f, 100, 12, true, 175,false, 0, 0f, 1);
         UnitType skeletonArcherType = new UnitType("Skeleton Archer", 7, 25f, 100, 12, true, 175, false, 0, 0f, 1);
         UnitType armouredSoldieType = new UnitType("Armoured Soldier", 3, 20f, 1, 10, false, 250, false, 0, 0, 1);
@@ -76,16 +76,16 @@ public class GameController : MonoBehaviour {
         PlayerCastle.GetComponent<SpawnPoint>().Owner = player;
         PlayerCastle.GetComponent<Castle>().Owner = player;
         PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, player.unitTypeList[0], 10, player));
-        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, player.unitTypeList[1], 5, player));
+        //PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, player.unitTypeList[1], 5, player));
         PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, player.unitTypeList[0], 10, player));
-        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, player.unitTypeList[1], 5, player));
+        //PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, player.unitTypeList[1], 5, player));
 
         EnemyCastle.GetComponent<SpawnPoint>().Owner = enemy;
         EnemyCastle.GetComponent<Castle>().Owner = enemy;
-        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, enemy.unitTypeList[0], 10, enemy));
-        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, enemy.unitTypeList[1], 5, enemy));
-        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, enemy.unitTypeList[0], 10, enemy));
-        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, enemy.unitTypeList[1], 5, enemy));
+        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, enemy.unitTypeList[0], 15, enemy));
+        //EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, enemy.unitTypeList[1], 5, enemy));
+        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, enemy.unitTypeList[0], 15, enemy));
+        //EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, enemy.unitTypeList[1], 5, enemy));
 
         //initialize towns:
         List<GameObject> nodes = new List<GameObject>();
@@ -143,6 +143,7 @@ public class GameController : MonoBehaviour {
             }
             goldIncome = false;
         }
+
         //Gets the postion of the mouse on camera
         Vector3 camCoord = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 mousePos = new Vector2(camCoord.x,camCoord.y);
