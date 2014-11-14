@@ -28,15 +28,15 @@ public class GameController : MonoBehaviour {
         //initialize unit types
         // string name, int atk, float health, int range, int movespeed, bool isRanged, int price, bool isStructure
         //,float armour, float armourPen, float attackSpeed
-        UnitType soldierType = new UnitType("Soldier", 10, 50f, 0, 15, false,100, false, 0, 0, 1);
-        UnitType skeletonType = new UnitType("Skeleton", 10, 50f, 0, 15, false, 100, false, 0, 0, 1);
-        UnitType rangerType = new UnitType("Ranger", 7, 25f, 100, 12, true, 175,false, 0, 0f, 1);
-        UnitType skeletonArcherType = new UnitType("Skeleton Archer", 7, 25f, 100, 12, true, 175, false, 0, 0f, 1);
-        UnitType armouredSoldieType = new UnitType("Armoured Soldier", 3, 20f, 1, 10, false, 250, false, 0, 0, 1);
-        UnitType armouredSkeletonType = new UnitType("Armoured Skeleton", 3, 20f, 1, 10, false, 250, false, 0, 0, 1);
+        UnitType soldierType = new UnitType("Soldier", 10f, 50f, 0, 15, false,100, false, 0, 0, 1, UnitType.LOWER_TIER);
+        UnitType skeletonType = new UnitType("Skeleton", 10f, 50f, 0, 15, false, 100, false, 0, 0, 1, UnitType.LOWER_TIER);
+        UnitType rangerType = new UnitType("Ranger", 7f, 25f, 100, 12, true, 175, false, 0, 0f, 1, UnitType.LOWER_TIER);
+        UnitType skeletonArcherType = new UnitType("Skeleton Archer", 7f, 25f, 100, 12, true, 175, false, 0, 0f, 1, UnitType.LOWER_TIER);
+        UnitType armouredSoldieType = new UnitType("Armoured Soldier", 3f, 20f, 1, 10, false, 250, false, 0, 0, 1, UnitType.LOWER_TIER);
+        UnitType armouredSkeletonType = new UnitType("Armoured Skeleton", 3f, 20f, 1, 10, false, 250, false, 0, 0, 1, UnitType.LOWER_TIER);
 
         //initialize structure types
-        UnitType towerSimple = new UnitType("Tower", 20, 500f, 200, 0, true, 500, true, 15f,10f,1f);
+        UnitType towerSimple = new UnitType("Tower", 20, 500f, 200, 0, true, 500, true, 15f, 10f, 1f, UnitType.LOWER_TIER);
         
         //Initialize players
         //Ai
