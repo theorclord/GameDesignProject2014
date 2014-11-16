@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Assets.Scripts.Utilities
 {
-    class PropertyPair
+    public class PropertyPair
     {
         public string Identifier
         {
@@ -13,13 +13,13 @@ namespace Assets.Scripts.Utilities
             get;
         }
 
-        public float Val
+        public string Val
         {
             set;
             get;
         }
 
-        public PropertyPair(string identifier, float val)
+        public PropertyPair(string identifier, string val)
         {
             Identifier = identifier;
             Val = val;

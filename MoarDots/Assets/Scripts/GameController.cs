@@ -32,15 +32,15 @@ public class GameController : MonoBehaviour {
         //initialize unit types
         // string name, int atk, float health, int range, int movespeed, bool isRanged, int price, bool isStructure
         //,float armour, float armourPen, float attackSpeed, unit tier
-        UnitType soldierType = new UnitType("Soldier", 10f, 50f, 0, 15, false,100, false, 0, 0, 1, UnitType.LOWER_TIER);
-        UnitType skeletonType = new UnitType("Zombie", 10, 50f, 0, 15, false, 100, false, 0, 0, 1, UnitType.LOWER_TIER);
-        UnitType rangerType = new UnitType("Ranger", 7f, 25f, 100, 12, true, 175, false, 0, 0f, 1, UnitType.LOWER_TIER);
-        UnitType skeletonArcherType = new UnitType("Skeleton Archer", 7f, 25f, 100, 12, true, 175, false, 0, 0f, 1, UnitType.LOWER_TIER);
-        UnitType armouredSoldieType = new UnitType("Armoured Soldier", 3f, 20f, 1, 10, false, 250, false, 0, 0, 1, UnitType.LOWER_TIER);
-        UnitType armouredSkeletonType = new UnitType("Armoured Skeleton", 3f, 20f, 1, 10, false, 250, false, 0, 0, 1, UnitType.LOWER_TIER);
-
+        UnitType soldierType = new UnitType("Soldier", 10f, 50f, 0, 15, false,100, false, 0, 0, 1, UnitType.LOWER_TIER, "None");
+        UnitType skeletonType = new UnitType("Zombie", 10, 50f, 0, 15, false, 100, false, 0, 0, 1, UnitType.LOWER_TIER, "None");
+        UnitType rangerType = new UnitType("Ranger", 7f, 25f, 100, 12, true, 175, false, 0, 0f, 1, UnitType.LOWER_TIER, "None");
+        UnitType skeletonArcherType = new UnitType("Skeleton Archer", 7f, 25f, 100, 12, true, 175, false, 0, 0f, 1, UnitType.LOWER_TIER, "None");
+        UnitType armouredSoldieType = new UnitType("Armoured Soldier", 3f, 20f, 1, 10, false, 250, false, 0, 0, 1, UnitType.LOWER_TIER, "None");
+        UnitType armouredSkeletonType = new UnitType("Armoured Skeleton", 3f, 20f, 1, 10, false, 250, false, 0, 0, 1, UnitType.LOWER_TIER, "None");
+        UnitType evilMooseType = new UnitType("Evil Moose", 15f, 400, 0, 10, false, 800, false, 5, 0, 1, UnitType.HIGHER_TIER, "Forest");
         //initialize structure types
-        UnitType towerSimple = new UnitType("Tower", 20, 500f, 200, 0, true, 500, true, 15f, 10f, 1f, UnitType.LOWER_TIER);
+        UnitType towerSimple = new UnitType("Tower", 20, 500f, 200, 0, true, 500, true, 15f, 10f, 1f, UnitType.LOWER_TIER, "None");
         
         //Initialize players
         //Ai
@@ -49,9 +49,10 @@ public class GameController : MonoBehaviour {
         enemy.Name = "enemy";
         enemy.unitTypeList.Add(soldierType);
         enemy.unitTypeList.Add(rangerType);
-        enemy.unitTypeList.Add(armouredSoldieType);
+        //enemy.unitTypeList.Add(armouredSoldieType);
         enemy.Income = 50;
         enemy.Resources = 500;
+        enemy.Technology.Add("None");
 
         playerList.Add(enemy);
 
@@ -61,10 +62,12 @@ public class GameController : MonoBehaviour {
         player.Name = "player";
         player.unitTypeList.Add(skeletonType);
         player.unitTypeList.Add(skeletonArcherType);
-        player.unitTypeList.Add(armouredSkeletonType);
+        player.unitTypeList.Add(evilMooseType);
+        //player.unitTypeList.Add(armouredSkeletonType);
 
         player.Income = 50;
-        player.Resources = 500;
+        player.Resources = 1000;
+        player.Technology.Add("None");
 
         playerList.Add(player);
 
@@ -94,25 +97,21 @@ public class GameController : MonoBehaviour {
         //initialize towns:
         List<GameObject> nodes = new List<GameObject>();
         nodes.Add(GameObject.Find("Town1"));
-        nodes[0].GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/Forest", typeof(Sprite)) as Sprite;
-        nodes[0].GetComponent<CaptureNode>().setpropertyChange(false, "Health", 5);
-        nodes[0].GetComponent<CaptureNode>().setpropertyChange(true, "Forest", 0);
+        nodes[0].GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/Goldmine", typeof(Sprite)) as Sprite;
+        nodes[0].GetComponent<CaptureNode>().setpropertyChange(true, "Income", "50");
         nodes.Add(GameObject.Find("Town2"));
         nodes[1].GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/Forest", typeof(Sprite)) as Sprite;
-        nodes[1].GetComponent<CaptureNode>().setpropertyChange(false, "Health", 5);
-        nodes[1].GetComponent<CaptureNode>().setpropertyChange(true, "Forest", 0);
+        nodes[1].GetComponent<CaptureNode>().setpropertyChange(false, "Health", "5");
+        nodes[1].GetComponent<CaptureNode>().setpropertyChange(true, "Tech", "Forest");
         nodes.Add(GameObject.Find("Town3"));
-        nodes[2].GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/Forest", typeof(Sprite)) as Sprite;
-        nodes[2].GetComponent<CaptureNode>().setpropertyChange(false, "Health", 5);
-        nodes[2].GetComponent<CaptureNode>().setpropertyChange(true, "Forest", 0);
+        nodes[2].GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/Goldmine", typeof(Sprite)) as Sprite;
+        nodes[2].GetComponent<CaptureNode>().setpropertyChange(true, "Income", "50");
         nodes.Add(GameObject.Find("Town4"));
-        nodes[3].GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/Forest", typeof(Sprite)) as Sprite;
-        nodes[3].GetComponent<CaptureNode>().setpropertyChange(false, "Health", 5);
-        nodes[3].GetComponent<CaptureNode>().setpropertyChange(true, "Forest", 0);
+        nodes[3].GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/Goldmine", typeof(Sprite)) as Sprite;
+        nodes[3].GetComponent<CaptureNode>().setpropertyChange(true, "Income", "50");
         nodes.Add(GameObject.Find("Town5"));
-        nodes[4].GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/Forest", typeof(Sprite)) as Sprite;
-        nodes[4].GetComponent<CaptureNode>().setpropertyChange(false, "Health", 5);
-        nodes[4].GetComponent<CaptureNode>().setpropertyChange(true, "Forest", 0);
+        nodes[4].GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/Goldmine", typeof(Sprite)) as Sprite;
+        nodes[4].GetComponent<CaptureNode>().setpropertyChange(true, "Income", "50");
 
         //initialize towers:
         /*

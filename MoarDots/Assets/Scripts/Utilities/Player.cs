@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Utilities;
 
 public class Player {
 
@@ -43,5 +44,30 @@ public class Player {
         return Name + " " + playerColor;
     }
 
-
+    public void setProperty(PropertyPair prop, float mod)
+    {
+        if (mod > 0) {
+            switch (prop.Identifier)
+            {
+                case "Tech":
+                    Technology.Add(prop.Val);
+                    break;
+                case "Income":
+                    Income += int.Parse(prop.Val);
+                    break;
+            }
+        }
+        else
+        {
+            switch (prop.Identifier)
+            {
+                case "Tech":
+                    Technology.Remove(prop.Val);
+                    break;
+                case "Income":
+                    Income -= int.Parse(prop.Val);
+                    break;
+            }
+        }
+    }
 }

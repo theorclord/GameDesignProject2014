@@ -20,8 +20,10 @@ public class UnitType {
     public float AttackSpeed { get; set; }
     public int Tier { get; set; } // determines the strength of the unit
 
+    public string Tech { get; set; }
+
     public UnitType(string name, float atk, float health, int range, int movespeed, bool isRanged, int price, bool isStructure
-        ,float armour, float armourPen, float attackSpeed, int tier)
+        ,float armour, float armourPen, float attackSpeed, int tier, string tech)
     {
         Name = name;
         Attack = atk;
@@ -36,6 +38,8 @@ public class UnitType {
         ArmourPen = armourPen;
         AttackSpeed = attackSpeed;
         Tier = tier;
+
+        Tech = tech;
     }
 
     public void updateUnitType(string prop, float val)

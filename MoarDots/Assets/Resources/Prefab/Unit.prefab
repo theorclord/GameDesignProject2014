@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 400000}
   - 58: {fileID: 5800000}
   - 114: {fileID: 11400000}
-  - 114: {fileID: 11400006}
   m_Layer: 11
   m_Name: CollisionCollider
   m_TagString: Untagged
@@ -148,7 +147,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0958a494bab73c94bad8bd608772a797, type: 3}
+  m_Script: {fileID: 11500000, guid: bbd1bcd557f50cf4cb06d4b1b8b617b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11400002
@@ -187,18 +186,6 @@ MonoBehaviour:
   AttackSpeed: 0
   Tier: 0
   UpgradeLevel: 0
---- !u!114 &11400006
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c09e5b71e7cb36641b7164b720bd9783, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  toolTipText: This is a unit
 --- !u!212 &21200000
 SpriteRenderer:
   m_ObjectHideFlags: 1

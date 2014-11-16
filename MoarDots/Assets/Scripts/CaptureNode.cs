@@ -174,6 +174,7 @@ public class CaptureNode : MonoBehaviour {
             //if true, player, if false units
             if (kvp.Key)
             {
+                owner.setProperty(kvp.Value, mod);
                 if (mod > 0)
                 {
                     owner.Technology.Add(kvp.Value.Identifier);
@@ -187,14 +188,14 @@ public class CaptureNode : MonoBehaviour {
             {
                 foreach (UnitType type in owner.unitTypeList)
                 {
-                    type.updateUnitType(kvp.Value.Identifier, mod * kvp.Value.Val);
+                    type.updateUnitType(kvp.Value.Identifier, mod *float.Parse( kvp.Value.Val));
                 }
             }
         }
         
     }
 
-    public void setpropertyChange(bool actor,string prop, float val)
+    public void setpropertyChange(bool actor,string prop, string val)
     {
         // should never have to change after initialization
         propertyChange.Add(actor,new PropertyPair(prop,val));

@@ -957,7 +957,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ffcac6043995ea94c8cf3e31fd70e961, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1eef027ad6e7f7d4aa683858636958e9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &379132998
 Transform:
@@ -1018,10 +1018,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 379132996}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c09e5b71e7cb36641b7164b720bd9783, type: 3}
+  m_Script: {fileID: 11500000, guid: 523051a1fb3ceea4caf4dc02fe23fb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolTipText: Click to manage waves
+  toolTipText: Click to manage units
 --- !u!1001 &428956434
 Prefab:
   m_ObjectHideFlags: 0
@@ -1926,7 +1926,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2ea1b293d47f8d847b946cbbbac86e88, type: 3}
+  m_Sprite: {fileID: 21300000, guid: abec7235853293146978ce8384c4ca8d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1055862045
 Transform:
@@ -1987,10 +1987,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1055862043}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c09e5b71e7cb36641b7164b720bd9783, type: 3}
+  m_Script: {fileID: 11500000, guid: 523051a1fb3ceea4caf4dc02fe23fb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolTipText: Enemy Castle, capture to win
+  toolTipText: Enemy castle, destroy to win
 --- !u!1 &1383965437
 GameObject:
   m_ObjectHideFlags: 0

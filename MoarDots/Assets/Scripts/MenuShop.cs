@@ -34,11 +34,19 @@ public class MenuShop : MonoBehaviour {
     public void SetSpawnPoint(SpawnPoint point)
     {
         selected = point; 
+        /*
         List<SpawnPair> states = selected.getStates();
         foreach (SpawnPair sp in states)
         {
             if (!availableUnits.Contains(sp.UnitType))
                 availableUnits.Add(sp.UnitType);
+        }
+        */
+        Player activePlayer = selected.Owner;
+        foreach (UnitType ut in activePlayer.unitTypeList)
+        {
+            availableUnits.Add(ut);
+
         }
     }
 
@@ -120,7 +128,7 @@ public class MenuShop : MonoBehaviour {
     private void buyUnit(UnitType ut, int path, int amount)
     {
         // checks if there is enough resources
-        if (selected.Owner.Resources >= ut.Price * amount)
+        if (selected.Owner.Resources >= ut.Price * amount && selected.Owner.Technology.Contains(ut.Tech))
         {
             selected.Owner.Resources -= ut.Price * amount;
             selected.addState(new SpawnPair(path, ut, amount, selected.Owner));
