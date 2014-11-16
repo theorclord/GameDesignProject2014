@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class SpawnPoint : MonoBehaviour {
 
+    private int spawnTimer;
+    private GameController gameController; 
     public List<GameObject> spawners;
 
     public Player Owner
@@ -19,6 +21,7 @@ public class SpawnPoint : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        spawnTimer = (int)GameObject.Find("GameController").GetComponent<GameController>().SpawnTimer;
         spawn = true;
     }
 
@@ -32,7 +35,7 @@ public class SpawnPoint : MonoBehaviour {
             spawn = true;
         }
         int spawnCount = (int)timer;
-        if ((spawnCount % 15 == 0 || spawnCount < 2) && spawn)
+        if ((spawnCount % spawnTimer == 0 || spawnCount < 2) && spawn)
         {
             foreach (SpawnPair pair in state)
             {

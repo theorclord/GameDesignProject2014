@@ -16,7 +16,7 @@ public class MenuShop : MonoBehaviour {
     private List<int?> units = new List<int?>();
     private int path = 0;
     // Global maximum units to be purchased
-    private int maximum = 5;
+    private int maximum = 900;
 
     public GameObject CastleMenu;
 
@@ -125,6 +125,7 @@ public class MenuShop : MonoBehaviour {
             selected.Owner.Resources -= ut.Price * amount;
             selected.addState(new SpawnPair(path, ut, amount, selected.Owner));
         }
+
     }
 
     /// <summary>

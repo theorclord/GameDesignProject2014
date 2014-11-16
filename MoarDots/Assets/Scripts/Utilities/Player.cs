@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Player {
+
+    public List<string> Technology = new List<string>();
+
     public int Income
     {
         get;
@@ -39,4 +42,6 @@ public class Player {
     {
         return Name + " " + playerColor;
     }
+
+
 }

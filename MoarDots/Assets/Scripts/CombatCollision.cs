@@ -23,7 +23,6 @@ public class CombatCollision : MonoBehaviour {
             {
                 thisUnit.CloseCombat = true;
                 gameObject.transform.parent.rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
-                //Debug.Log("you woot mate");
             }
         }
     }

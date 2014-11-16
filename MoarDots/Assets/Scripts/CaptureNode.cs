@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Scripts.Utilities;
 
 public class CaptureNode : MonoBehaviour {
 
+    public string Technologi;
     // Path selection
     public List<Vector2> DirectionPlayer;
     public List<Vector2> DirectionEnemy;
@@ -24,7 +26,8 @@ public class CaptureNode : MonoBehaviour {
     }
 
     // unit property change variables
-    private Dictionary<string, float> propertyChange = new Dictionary<string,float>();
+    private Dictionary<bool, PropertyPair> propertyChange =
+        new Dictionary<bool, PropertyPair>();
 
     // Use this for initialization
     void Start()
@@ -166,18 +169,34 @@ public class CaptureNode : MonoBehaviour {
 
     private void setProperty(Player owner, float mod)
     {
-        foreach (UnitType type in owner.unitTypeList)
+        foreach (KeyValuePair<bool, PropertyPair> kvp in propertyChange)
         {
-            foreach (KeyValuePair<string, float> kvp in propertyChange)
+            //if true, player, if false units
+            if (kvp.Key)
             {
-                type.updateUnitType(kvp.Key, mod*kvp.Value);
+                if (mod > 0)
+                {
+                    owner.Technology.Add(kvp.Value.Identifier);
+                }
+                else
+                {
+                    owner.Technology.Remove(kvp.Value.Identifier);
+                }
+            }
+            else
+            {
+                foreach (UnitType type in owner.unitTypeList)
+                {
+                    type.updateUnitType(kvp.Value.Identifier, mod * kvp.Value.Val);
+                }
             }
         }
+        
     }
 
-    public void setpropertyChange(string prop, float val)
+    public void setpropertyChange(bool actor,string prop, float val)
     {
         // should never have to change after initialization
-        propertyChange.Add(prop, val);
+        propertyChange.Add(actor,new PropertyPair(prop,val));
     }
 }

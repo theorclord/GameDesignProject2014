@@ -3,16 +3,8 @@ using System.Collections;
 
 public class Unit : MonoBehaviour {
 
-    public bool CloseCombat
-    {
-        get;
-        set;
-    }
-    public bool CombatState
-    {
-        get;
-        set;
-    }
+    public bool CloseCombat;
+    public bool CombatState;
 
 	public UnitType Unittype;
     public float Health;
@@ -58,10 +50,12 @@ public class Unit : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        /*
         if (CloseCombat)
         {
             transform.rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
         }
+         */
 	}
 
     public void setdirection(Vector2 dir, bool combat)
