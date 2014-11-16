@@ -165,11 +165,20 @@ public class MenuScript : MonoBehaviour
     /// </summary>
     private void saveFunction()
     {
+        List<SpawnPair> currentStates = selected.getStates();
+
         selected.clearStates();
         foreach (KeyValuePair<UnitType, List<int?>> kvp in unitQueues)
         {
             // Fill in minimum value
             int unitCounts = availableUnits[kvp.Key];
+            for(int i = 0; i<kvp.Value.Count;i++)
+            {
+                if (kvp.Value[i] == null)
+                {
+                    kvp.Value[i] = 0;
+                }
+            }
             if (kvp.Value.Sum() < unitCounts)
             {
                 int minimumValueIndex = kvp.Value.IndexOf(kvp.Value.Min());
@@ -177,10 +186,6 @@ public class MenuScript : MonoBehaviour
             }
             for (int i = 0; i < kvp.Value.Count; i++)
             {
-                if (kvp.Value[i] == null) // FIXME: Ignores blank fields
-                {
-                    continue;
-                }
                 // Send units
                 selected.addState(new SpawnPair(i, kvp.Key, (int)kvp.Value[i], selected.Owner));
             }

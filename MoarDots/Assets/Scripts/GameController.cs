@@ -19,13 +19,15 @@ public class GameController : MonoBehaviour {
     //global timer
     private float interval = 1.0f;
     private float timer = 0.0f;
+    private float startTime;
 
     // Resource income checker
     private bool goldIncome = false;
 	// Use this for initialization
 	void Start () {
+        startTime = Time.time;
         //Timer
-        timer = Time.time + interval;
+        timer = Time.time + interval-startTime;
         
         //initialize unit types
         // string name, int atk, float health, int range, int movespeed, bool isRanged, int price, bool isStructure
@@ -92,16 +94,25 @@ public class GameController : MonoBehaviour {
         //initialize towns:
         List<GameObject> nodes = new List<GameObject>();
         nodes.Add(GameObject.Find("Town1"));
-        nodes[0].GetComponent<CaptureNode>().setpropertyChange(false,"Movespeed", 5);
+        nodes[0].GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/Forest", typeof(Sprite)) as Sprite;
+        nodes[0].GetComponent<CaptureNode>().setpropertyChange(false, "Health", 5);
         nodes[0].GetComponent<CaptureNode>().setpropertyChange(true, "Forest", 0);
         nodes.Add(GameObject.Find("Town2"));
-        nodes[1].GetComponent<CaptureNode>().setpropertyChange(false,"Attack", 1);
+        nodes[1].GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/Forest", typeof(Sprite)) as Sprite;
+        nodes[1].GetComponent<CaptureNode>().setpropertyChange(false, "Health", 5);
+        nodes[1].GetComponent<CaptureNode>().setpropertyChange(true, "Forest", 0);
         nodes.Add(GameObject.Find("Town3"));
-        nodes[2].GetComponent<CaptureNode>().setpropertyChange(false,"Health", 4);
+        nodes[2].GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/Forest", typeof(Sprite)) as Sprite;
+        nodes[2].GetComponent<CaptureNode>().setpropertyChange(false, "Health", 5);
+        nodes[2].GetComponent<CaptureNode>().setpropertyChange(true, "Forest", 0);
         nodes.Add(GameObject.Find("Town4"));
-        nodes[3].GetComponent<CaptureNode>().setpropertyChange(false,"Movespeed", 5);
+        nodes[3].GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/Forest", typeof(Sprite)) as Sprite;
+        nodes[3].GetComponent<CaptureNode>().setpropertyChange(false, "Health", 5);
+        nodes[3].GetComponent<CaptureNode>().setpropertyChange(true, "Forest", 0);
         nodes.Add(GameObject.Find("Town5"));
-        nodes[4].GetComponent<CaptureNode>().setpropertyChange(false,"Health", 4);
+        nodes[4].GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/Forest", typeof(Sprite)) as Sprite;
+        nodes[4].GetComponent<CaptureNode>().setpropertyChange(false, "Health", 5);
+        nodes[4].GetComponent<CaptureNode>().setpropertyChange(true, "Forest", 0);
 
         //initialize towers:
         /*
@@ -131,7 +142,7 @@ public class GameController : MonoBehaviour {
         //TODO should have a generic player lookup
         GameObject.Find("PlayerResources").guiText.text = "Gold: " + playerList[1].Resources;
         //Global timer update
-        if (Time.time >= timer)
+        if (Time.time >= timer + startTime)
         {
             timer += interval;
             goldIncome = true;
