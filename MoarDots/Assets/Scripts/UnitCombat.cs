@@ -11,10 +11,13 @@ public class UnitCombat : MonoBehaviour
 
 	private GameObject CollChild;
     private Unit thisUnit; 
+	private AudioClip audioClip;
+	GameObject SoundObject;
 	
 	// Use this for initialization
 	void Start () {
         thisUnit = transform.parent.GetComponent<Unit>();
+		SoundObject = GameObject.Find ("SoundManager");
 	}
 
 
@@ -112,6 +115,9 @@ public class UnitCombat : MonoBehaviour
         }
         if (targetUnit.Health <= 0 || targets.Count == 0)
         {
+			// Find soundObject and play sound according to type, if random > 90
+			playSound(target.GetComponent<Unit>().Owner.Name);
+			
             targets.Remove(target);
             if (target.GetComponent<Building>() != null)
             {
@@ -119,6 +125,7 @@ public class UnitCombat : MonoBehaviour
             }
             else
             {
+
                 Destroy(target);
             }
             transform.parent.GetComponent<Unit>().CombatState = false;
@@ -127,5 +134,20 @@ public class UnitCombat : MonoBehaviour
             thisUnit.setdirection(thisUnit.CurrentDestination, true);
         }
     }
+	void playSound(string name){
+		//Debug.Log ("playSound initialized");
+		if (Random.Range(1,100) >= 90) {
+			//Debug.Log(name);
+			if(name == "player"){
+				//GameObject go = GameObject.Find("SoundManager");
+				//Debug.Log (GameObject.Find ("SoundManager").audio.isPlaying + " - Player");
+				SoundObject.GetComponent<SoundScript>().playSound(2);
+			}else{
+				//GameObject go = GameObject.Find("SoundManager");
+				//Debug.Log (GameObject.Find ("SoundManager").audio.isPlaying + " - Enemy");
+				SoundObject.GetComponent<SoundScript>().playSound(1);
+			}
+		}
+	}
 }
 
