@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Unit : MonoBehaviour {
 
-    public bool CloseCombat;
     public bool CombatState;
 
 	public UnitType Unittype;
@@ -12,7 +11,6 @@ public class Unit : MonoBehaviour {
 	public int Range;
 	public string Name;
     public float Movespeed;
-    public bool IsRanged;
     public bool IsStructure;
     public float Armour;
     public float ArmourPen;
@@ -40,7 +38,6 @@ public class Unit : MonoBehaviour {
 		Health = ut.Health;
 		Name = ut.Name;
 		Range = ut.Range;
-        IsRanged = ut.IsRanged;
         IsStructure = ut.IsStructure;
         Armour = ut.Armour;
         ArmourPen = ut.ArmourPen;
@@ -50,12 +47,6 @@ public class Unit : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        /*
-        if (CloseCombat)
-        {
-            transform.rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
-        }
-         */
 	}
 
     public void setdirection(Vector2 dir, bool combat)

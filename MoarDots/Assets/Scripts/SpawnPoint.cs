@@ -5,7 +5,6 @@ using System.Collections.Generic;
 public class SpawnPoint : MonoBehaviour {
 
     private int spawnTimer;
-    private GameController gameController; 
     public List<GameObject> spawners;
 
     public Player Owner

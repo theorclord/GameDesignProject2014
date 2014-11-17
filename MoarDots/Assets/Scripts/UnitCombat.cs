@@ -38,33 +38,16 @@ public class UnitCombat : MonoBehaviour
     /// <param name="target">current target</param>
 	private void fight (GameObject target)
 	{
-        //Ranged combat
-        if (thisUnit.IsRanged)
+        if (Vector3.Distance(transform.position, target.transform.position) * 100 < thisUnit.Range)
         {
-            if (Vector3.Distance(transform.position, target.transform.position) * 100 < thisUnit.Range)
-            {
-                gameObject.transform.parent.rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
+            gameObject.transform.parent.rigidbody2D.velocity = new Vector2(0.0f, 0.0f);
 
-                //Execute combat
-                executeCombat(target);
-            }
-            else
-            {
-                thisUnit.setdirection(target.transform.position, true);
-            }
+            //Execute combat
+            executeCombat(target);
         }
         else
         {
-            //close combat
-            if (thisUnit.CloseCombat)
-            {
-                //Execute combat
-                executeCombat(target);
-            }
-            else
-            {
-                thisUnit.setdirection(target.transform.position, true);
-            }
+            thisUnit.setdirection(target.transform.position, true);
         }
 	}
 
@@ -122,7 +105,6 @@ public class UnitCombat : MonoBehaviour
                 Destroy(target);
             }
             transform.parent.GetComponent<Unit>().CombatState = false;
-            thisUnit.CloseCombat = false;
             combatInitialized = false;
             thisUnit.setdirection(thisUnit.CurrentDestination, true);
         }
