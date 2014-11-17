@@ -1017,7 +1017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523051a1fb3ceea4caf4dc02fe23fb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolTipText: Click to manage units
+  toolTipText: Click to manage unit
 --- !u!1001 &428956434
 Prefab:
   m_ObjectHideFlags: 0
@@ -1219,6 +1219,7 @@ GameObject:
   - 92: {fileID: 611748457}
   - 124: {fileID: 611748456}
   - 81: {fileID: 611748455}
+  - 114: {fileID: 611748460}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1291,6 +1292,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &611748460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 611748454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc38c50c5385d04986b43cac8f18202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &644072333
 Prefab:
   m_ObjectHideFlags: 0
@@ -1925,7 +1937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 523051a1fb3ceea4caf4dc02fe23fb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolTipText: Enemy castle, destroy to win
+  toolTipText: Enemy castle, conquer to win
 --- !u!1 &1383965437
 GameObject:
   m_ObjectHideFlags: 0
@@ -1985,7 +1997,7 @@ AudioSource:
   m_GameObject: {fileID: 1383965437}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 2f7158f1f2724794fb40755e826b730d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 926c7092466d43944a15532192f23e08, type: 3}
   m_PlayOnAwake: 1
   m_Volume: .5
   m_Pitch: 1
@@ -3067,6 +3079,106 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 18
+--- !u!1 &2039913291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2039913293}
+  - 82: {fileID: 2039913292}
+  - 114: {fileID: 2039913294}
+  m_Layer: 0
+  m_Name: SoundManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &2039913292
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2039913291}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!4 &2039913293
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2039913291}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.30597496, y: 9.52498913, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+--- !u!114 &2039913294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2039913291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0356bba84aba8944eb6af61184a7c716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zombie: {fileID: 8300000, guid: 1bb9ae984df3c38439a673da4aa57a5c, type: 3}
+  pixie: {fileID: 8300000, guid: 70bdc0256a8d51942a1752a42c9af5d1, type: 3}
 --- !u!1001 &2051492649
 Prefab:
   m_ObjectHideFlags: 0
