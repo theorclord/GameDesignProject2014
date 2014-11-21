@@ -45,7 +45,7 @@ MonoBehaviour:
     y: 20
     width: 250
     height: 100
-  ShopMenu: {fileID: 100000, guid: 6eac20447352f604e885c8d17f94d8cb, type: 2}
+  ShopMenu: {fileID: 100000, guid: 6aa743af8b2a157448960a9d1b0a254c, type: 2}
   options: []
 --- !u!1001 &100100000
 Prefab:

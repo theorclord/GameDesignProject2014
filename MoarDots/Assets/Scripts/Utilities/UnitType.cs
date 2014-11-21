@@ -7,6 +7,7 @@ public class UnitType {
     public const int MIDDLE_TIER = 2;
     public const int LOWER_TIER = 1;
 
+    public int UnitTypeNumber { get; set; }
 	public string Name{ get; set; }
 	public float Attack{ get; set; }
 	public int Range{ get; set; }
@@ -19,6 +20,8 @@ public class UnitType {
     public float ArmourPen { get; set; }
     public float AttackSpeed { get; set; }
     public int Tier { get; set; } // determines the strength of the unit
+
+	GameObject SoundObject;
 
     public string Tech { get; set; }
 
@@ -40,6 +43,7 @@ public class UnitType {
         Tier = tier;
 
         Tech = tech;
+		SoundObject = GameObject.Find ("SoundManager");
     }
 
     public void updateUnitType(string prop, float val)
@@ -55,6 +59,27 @@ public class UnitType {
             case "Attack":
                 Attack += (int)val;
                 break;
+        }
+    }
+	public void playSound() //int unitTypeNumber
+    {
+        //Debug.Log ("playSound initialized");
+        if (Random.Range(1, 100) >= 90)
+        {
+            //Debug.Log(name);
+            SoundObject.GetComponent<SoundScript>().playSound(UnitTypeNumber);
+           /* if (unitTypeNumber == "player")
+            {
+                //GameObject go = GameObject.Find("SoundManager");
+                //Debug.Log (GameObject.Find ("SoundManager").audio.isPlaying + " - Player");
+                SoundObject.GetComponent<SoundScript>().playSound(2);
+            }
+            else
+            {
+                //GameObject go = GameObject.Find("SoundManager");
+                //Debug.Log (GameObject.Find ("SoundManager").audio.isPlaying + " - Enemy");
+                SoundObject.GetComponent<SoundScript>().playSound(1);
+            }*/
         }
     }
 }
