@@ -14,11 +14,11 @@ public class MenuShop : MonoBehaviour {
     // Unit lists and a maximum purchaseable units
     private List<UnitType> availableUnits = new List<UnitType>();
     private List<int?> units = new List<int?>();
-    private int path = 0;
+    private int? path = null;
     // Global maximum units to be purchased
     private int maximum = 900;
 
-    public GameObject CastleMenu;
+    private GameObject CastleMenu = Resources.Load("Prefab/CastleMenu", typeof(GameObject)) as GameObject;
 
     void OnGUI()
     {
@@ -33,15 +33,7 @@ public class MenuShop : MonoBehaviour {
     /// <param name="point">Spawn point for which units will be bought and resources substracted</param>
     public void SetSpawnPoint(SpawnPoint point)
     {
-        selected = point; 
-        /*
-        List<SpawnPair> states = selected.getStates();
-        foreach (SpawnPair sp in states)
-        {
-            if (!availableUnits.Contains(sp.UnitType))
-                availableUnits.Add(sp.UnitType);
-        }
-        */
+        selected = point;
         Player activePlayer = selected.Owner;
         foreach (UnitType ut in activePlayer.unitTypeList)
         {
@@ -92,7 +84,7 @@ public class MenuShop : MonoBehaviour {
         {
             path = Mathf.Clamp(temp, 0, availableUnits.Count);
         }
-        else if (txt == "") path = 0;
+        else if (txt == "") path = null;
         inc += 25;
 
         // Button for closing menu
@@ -108,7 +100,14 @@ public class MenuShop : MonoBehaviour {
                 if (units[i] == null)
                     units[i] = 0;
                 if (units[i] != 0)
-                    buyUnit(availableUnits[i], path, (int)units[i]);
+                    if (path != null)
+                    {
+                        buyUnit(availableUnits[i], (int) path, (int)units[i]);
+                    }
+                    else
+                    {
+                        buyUnit(availableUnits[i], 0, (int)units[i]);
+                    }
             }
             close();
         }

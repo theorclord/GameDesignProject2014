@@ -28,7 +28,15 @@ public class Castle : MonoBehaviour {
             if (name != this.Owner.Name)
             {
                 Destroy(coll.gameObject);
-                Debug.Log(name + " has won");
+                //TODO make non hard coded
+                if (name == "player")
+                {
+                    Application.LoadLevel("WinningScreen");
+                }
+                else
+                {
+                    Application.LoadLevel("LoosingScreen");
+                }
             }
         }
         

@@ -56,6 +56,7 @@
      <Compile Include="Assets\Scripts\MenuScript.cs" />
      <Compile Include="Assets\Scripts\MenuShop.cs" />
      <Compile Include="Assets\Scripts\MoveCamera.cs" />
+     <Compile Include="Assets\Scripts\PlayerGUI.cs" />
      <Compile Include="Assets\Scripts\SoundScript.cs" />
      <Compile Include="Assets\Scripts\SpawnPoint.cs" />
      <Compile Include="Assets\Scripts\StartMenu.cs" />
@@ -68,6 +69,7 @@
      <Compile Include="Assets\Scripts\Utilities\PropertyPair.cs" />
      <Compile Include="Assets\Scripts\Utilities\SpawnPair.cs" />
      <Compile Include="Assets\Scripts\Utilities\UnitType.cs" />
+     <Compile Include="Assets\Scripts\WinningScreen.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

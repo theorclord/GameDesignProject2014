@@ -11,7 +11,7 @@ public class MenuScript : MonoBehaviour
     public Rect windowRect = new Rect(20, 20, 250, 100);
     private GUIStyle centeredStyle;
 
-    public GameObject ShopMenu;
+    private GameObject ShopMenu = Resources.Load("Prefab/ShopMenu",typeof(GameObject)) as GameObject;
 
     // List of names for available Paths
     public List<string> options;
