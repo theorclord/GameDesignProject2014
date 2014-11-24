@@ -49,6 +49,10 @@ public class Unit : MonoBehaviour {
 	void Update () {
 	}
 
+	public UnitType getUnitType(){
+		return Unittype;
+	}
+
     public void setdirection(Vector2 dir, bool combat)
     {
         if (!combat)

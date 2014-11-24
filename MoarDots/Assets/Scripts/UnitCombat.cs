@@ -97,9 +97,11 @@ public class UnitCombat : MonoBehaviour
             localTimer += thisUnit.AttackSpeed;
         }
         if (targetUnit.Health <= 0 || targets.Count == 0)
-        {
+		{
 			// Find soundObject and play sound according to type, if random > 90
-			playSound(target.GetComponent<Unit>().Owner.Name);
+
+			targetUnit.getUnitType().playSound(); //.GetComponent<UnitType>().playSound(); // target.GetComponent<UnitType>().UnitTypeNumber
+			//playSound(target.GetComponent<Unit>().Owner.Name);
 			
             targets.Remove(target);
             if (target.GetComponent<Building>() != null)
