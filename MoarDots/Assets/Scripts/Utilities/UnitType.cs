@@ -29,6 +29,7 @@ public class UnitType {
         ,float armour, float armourPen, float attackSpeed, int tier, string tech)
     {
         Name = name;
+		setUnitNumber (Name);
         Attack = atk;
         Health = health;
         Range = range;
@@ -44,6 +45,8 @@ public class UnitType {
 
         Tech = tech;
 		SoundObject = GameObject.Find ("SoundManager");
+
+
     }
 
     public void updateUnitType(string prop, float val)
@@ -61,10 +64,43 @@ public class UnitType {
                 break;
         }
     }
+
+	private void setUnitNumber(string name){
+		switch (name) {
+		case "Zombie":
+			this.UnitTypeNumber = 1;
+			break;
+		case "Soldier":
+			this.UnitTypeNumber = 3;
+			break;
+		case "Fairy":
+			this.UnitTypeNumber = 2;
+			break;
+		case "Evil Moose":
+			this.UnitTypeNumber = 4;
+			break;
+		case "Skeleton Archer":
+			this.UnitTypeNumber = 5;
+			break;
+		case "Centaur":
+			this.UnitTypeNumber = 6;
+			break;
+		case "Hound":
+			this.UnitTypeNumber = 7;
+			break;
+		case "Pugry":
+			this.UnitTypeNumber = 8;
+			break;
+		}
+	}
+
 	public void playSound() //int unitTypeNumber
     {
+		//GameObject newSound = Instantiate(Resources.Load("Prefab/SoundManager", typeof(GameObject)) as GameObject,
+		                              // new Vector3(-500, -500), Quaternion.identity) as GameObject;
+
         //Debug.Log ("playSound initialized");
-        if (Random.Range(1, 100) >= 90)
+        if (Random.Range(1, 100) >= 80)
         {
             //Debug.Log(name);
             SoundObject.GetComponent<SoundScript>().playSound(UnitTypeNumber);
