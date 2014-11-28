@@ -8,44 +8,83 @@ public class SoundScript : MonoBehaviour {
     public AudioClip z_archer;
     public AudioClip princess;
     public AudioClip evil_moose;
-    public AudioClip centaur;
+    public AudioClip unicorn;
+	public AudioClip soldier;
+	public AudioClip hound;
+	public AudioClip pugry;
 
 	public void playSound(int i){
 		//Debug.Log (GameObject.Find ("SoundManager").audio.isPlaying);
-		if (!(GameObject.Find ("SoundManager").audio.isPlaying)) {
+		GameObject newSound = Instantiate(Resources.Load("Prefab/SoundManager", typeof(GameObject)) as GameObject,
+		                                  new Vector3(0, 0), Quaternion.identity) as GameObject;
+
+		//if (!(GameObject.Find ("SoundManager").audio.isPlaying)) {
 			switch (i) {
 			case 1:
-				GameObject.Find ("SoundManager").audio.volume = 1.0f;
+				newSound.audio.volume = 2.0f;
+				newSound.audio.clip = zombie;
+				newSound.audio.Play();
+				StartCoroutine(TestCoroutine(newSound));
+
+				/*GameObject.Find ("SoundManager").audio.volume = 2.0f;
 				GameObject.Find ("SoundManager").audio.clip = zombie;  // can change to different unit types
-				GameObject.Find ("SoundManager").audio.Play();
+				GameObject.Find ("SoundManager").audio.Play();*/
 
 				break;
             case 2:
-                GameObject.Find("SoundManager").audio.volume = 1.0f;
+				newSound.audio.volume = 2.0f;
+				newSound.audio.clip = pixie;
+				newSound.audio.Play();
+				StartCoroutine(TestCoroutine(newSound));
+                /*GameObject.Find("SoundManager").audio.volume = 2.0f;
                 GameObject.Find("SoundManager").audio.clip = pixie;  // can change to different unit types
-                GameObject.Find("SoundManager").audio.Play();
+                GameObject.Find("SoundManager").audio.Play();*/
                 break;
             case 3:
-                GameObject.Find("SoundManager").audio.volume = 1.0f;
-                GameObject.Find("SoundManager").audio.clip = z_archer;  // can change to different unit types
-                GameObject.Find("SoundManager").audio.Play();
+				newSound.audio.volume = 2.0f;
+				newSound.audio.clip = soldier;
+				newSound.audio.Play();
+				StartCoroutine(TestCoroutine(newSound));
+                
                 break;
             case 4:
-                GameObject.Find("SoundManager").audio.volume = 1.0f;
-                GameObject.Find("SoundManager").audio.clip = princess;  // can change to different unit types
-                GameObject.Find("SoundManager").audio.Play();
+				newSound.audio.volume = 2.0f;
+				newSound.audio.clip = princess;
+				newSound.audio.Play();
+				StartCoroutine(TestCoroutine(newSound));
+                
                 break;
             case 5:
-                GameObject.Find("SoundManager").audio.volume = 1.0f;
-                GameObject.Find("SoundManager").audio.clip = evil_moose; // can change to different unit types
-                GameObject.Find("SoundManager").audio.Play();
+				newSound.audio.volume = 2.0f;
+				newSound.audio.clip = evil_moose;
+				newSound.audio.Play();
+				StartCoroutine(TestCoroutine(newSound));
+                
                 break;
-            case 6:
-                GameObject.Find("SoundManager").audio.volume = 1.0f;
-                GameObject.Find("SoundManager").audio.clip = centaur;  // can change to different unit types
-                GameObject.Find("SoundManager").audio.Play();
-                break;
-			}
+		case 6:
+			newSound.audio.volume = 2.0f;
+			newSound.audio.clip = unicorn;
+			newSound.audio.Play();
+			StartCoroutine(TestCoroutine(newSound));
+			break;
+		case 7:
+			newSound.audio.volume = 2.0f;
+			newSound.audio.clip = hound;
+			newSound.audio.Play();
+			StartCoroutine(TestCoroutine(newSound));
+			break;
+		case 8:
+			newSound.audio.volume = 2.0f;
+			newSound.audio.clip = pugry;
+			newSound.audio.Play();
+			StartCoroutine(TestCoroutine(newSound));
+			break;
 		}
+		//}
+	}
+	IEnumerator TestCoroutine(GameObject go)
+	{
+		yield return new WaitForSeconds(3);
+		Destroy (go);
 	}
 }
