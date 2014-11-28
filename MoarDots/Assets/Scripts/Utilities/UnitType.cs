@@ -82,7 +82,7 @@ public class UnitType {
 		case "Skeleton Archer":
 			this.UnitTypeNumber = 5;
 			break;
-		case "Centaur":
+		case "Unicorn":
 			this.UnitTypeNumber = 6;
 			break;
 		case "Hound":

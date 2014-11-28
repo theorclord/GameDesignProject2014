@@ -8,8 +8,10 @@ public class SoundScript : MonoBehaviour {
     public AudioClip z_archer;
     public AudioClip princess;
     public AudioClip evil_moose;
-    public AudioClip centaur;
+    public AudioClip unicorn;
 	public AudioClip soldier;
+	public AudioClip hound;
+	public AudioClip pugry;
 
 	public void playSound(int i){
 		//Debug.Log (GameObject.Find ("SoundManager").audio.isPlaying);
@@ -59,13 +61,25 @@ public class SoundScript : MonoBehaviour {
 				StartCoroutine(TestCoroutine(newSound));
                 
                 break;
-            case 6:
-				newSound.audio.volume = 2.0f;
-				newSound.audio.clip = centaur;
-				newSound.audio.Play();
-				StartCoroutine(TestCoroutine(newSound));
-                break;
-			}
+		case 6:
+			newSound.audio.volume = 2.0f;
+			newSound.audio.clip = unicorn;
+			newSound.audio.Play();
+			StartCoroutine(TestCoroutine(newSound));
+			break;
+		case 7:
+			newSound.audio.volume = 2.0f;
+			newSound.audio.clip = hound;
+			newSound.audio.Play();
+			StartCoroutine(TestCoroutine(newSound));
+			break;
+		case 8:
+			newSound.audio.volume = 2.0f;
+			newSound.audio.clip = pugry;
+			newSound.audio.Play();
+			StartCoroutine(TestCoroutine(newSound));
+			break;
+		}
 		//}
 	}
 	IEnumerator TestCoroutine(GameObject go)
