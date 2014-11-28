@@ -37,7 +37,8 @@ public class GameController : MonoBehaviour {
         UnitType fairyType = new UnitType("Fairy", 7f, 25f, 300, 12, true, 175, false, 0, 0f, 1, UnitType.LOWER_TIER, "None");
         UnitType skeletonArcherType = new UnitType("Skeleton Archer", 7f, 25f, 300, 12, true, 175, false, 0, 0f, 1, UnitType.LOWER_TIER, "None");
         UnitType evilMooseType = new UnitType("Evil Moose", 15f, 400, 100, 10, false, 800, false, 5, 0, 1, UnitType.HIGHER_TIER, "Forest");
-        UnitType centaurType = new UnitType("Centaur", 15f, 400, 100, 10, false, 800, false, 5, 0, 1, UnitType.HIGHER_TIER, "Forest");
+        UnitType unicornType = new UnitType("Unicorn", 15f, 400, 100, 10, false, 800, false, 5, 0, 1, UnitType.HIGHER_TIER, "Forest");
+        UnitType houndType = new UnitType("Hound", 10, 80, 100, 30, false, 250, false, 0, 0, 1, UnitType.MIDDLE_TIER, "None");
         
         //initialize structure types
         //TODO
@@ -50,7 +51,7 @@ public class GameController : MonoBehaviour {
         enemy.Name = "enemy";
         enemy.unitTypeList.Add(soldierType);
         enemy.unitTypeList.Add(fairyType);
-        enemy.unitTypeList.Add(centaurType);
+        enemy.unitTypeList.Add(unicornType);
         enemy.Income = 50;
         enemy.Resources = 500;
         enemy.Technology.Add("None");
@@ -64,6 +65,7 @@ public class GameController : MonoBehaviour {
         player.unitTypeList.Add(skeletonType);
         player.unitTypeList.Add(skeletonArcherType);
         player.unitTypeList.Add(evilMooseType);
+        player.unitTypeList.Add(houndType);
 
         player.Income = 50;
         player.Resources = 1000;

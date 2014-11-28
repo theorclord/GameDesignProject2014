@@ -7,8 +7,9 @@ public class PlayerGUI : MonoBehaviour {
     // GUI stuff
     public Rect windowRect = new Rect(20, 20, 315, 100);
     private GUIStyle centeredStyle;
+    private GUIStyle buttonPressed;
 
-    public GameObject PlayerCastle;
+    private GameObject PlayerCastle;
     private Dictionary<UnitType, List<int?>> unitQueues = new Dictionary<UnitType, List<int?>>();
 
     #region Textures
@@ -19,7 +20,8 @@ public class PlayerGUI : MonoBehaviour {
     public Texture moose;
 
     // UnitWaves stuff
-    private int selectedLoc;
+    private int selectedLoc; 
+    private bool activeLoc;
     public Texture mines;
     public Texture woods;
     public Texture melee;
@@ -29,8 +31,11 @@ public class PlayerGUI : MonoBehaviour {
     #endregion
 
     private SpawnPoint point;
+
+    private int lastPath;
     // Use this for initialization
 	void Start () {
+        PlayerCastle = GameObject.Find("CastlePlayer");
         point = PlayerCastle.GetComponent<SpawnPoint>();
 	}
 	
@@ -43,7 +48,9 @@ public class PlayerGUI : MonoBehaviour {
     {
         windowRect = GUI.Window(777, windowRect, WindowFunction, "Menu");
         centeredStyle = GUI.skin.GetStyle("TextField");
-        centeredStyle.alignment = TextAnchor.MiddleCenter;
+        centeredStyle.alignment = TextAnchor.MiddleCenter; 
+        buttonPressed = GUI.skin.GetStyle("Button");
+        buttonPressed.normal.background = GUI.skin.button.active.background;
     }
 
     void WindowFunction(int windowID)
@@ -54,14 +61,27 @@ public class PlayerGUI : MonoBehaviour {
         #region Buy Menu EDIT
         GUI.Label(new Rect(10, 10, 310, 20), "Click a unit to add it to your wave!");
 
+        if (point.Owner.Resources < 100)
+            GUI.enabled = false;
         if (GUI.Button(new Rect(5, 30, 100, 100), zombie))
-            buyUnit();
+            buyUnit("Zombie");
+        GUI.Label(new Rect(5, 130, 100, 20), "Zombie 100g");
+        if (point.Owner.Resources < 175)
+            GUI.enabled = false;
         if (GUI.Button(new Rect(110, 30, 100, 100), skeleton))
-            buyUnit();
+            buyUnit("Skeleton Archer");
+        GUI.Label(new Rect(100, 130, 100, 20), "Skeleton 175g");
+        if (point.Owner.Resources < 250)
+            GUI.enabled = false;
         if (GUI.Button(new Rect(215, 30, 100, 100), hound))
-            buyUnit();
-        if (GUI.Button(new Rect(85, 135, 150, 150), moose))
-            buyUnit();
+            buyUnit("Hound");
+        GUI.Label(new Rect(215, 130, 100, 20), "Hounds 250g");
+        if (point.Owner.Resources < 800 || !point.Owner.Technology.Contains("Forest"))
+            GUI.enabled = false;
+        if (GUI.Button(new Rect(85, 155, 150, 150), moose))
+            buyUnit("Evil Moose");
+        GUI.Label(new Rect(85, 305, 150, 20), "Evil Moose 800g"); 
+        GUI.enabled = true;
         #endregion
 
         #region Locations and UnitWaves
@@ -73,8 +93,14 @@ public class PlayerGUI : MonoBehaviour {
             for (int i = 0; i < point.getSpawners().Count; i++)
             {
                 // Check location type
+                if (selectedLoc == i && activeLoc == true)
+                    if (GUI.Button(new Rect(horizontal, vertical, 50, 50), mines, buttonPressed))
+                        activeLoc = false;
                 if (GUI.Button(new Rect(horizontal, vertical, 50, 50), mines))
+                {
                     selectedLoc = i;
+                    activeLoc = true;
+                }
 
                 horizontal += 55;
                 spacing += 55;
@@ -118,8 +144,8 @@ public class PlayerGUI : MonoBehaviour {
                     #endregion
                 }
                 #region Post wave logic for next Location
-                horizontal = 10;
-                vertical += 30;
+                horizontal = 10; 
+                vertical += 55;
                 spacing = 10;
                 #endregion
             }
@@ -133,9 +159,28 @@ public class PlayerGUI : MonoBehaviour {
     }
 
 
-    private void buyUnit()
+    private void buyUnit(string unitNames)
     {
-
+        lastPath++;
+        if (lastPath >= PlayerCastle.GetComponent<SpawnPoint>().spawners.Count)
+        {
+            lastPath = 0;
+        }
+        Player own = PlayerCastle.GetComponent<SpawnPoint>().Owner;
+        foreach (UnitType ut in own.unitTypeList)
+        {
+            if(ut.Name == unitNames)
+            {
+                if (ut.Price <= own.Resources)
+                {
+                    own.Resources -= ut.Price;
+                    PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(lastPath, ut, 1, own));
+                }
+                break;
+            }
+            //Debug.Log(unitNames + " " + ut.Name);
+        }
+        
     }
 
     /// <summary>

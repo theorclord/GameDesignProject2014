@@ -3,7 +3,7 @@ using System.Collections;
 
 public class AI : MonoBehaviour {
 
-    public GameObject AICastle;
+    private GameObject AICastle;
 
     private Player ai;
 
@@ -13,7 +13,7 @@ public class AI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+        AICastle = GameObject.Find("CastleEnemy");
 	}
 	
 	// Update is called once per frame

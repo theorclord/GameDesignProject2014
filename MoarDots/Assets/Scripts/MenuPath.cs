@@ -79,7 +79,7 @@ public class MenuPath : MonoBehaviour
         // Reapplying size of menu
         windowRect.height = inc + 25;
         windowRect.width = 180;
-        //windowRect.position = new Vector2(20, 20); // TOADD: Modify when we know the position of the city and make it appear above the city
+        windowRect.position = new Vector2(Screen.width - 300, 20); // TOADD: Modify when we know the position of the city and make it appear above the city
         GUI.DragWindow(new Rect(0, 0, 10000, 10000));
     }
 
