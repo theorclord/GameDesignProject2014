@@ -168,10 +168,10 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 626b8f4969be6124293e2c12e8c4c6ab, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Priority: 128
   DopplerLevel: 1
@@ -323,7 +323,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1438956349}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12f66d8987dac91489aec56d42e30f59, type: 3}
+  m_Script: {fileID: 11500000, guid: 37f0ffab2335c9a40becd757f85a7eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   StartScreen: {fileID: 87368269}
