@@ -10,7 +10,6 @@ public class PlayerGUI : MonoBehaviour {
     private GUIStyle buttonPressed;
 
     private GameObject PlayerCastle;
-    private Dictionary<UnitType, List<int?>> unitQueues = new Dictionary<UnitType, List<int?>>();
 
     #region Textures
     // Buy stuff
@@ -24,10 +23,6 @@ public class PlayerGUI : MonoBehaviour {
     private bool activeLoc;
     public Texture mines;
     public Texture woods;
-    public Texture melee;
-    public Texture ranged;
-    public Texture speed;
-    public Texture special;
     #endregion
 
     private SpawnPoint point;
@@ -55,9 +50,6 @@ public class PlayerGUI : MonoBehaviour {
 
     void WindowFunction(int windowID)
     {
-        #region Logic, THERE IS NO LOGIC! (TODO)
-        #endregion
-
         #region Buy Menu EDIT
         GUI.Label(new Rect(10, 10, 310, 20), "Click a unit to add it to your wave!");
 
@@ -86,86 +78,75 @@ public class PlayerGUI : MonoBehaviour {
 
         #region Locations and UnitWaves
         int vertical = 300;
-        if (point.getSpawners().Count > 0)
+        int horizontal = 10;
+        int spacing = 10; // var in case of Moose
+        for (int i = 0; i < point.getSpawners().Count; i++)
         {
-            int horizontal = 10;
-            int spacing = 10; // var in case of Moose
-            for (int i = 0; i < point.getSpawners().Count; i++)
+            // Check location type
+            if (selectedLoc == i && activeLoc)
+                if (GUI.Button(new Rect(horizontal, vertical, 50, 50), mines, buttonPressed))
+                    activeLoc = false;
+            if (GUI.Button(new Rect(horizontal, vertical, 50, 50), mines))
             {
-                // Check location type
-                if (selectedLoc == i && activeLoc == true)
-                    if (GUI.Button(new Rect(horizontal, vertical, 50, 50), mines, buttonPressed))
-                        activeLoc = false;
-                if (GUI.Button(new Rect(horizontal, vertical, 50, 50), mines))
-                {
-                    selectedLoc = i;
-                    activeLoc = true;
-                }
+                selectedLoc = i;
+                activeLoc = true;
+            }
+            horizontal += 55;
+            spacing += 55;
+            foreach (SpawnPair sp in point.getStates())
+            {
 
-                horizontal += 55;
-                spacing += 55;
-                foreach (KeyValuePair<UnitType, List<int?>> kvp in unitQueues)
+                #region Check unit type and assign action
+                if (sp.Path == i)
                 {
-                    for (int v = 0; v < kvp.Value.Count; v++)
-                        // Check if menu size limit is reached
+                    for (int j = 0; j< sp.Amount; j++)
+                    {
+                        if (GUI.Button(new Rect(horizontal, vertical, 25, 25), Resources.Load("Sprites/Head" + sp.UnitType.Name, typeof(Texture)) as Texture))
+                            UnitClick(selectedLoc, sp.UnitType);
+                        horizontal += 27;
                         if (horizontal > 285) // 320 (width) - 25 (size) - 10 (spacing)
                         {
                             vertical += 27;
                             horizontal = spacing;
                             // TODO: Add check for 3rd line of units (reset spacing after 2 lines since moose)
                         }
-
-                    #region Check unit type and assign action
-                    if (kvp.Key.Name != "Zombie")
-                    {
-                        if (GUI.Button(new Rect(horizontal, vertical, 25, 25), melee))
-                            UnitClick(selectedLoc, kvp.Key);
-                        horizontal += 27;
                     }
-                    if (kvp.Key.Name != "Skeleton")
-                    {
-                        if (GUI.Button(new Rect(horizontal, vertical, 25, 25), ranged))
-                            UnitClick(selectedLoc, kvp.Key);
-                        horizontal += 27;
-                    }
-                    if (kvp.Key.Name != "Hound")
-                    {
-                        if (GUI.Button(new Rect(horizontal, vertical, 25, 25), speed))
-                            UnitClick(selectedLoc, kvp.Key);
-                        horizontal += 27;
-                    }
-                    if (kvp.Key.Name != "Moose")
-                    {
-                        if (GUI.Button(new Rect(horizontal, vertical, 25, 25), special))
-                            UnitClick(selectedLoc, kvp.Key);
-                        horizontal += 27;
-                        spacing += 57;
-                    }
-                    #endregion
                 }
-                #region Post wave logic for next Location
-                horizontal = 10; 
-                vertical += 55;
-                spacing = 10;
                 #endregion
             }
+            #region Post wave logic for next Location
+            horizontal = 10; 
+            vertical += 55;
+            spacing = 10;
+            #endregion
         }
         #endregion
 
         // Reapplying size of menu
         windowRect.height = vertical;
         windowRect.width = 320;
-        GUI.DragWindow(new Rect(0, 0, 10000, 10000));
+        //GUI.DragWindow(new Rect(0, 0, 10000, 10000));
+        windowRect.position = new Vector2(windowRect.position.x, 50.0f);
     }
 
 
     private void buyUnit(string unitNames)
     {
-        lastPath++;
-        if (lastPath >= PlayerCastle.GetComponent<SpawnPoint>().spawners.Count)
+        int currentPath = 0;
+        if (!activeLoc)
         {
-            lastPath = 0;
+            lastPath++;
+            if (lastPath >= PlayerCastle.GetComponent<SpawnPoint>().spawners.Count)
+            {
+                lastPath = 0;
+            }
+            currentPath = lastPath;
         }
+        else
+        {
+            currentPath = selectedLoc;
+        }
+        
         Player own = PlayerCastle.GetComponent<SpawnPoint>().Owner;
         foreach (UnitType ut in own.unitTypeList)
         {
@@ -174,11 +155,10 @@ public class PlayerGUI : MonoBehaviour {
                 if (ut.Price <= own.Resources)
                 {
                     own.Resources -= ut.Price;
-                    PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(lastPath, ut, 1, own));
+                    PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(currentPath, ut, 1, own));
                 }
                 break;
             }
-            //Debug.Log(unitNames + " " + ut.Name);
         }
         
     }

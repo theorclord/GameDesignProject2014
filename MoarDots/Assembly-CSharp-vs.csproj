@@ -52,6 +52,9 @@
      <Compile Include="Assets\Scripts\Castle.cs" />
      <Compile Include="Assets\Scripts\CombatCollision.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
+     <Compile Include="Assets\Scripts\Level1.cs" />
+     <Compile Include="Assets\Scripts\Level2.cs" />
+     <Compile Include="Assets\Scripts\MenuNode.cs" />
      <Compile Include="Assets\Scripts\MenuPath.cs" />
      <Compile Include="Assets\Scripts\MenuScript.cs" />
      <Compile Include="Assets\Scripts\MenuShop.cs" />

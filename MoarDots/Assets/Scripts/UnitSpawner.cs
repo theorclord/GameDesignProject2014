@@ -6,7 +6,9 @@ public class UnitSpawner : MonoBehaviour
 {
 
     private Dictionary<UnitType, int> spawnList;
-    public Vector2 direction;
+    //public Vector2 direction;
+
+    public GameObject TargetDirection;
 
     private Player owner;
 
@@ -40,7 +42,7 @@ public class UnitSpawner : MonoBehaviour
                     new Vector3(transform.position.x, transform.position.y), Quaternion.identity) as GameObject;
             Unit troopUnit = troop.GetComponent<Unit>();            
             troopUnit.setUnitType(type);
-            troopUnit.setdirection(direction,false);
+            troopUnit.setdirection(TargetDirection.transform.position, false);
             troopUnit.Owner = owner;
             troop.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/" + troopUnit.Name, typeof(Sprite)) as Sprite;
             yield return new WaitForSeconds(0.2f);
@@ -58,10 +60,5 @@ public class UnitSpawner : MonoBehaviour
         {
             spawnList.Add(type, Amount);
         }
-    }
-
-    public void setDirection(Vector2 vec)
-    {
-        direction = vec;
     }
 }

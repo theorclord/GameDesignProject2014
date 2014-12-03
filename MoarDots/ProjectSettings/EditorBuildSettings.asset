@@ -13,3 +13,5 @@ EditorBuildSettings:
     path: Assets/Scenes/WinningScreen.unity
   - enabled: 1
     path: Assets/Scenes/LoosingScreen.unity
+  - enabled: 1
+    path: Assets/Scenes/SecondLevel.unity

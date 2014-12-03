@@ -21,7 +21,7 @@ public class SoundScript : MonoBehaviour {
 		//if (!(GameObject.Find ("SoundManager").audio.isPlaying)) {
 			switch (i) {
 			case 1:
-				newSound.audio.volume = 2.0f;
+				newSound.audio.volume = 5.0f;
 				newSound.audio.clip = zombie;
 				newSound.audio.Play();
 				StartCoroutine(TestCoroutine(newSound));
@@ -68,7 +68,7 @@ public class SoundScript : MonoBehaviour {
 			StartCoroutine(TestCoroutine(newSound));
 			break;
 		case 7:
-			newSound.audio.volume = 2.0f;
+			newSound.audio.volume = 5.0f;
 			newSound.audio.clip = hound;
 			newSound.audio.Play();
 			StartCoroutine(TestCoroutine(newSound));

@@ -6,12 +6,13 @@ using Assets.Scripts.Utilities;
 public class CaptureNode : MonoBehaviour {
 
     public string Technologi;
-    // Path selection
-    public List<Vector2> DirectionPlayer;
-    public List<Vector2> DirectionEnemy;
+
+    //target locations
+    public List<GameObject> TargetPlayer;
+    public List<GameObject> TargetAI;
     int nextPathEnemy;
     int nextPathPlayer;
-    public List<int?> CustomDirection;
+    public List<int> CustomDirection;
 
     // attached spawners for unit spawning
     public List<GameObject> spawners;
@@ -112,8 +113,22 @@ public class CaptureNode : MonoBehaviour {
             // TODO player name should be generic
             if (troop != null && player.Name == "player")
             {
-                if (CustomDirection != null)
+                if (CustomDirection.Count > 0)
                 {
+                    if (CustomDirection.Count > 1)
+                    {
+                        if (nextPathPlayer >= CustomDirection.Count)
+                        {
+                            nextPathPlayer = 0;
+                        }
+                        troop.setdirection(TargetPlayer[CustomDirection[nextPathPlayer]].transform.position, false);
+                        nextPathPlayer++;
+                    }
+                    else
+                    {
+                        troop.setdirection(TargetPlayer[CustomDirection[0]].transform.position, false);
+                    }
+                    /*
                     int? count = 100;
                     int random = (int)Random.Range(1,(int)count);
                     
@@ -121,7 +136,7 @@ public class CaptureNode : MonoBehaviour {
                     {
                         if (random < CustomDirection[i])
                         {
-                            troop.setdirection(DirectionPlayer[i],false);
+                            troop.setdirection(TargetPlayer[i].transform.position, false);
                         }
                         else
                         {
@@ -129,12 +144,13 @@ public class CaptureNode : MonoBehaviour {
                             random = (int)Random.Range(1, (int)count);
                         }
                     }
+                     */
                 }
                 else
                 {
-                    troop.setdirection(DirectionPlayer[nextPathPlayer],false);
+                    troop.setdirection(TargetPlayer[nextPathPlayer].transform.position,false);
                     nextPathPlayer++;
-                    if (nextPathPlayer >= DirectionPlayer.Count)
+                    if (nextPathPlayer >= TargetPlayer.Count)
                     {
                         nextPathPlayer = 0;
                     }
@@ -142,9 +158,9 @@ public class CaptureNode : MonoBehaviour {
             }
             else
             {
-                troop.setdirection(DirectionEnemy[nextPathEnemy],false);
+                troop.setdirection(TargetAI[nextPathEnemy].transform.position,false);
                 nextPathEnemy++;
-                if (nextPathEnemy >= DirectionEnemy.Count)
+                if (nextPathEnemy >= TargetAI.Count)
                 {
                     nextPathEnemy = 0;
                 }
