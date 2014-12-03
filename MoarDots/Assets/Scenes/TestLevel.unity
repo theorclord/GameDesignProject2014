@@ -602,7 +602,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1eef027ad6e7f7d4aa683858636958e9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c87ed6b1090d7bc40a411e5b9758426d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &379132998
 Transform:
@@ -666,10 +666,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 379132996}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 523051a1fb3ceea4caf4dc02fe23fb85, type: 3}
+  m_Script: {fileID: 11500000, guid: b453e49f4dca352489902808480a1b95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolTipText: Your castle
+  toolTipText: Your Castle
 --- !u!1001 &381655027
 Prefab:
   m_ObjectHideFlags: 0
@@ -1368,7 +1368,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: abec7235853293146978ce8384c4ca8d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5a07792a7a2405c43b2a8f09600d2a66, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1055862045
 Transform:
@@ -1432,10 +1432,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1055862043}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 523051a1fb3ceea4caf4dc02fe23fb85, type: 3}
+  m_Script: {fileID: 11500000, guid: b453e49f4dca352489902808480a1b95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolTipText: Enemy castle, conquer to win
+  toolTipText: Enemy Castle
 --- !u!1 &1162190020
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,19 +1460,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1162190020}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abe7342f1e8ff8c42b70a24199060ac9, type: 3}
+  m_Script: {fileID: 11500000, guid: 76e28a0420a46cf46963f85248aea7d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombie: {fileID: 2800000, guid: 3f9f2f70cf0e5b34eb7f86a9c7c7fa3d, type: 3}
-  skeleton: {fileID: 2800000, guid: 33b5239321ce2c34a81219bcc3ecb186, type: 3}
-  hound: {fileID: 2800000, guid: 6f67ac353ea344c4784c5dc630165150, type: 3}
-  moose: {fileID: 2800000, guid: 2a85a144c61a2a8428a6de1c2bddef0b, type: 3}
-  mines: {fileID: 2800000, guid: e8dbba9da6e4b894a9340948fd3728f3, type: 3}
-  woods: {fileID: 2800000, guid: a8709643126f60b4385a5877509acf0f, type: 3}
-  melee: {fileID: 2800000, guid: 74229bdff39613e47b623128930d2519, type: 3}
-  ranged: {fileID: 2800000, guid: 61d774e2bc5fc5e45a21b51c6d96bc09, type: 3}
-  speed: {fileID: 2800000, guid: d6e8c384db33ae74dac0f49b4f72890a, type: 3}
-  special: {fileID: 2800000, guid: 889ece0b1e4a20944b122b7f47d273cc, type: 3}
+  windowRect:
+    serializedVersion: 2
+    x: 20
+    y: 20
+    width: 315
+    height: 100
+  seleButton: {fileID: 2800000, guid: c2cf6ad416aa90541947205f0599a0b9, type: 3}
+  zombie: {fileID: 2800000, guid: ffb4d83e8639f554980f124f66f6a59d, type: 3}
+  skeleton: {fileID: 2800000, guid: 611fba161d0e14548a72e42ab1e7c31e, type: 3}
+  hound: {fileID: 2800000, guid: 8b10801d7142f5c4e81f402b8d57e0c9, type: 3}
+  moose: {fileID: 2800000, guid: 741e82d614853f1489e9a944d8a9b6c8, type: 3}
+  mines: {fileID: 2800000, guid: cc46d588601a987488fdd04ef8d1d6e3, type: 3}
+  woods: {fileID: 2800000, guid: 85496962a391e594db4aef7466e51cdc, type: 3}
+  melee: {fileID: 2800000, guid: 159b823d7df9d0140b6d54c1982a8dfe, type: 3}
+  ranged: {fileID: 2800000, guid: 864651f441c3b824f84d53f713c0ae89, type: 3}
+  speed: {fileID: 2800000, guid: 5f7cb32ed541ae94bb209c795c56345e, type: 3}
+  special: {fileID: 2800000, guid: 4d933f3f637b85e499dd0c7fa960eb70, type: 3}
 --- !u!4 &1162190022
 Transform:
   m_ObjectHideFlags: 0
@@ -1529,7 +1536,6 @@ Prefab:
   m_RootGameObject: {fileID: 785147974}
   m_IsPrefabParent: 0
   m_IsExploded: 1
-  m_audioClip: {fileID: 8300000, guid: 926c7092466d43944a15532192f23e08, type: 3}
 --- !u!1001 &1429979105
 Prefab:
   m_ObjectHideFlags: 0
@@ -1944,17 +1950,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 2039913291}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0356bba84aba8944eb6af61184a7c716, type: 3}
+  m_Script: {fileID: 11500000, guid: 63c18f36760f8d14d9f2216554c8f8de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombie: {fileID: 8300000, guid: 1bb9ae984df3c38439a673da4aa57a5c, type: 3}
-  pixie: {fileID: 8300000, guid: 70bdc0256a8d51942a1752a42c9af5d1, type: 3}
+  zombie: {fileID: 8300000, guid: aa3a296005287374eb3d17989ab62e8e, type: 3}
+  pixie: {fileID: 8300000, guid: 8c2809f143eaeac48aef32babcc3c1f5, type: 3}
   z_archer: {fileID: 0}
-  princess: {fileID: 8300000, guid: 6d792b78e359956438cedb6bd057addd, type: 3}
-  evil_moose: {fileID: 8300000, guid: 9bd7cf4a51c08fb47bde8b79c8ddb1ca, type: 3}
+  princess: {fileID: 0}
+  evil_moose: {fileID: 0}
   unicorn: {fileID: 0}
-  soldier: {fileID: 8300000, guid: b2aed973c83b95246a9c35ce40385506, type: 3}
-  hound: {fileID: 8300000, guid: a89a18f2d47a3f9429c5d3f345a34cf5, type: 3}
+  soldier: {fileID: 0}
+  hound: {fileID: 0}
   pugry: {fileID: 0}
 --- !u!1001 &2041893198
 Prefab:
@@ -2094,6 +2100,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2137629238}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 590b4229455405d45b5d8382780c2058, type: 3}
+  m_Script: {fileID: 11500000, guid: de3f0389843ff3b498957411c527f693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -7,7 +7,6 @@ public class PlayerGUI : MonoBehaviour {
     // GUI stuff
     public Rect windowRect = new Rect(20, 20, 315, 100);
     private GUIStyle centeredStyle;
-    private GUIStyle buttonPressed;
 
     private GameObject PlayerCastle;
     private Dictionary<UnitType, List<int?>> unitQueues = new Dictionary<UnitType, List<int?>>();
@@ -47,45 +46,40 @@ public class PlayerGUI : MonoBehaviour {
     void OnGUI()
     {
         windowRect = GUI.Window(777, windowRect, WindowFunction, "Menu");
-        centeredStyle = GUI.skin.GetStyle("TextField");
-        centeredStyle.alignment = TextAnchor.MiddleCenter; 
-        buttonPressed = GUI.skin.GetStyle("Button");
-        buttonPressed.normal.background = GUI.skin.button.active.background;
+        centeredStyle = GUI.skin.GetStyle("Label");
+        centeredStyle.alignment = TextAnchor.MiddleCenter;
     }
 
     void WindowFunction(int windowID)
     {
-        #region Logic, THERE IS NO LOGIC! (TODO)
-        #endregion
-
-        #region Buy Menu EDIT
-        GUI.Label(new Rect(10, 10, 310, 20), "Click a unit to add it to your wave!");
+        #region Buy Menu
+        GUI.Label(new Rect(5, 15, 310, 20), "Click a unit to add it to your wave!", centeredStyle);
 
         if (point.Owner.Resources < 100)
             GUI.enabled = false;
-        if (GUI.Button(new Rect(5, 30, 100, 100), zombie))
+        if (GUI.Button(new Rect(5, 35, 100, 100), zombie))
             buyUnit("Zombie");
-        GUI.Label(new Rect(5, 130, 100, 20), "Zombie 100g");
+        GUI.Label(new Rect(5, 135, 100, 20), "Zombie 100g", centeredStyle);
         if (point.Owner.Resources < 175)
             GUI.enabled = false;
-        if (GUI.Button(new Rect(110, 30, 100, 100), skeleton))
+        if (GUI.Button(new Rect(110, 35, 100, 100), skeleton))
             buyUnit("Skeleton Archer");
-        GUI.Label(new Rect(100, 130, 100, 20), "Skeleton 175g");
+        GUI.Label(new Rect(110, 135, 100, 20), "Skeleton 175g", centeredStyle);
         if (point.Owner.Resources < 250)
             GUI.enabled = false;
-        if (GUI.Button(new Rect(215, 30, 100, 100), hound))
+        if (GUI.Button(new Rect(215, 35, 100, 100), hound))
             buyUnit("Hound");
-        GUI.Label(new Rect(215, 130, 100, 20), "Hounds 250g");
+        GUI.Label(new Rect(215, 135, 100, 20), "Hounds 250g", centeredStyle);
         if (point.Owner.Resources < 800 || !point.Owner.Technology.Contains("Forest"))
             GUI.enabled = false;
-        if (GUI.Button(new Rect(85, 155, 150, 150), moose))
+        if (GUI.Button(new Rect(85, 160, 150, 150), moose))
             buyUnit("Evil Moose");
-        GUI.Label(new Rect(85, 305, 150, 20), "Evil Moose 800g"); 
+        GUI.Label(new Rect(85, 310, 150, 20), "Evil Moose 800g", centeredStyle); 
         GUI.enabled = true;
         #endregion
 
         #region Locations and UnitWaves
-        int vertical = 300;
+        int vertical = 350;
         if (point.getSpawners().Count > 0)
         {
             int horizontal = 10;
@@ -94,8 +88,10 @@ public class PlayerGUI : MonoBehaviour {
             {
                 // Check location type
                 if (selectedLoc == i && activeLoc == true)
-                    if (GUI.Button(new Rect(horizontal, vertical, 50, 50), mines, buttonPressed))
+                {
+                    if (GUI.Button(new Rect(horizontal, vertical, 50, 50), mines))// style
                         activeLoc = false;
+                }
                 if (GUI.Button(new Rect(horizontal, vertical, 50, 50), mines))
                 {
                     selectedLoc = i;
@@ -155,7 +151,7 @@ public class PlayerGUI : MonoBehaviour {
         // Reapplying size of menu
         windowRect.height = vertical;
         windowRect.width = 320;
-        GUI.DragWindow(new Rect(0, 0, 10000, 10000));
+        //GUI.DragWindow(new Rect(0, 0, 10000, 10000));
     }
 
 
