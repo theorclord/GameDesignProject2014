@@ -156,6 +156,8 @@ public class PlayerGUI : MonoBehaviour {
                 {
                     own.Resources -= ut.Price;
                     PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(currentPath, ut, 1, own));
+					GameObject sound = GameObject.Find ("SoundManager");
+					sound.GetComponent<SoundScript> ().playSound (98);
                 }
                 break;
             }

@@ -36,6 +36,8 @@ public class UnitSpawner : MonoBehaviour
 
     IEnumerator SpawnFunction(UnitType type, int amount, Player owner)
     {
+		GameObject sound = GameObject.Find ("SoundManager");
+		sound.GetComponent<SoundScript> ().playSound (99);
         for (int i = 0; i < amount; i++)
         {
             GameObject troop = Instantiate(Resources.Load("Prefab/Unit", typeof(GameObject)) as GameObject,
