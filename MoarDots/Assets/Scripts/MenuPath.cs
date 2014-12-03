@@ -33,7 +33,7 @@ public class MenuPath : MonoBehaviour
         inc += 50;
 
         // populate the path names
-        pathList = captureNode.DirectionPlayer;
+        //pathList = captureNode.DirectionPlayer;
 
         if (pathList.Count > 0)
         {
@@ -109,7 +109,7 @@ public class MenuPath : MonoBehaviour
             {
                 continue;
             }
-            captureNode.CustomDirection = paths;
+            //captureNode.CustomDirection = paths;
         }
         print("You successfully saved");
     }

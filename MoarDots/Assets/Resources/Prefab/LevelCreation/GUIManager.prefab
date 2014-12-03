@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
   m_Layer: 0
-  m_Name: AIController
+  m_Name: GUIManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36,10 +36,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5b6d7e15c6a86a44b2bc794481a3d6b, type: 3}
+  m_Script: {fileID: 11500000, guid: abe7342f1e8ff8c42b70a24199060ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AICastle: {fileID: 0}
+  windowRect:
+    serializedVersion: 2
+    x: 20
+    y: 20
+    width: 315
+    height: 100
+  zombie: {fileID: 2800000, guid: 3f9f2f70cf0e5b34eb7f86a9c7c7fa3d, type: 3}
+  skeleton: {fileID: 2800000, guid: 33b5239321ce2c34a81219bcc3ecb186, type: 3}
+  hound: {fileID: 2800000, guid: 6f67ac353ea344c4784c5dc630165150, type: 3}
+  moose: {fileID: 2800000, guid: 2a85a144c61a2a8428a6de1c2bddef0b, type: 3}
+  mines: {fileID: 2800000, guid: e8dbba9da6e4b894a9340948fd3728f3, type: 3}
+  woods: {fileID: 2800000, guid: a8709643126f60b4385a5877509acf0f, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

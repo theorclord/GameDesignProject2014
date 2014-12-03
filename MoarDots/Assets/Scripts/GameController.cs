@@ -5,8 +5,8 @@ using System.Collections.Generic;
 public class GameController : MonoBehaviour {
     private float GoldTimer = 5;
     public float SpawnTimer = 15;
-    public GameObject castleMenu;
-    public GameObject townMenu;
+    public GameObject nodeMenu;
+    private bool nodeOpen;
 
     public GameObject PlayerCastle;
     public GameObject EnemyCastle;
@@ -28,21 +28,18 @@ public class GameController : MonoBehaviour {
         startTime = Time.time;
         //Timer
         timer = Time.time + interval-startTime;
-        
+
+        #region UnitAndPlayInitialization
         //initialize unit types
         // string name, int atk, float health, int range, int movespeed, bool isRanged, int price, bool isStructure
         //,float armour, float armourPen, float attackSpeed, unit tier
         UnitType soldierType = new UnitType("Soldier", 10f, 50f, 100, 15, false,100, false, 0, 0, 1, UnitType.LOWER_TIER, "None");
         UnitType skeletonType = new UnitType("Zombie", 10, 50f, 100, 15, false, 100, false, 0, 0, 1, UnitType.LOWER_TIER, "None");
-        UnitType fairyType = new UnitType("Fairy", 7f, 25f, 300, 12, true, 175, false, 0, 0f, 1, UnitType.LOWER_TIER, "None");
-        UnitType skeletonArcherType = new UnitType("Skeleton Archer", 7f, 25f, 300, 12, true, 175, false, 0, 0f, 1, UnitType.LOWER_TIER, "None");
+        UnitType fairyType = new UnitType("Fairy", 7f, 25f, 600, 12, true, 175, false, 0, 0f, 1, UnitType.LOWER_TIER, "None");
+        UnitType skeletonArcherType = new UnitType("Skeleton Archer", 7f, 25f, 600, 12, true, 175, false, 0, 0f, 1, UnitType.LOWER_TIER, "None");
         UnitType evilMooseType = new UnitType("Evil Moose", 15f, 400, 100, 10, false, 800, false, 5, 0, 1, UnitType.HIGHER_TIER, "Forest");
         UnitType unicornType = new UnitType("Unicorn", 15f, 400, 100, 10, false, 800, false, 5, 0, 1, UnitType.HIGHER_TIER, "Forest");
         UnitType houndType = new UnitType("Hound", 10, 80, 100, 30, false, 250, false, 0, 0, 1, UnitType.MIDDLE_TIER, "None");
-        
-        //initialize structure types
-        //TODO
-        UnitType towerSimple = new UnitType("Tower", 20, 500f, 200, 0, true, 500, true, 15f, 10f, 1f, UnitType.LOWER_TIER, "None");
         
         //Initialize players
         //Ai
@@ -53,7 +50,7 @@ public class GameController : MonoBehaviour {
         enemy.unitTypeList.Add(fairyType);
         enemy.unitTypeList.Add(unicornType);
         enemy.Income = 50;
-        enemy.Resources = 500;
+        enemy.Resources = 1000;
         enemy.Technology.Add("None");
         GameObject.Find("AIController").GetComponent<AI>().SetAI(enemy);
         playerList.Add(enemy);
@@ -91,53 +88,16 @@ public class GameController : MonoBehaviour {
         EnemyCastle.GetComponent<Castle>().Owner = enemy;
         EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, enemy.unitTypeList[0], 10, enemy));
         EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, enemy.unitTypeList[0], 10, enemy));
+        #endregion
 
-        //initialize towns:
-        List<GameObject> nodes = new List<GameObject>();
-        nodes.Add(GameObject.Find("Town1"));
-        nodes[0].GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/Goldmine", typeof(Sprite)) as Sprite;
-        nodes[0].GetComponent<CaptureNode>().setpropertyChange(true, "Income", "50");
-        nodes.Add(GameObject.Find("Town2"));
-        nodes[1].GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/Forest", typeof(Sprite)) as Sprite;
-        nodes[1].GetComponent<CaptureNode>().setpropertyChange(false, "Health", "5");
-        nodes[1].GetComponent<CaptureNode>().setpropertyChange(true, "Tech", "Forest");
-        nodes.Add(GameObject.Find("Town3"));
-        nodes[2].GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/Goldmine", typeof(Sprite)) as Sprite;
-        nodes[2].GetComponent<CaptureNode>().setpropertyChange(true, "Income", "50");
-        nodes.Add(GameObject.Find("Town4"));
-        nodes[3].GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/Goldmine", typeof(Sprite)) as Sprite;
-        nodes[3].GetComponent<CaptureNode>().setpropertyChange(true, "Income", "50");
-        nodes.Add(GameObject.Find("Town5"));
-        nodes[4].GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/Goldmine", typeof(Sprite)) as Sprite;
-        nodes[4].GetComponent<CaptureNode>().setpropertyChange(true, "Income", "50");
-
-        //initialize towers:
-        /*
-        setTower("Tower1", towerSimple);
-        setTower("Tower2", towerSimple);
-        setTower("Tower3", towerSimple);
-        setTower("Tower4", towerSimple);
-        setTower("Tower5", towerSimple);
-        setTower("Tower6", towerSimple);
-	    */
 	}
-
-    private void setTower(string Name, UnitType type)
-    {
-        GameObject tower = GameObject.Find(Name);
-        tower.GetComponent<Unit>().Owner = neutral;
-        tower.GetComponent<Unit>().Unittype = type;
-        tower.GetComponent<Building>().RuinSprite = "Sprites/TowerRuin";
-        tower.GetComponent<Building>().BuildingSprite = "Sprites/Tower";
-        tower.GetComponent<Building>().Name = "Tower";
-        tower.GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/Tower", typeof(Sprite)) as Sprite;
-    }
 
     void Update()
     {
         // Update player resource display
-        //TODO should have a generic player lookup
+        //TODO if more players should have a generic player lookup
         GameObject.Find("PlayerResources").guiText.text = "Gold: " + playerList[1].Resources;
+        #region GlobalTimer
         //Global timer update
         if (Time.time >= timer + startTime)
         {
@@ -179,10 +139,14 @@ public class GameController : MonoBehaviour {
                 str = ""+timer % 60;
             }
             GameObject.Find("Timer").guiText.text = "Timer: " + "00:" + str;
-            
-        }
-        //update gold
 
+        }
+        #endregion
+        
+        //next spawnTimer
+        GameObject.Find("SpawnTimer").guiText.text = "Time till next spawn: " + (SpawnTimer- (timer % SpawnTimer));
+
+        //update gold
         if ((int)timer % GoldTimer == 0 && goldIncome)
         {
             foreach (Player play in playerList)
@@ -203,15 +167,11 @@ public class GameController : MonoBehaviour {
             {
                 //Debug.Log("Hit " + hit.transform.gameObject.name);
                 // TODO: Add external check if menu is open, and close it!
-                if (hit.transform.gameObject.tag == "Selectable")
+                if (hit.transform.gameObject.tag == "CaptureNode" && !nodeOpen)// && hit.transform.gameObject.GetComponent<CaptureNode>().Owner == playerList[1]) //TODO fix for selecting player
                 {
-                    GameObject menu = Instantiate(castleMenu) as GameObject;
-                    menu.GetComponent<MenuScript>().SetSpawnPoint(hit.transform.gameObject.GetComponent<SpawnPoint>());
-                }
-                else if (hit.transform.gameObject.tag == "CaptureNode" && hit.transform.gameObject.GetComponent<CaptureNode>().Owner == playerList[1]) //TODO fix for selecting player
-                {
-                    GameObject menu = Instantiate(townMenu) as GameObject;
-                    menu.GetComponent<MenuPath>().setCaptureNode(hit.transform.gameObject.GetComponent<CaptureNode>());
+                    GameObject menu = Instantiate(nodeMenu) as GameObject;
+                    menu.GetComponent<MenuNode>().setCaptureNode(hit.transform.gameObject.GetComponent<CaptureNode>());
+                    nodeOpen = true;
                 }
                 else
                 {
@@ -230,5 +190,8 @@ public class GameController : MonoBehaviour {
         return timer;
     }
 
-    
+    public void menuClose()
+    {
+        nodeOpen = false;
+    }
 }
