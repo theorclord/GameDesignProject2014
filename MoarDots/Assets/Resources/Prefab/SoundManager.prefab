@@ -95,16 +95,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc176c54111319d4f8a2af153a133dfc, type: 3}
+  m_Script: {fileID: 11500000, guid: 0356bba84aba8944eb6af61184a7c716, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombie: {fileID: 8300000, guid: a1cf53f8ed66618418e946c9531d173c, type: 3}
-  pixie: {fileID: 8300000, guid: 786b1648dd32be347984d985fc4927dd, type: 3}
+  zombie: {fileID: 8300000, guid: 782d10f3692daad41b2420b88d106ee8, type: 3}
+  pixie: {fileID: 0}
   z_archer: {fileID: 0}
   princess: {fileID: 0}
-  evil_moose: {fileID: 0}
-  centaur: {fileID: 0}
-  soldier: {fileID: 8300000, guid: b2aed973c83b95246a9c35ce40385506, type: 3}
+  evil_moose: {fileID: 8300000, guid: 69ec3b4b0b9c42a4086fbb60c074b678, type: 3}
+  unicorn: {fileID: 0}
+  soldier: {fileID: 0}
+  hound: {fileID: 8300000, guid: db7caa6037df8194091c180d6ded537e, type: 3}
+  pugry: {fileID: 0}
+  spawn: {fileID: 0}
+  cash: {fileID: 8300000, guid: 05b99a0bc9edf56408b6b2fd4a06dfd8, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
