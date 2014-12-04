@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class GameController : MonoBehaviour {
-    private float GoldTimer = 5;
+    private float GoldTimer = 1;
     public float SpawnTimer = 15;
     public GameObject nodeMenu;
     private bool nodeOpen;
@@ -33,13 +33,13 @@ public class GameController : MonoBehaviour {
         //initialize unit types
         // string name, int atk, float health, int range, int movespeed, bool isRanged, int price, bool isStructure
         //,float armour, float armourPen, float attackSpeed, unit tier
-        UnitType soldierType = new UnitType("Soldier", 10f, 50f, 100, 15, false,100, false, 0, 0, 1, UnitType.LOWER_TIER, "None");
-        UnitType skeletonType = new UnitType("Zombie", 10, 50f, 100, 15, false, 100, false, 0, 0, 1, UnitType.LOWER_TIER, "None");
-        UnitType fairyType = new UnitType("Fairy", 7f, 25f, 600, 12, true, 175, false, 0, 0f, 1, UnitType.LOWER_TIER, "None");
-        UnitType skeletonArcherType = new UnitType("Skeleton Archer", 7f, 25f, 600, 12, true, 175, false, 0, 0f, 1, UnitType.LOWER_TIER, "None");
-        UnitType evilMooseType = new UnitType("Evil Moose", 15f, 400, 100, 10, false, 800, false, 5, 0, 1, UnitType.HIGHER_TIER, "Forest");
-        UnitType unicornType = new UnitType("Unicorn", 15f, 400, 100, 10, false, 800, false, 5, 0, 1, UnitType.HIGHER_TIER, "Forest");
-        UnitType houndType = new UnitType("Hound", 10, 80, 100, 30, false, 250, false, 0, 0, 1, UnitType.MIDDLE_TIER, "None");
+        UnitType soldierType = new UnitType("Soldier", 10f, 50f, 100, 14, false,100, false, 0, 0, 1, UnitType.LOWER_TIER, "None");
+        UnitType skeletonType = new UnitType("Zombie", 10, 50f, 100, 14, false, 100, false, 0, 0, 1, UnitType.LOWER_TIER, "None");
+        UnitType fairyType = new UnitType("Fairy", 7f, 25f, 350, 12, true, 175, false, 0, 0f, 1, UnitType.LOWER_TIER, "None");
+        UnitType skeletonArcherType = new UnitType("Skeleton Archer", 7f, 25f, 350, 12, true, 175, false, 0, 0f, 1, UnitType.LOWER_TIER, "None");
+        UnitType evilMooseType = new UnitType("Evil Moose", 15f, 120, 100, 10, false, 800, false, 5, 0, 1, UnitType.HIGHER_TIER, "Forest");
+        UnitType unicornType = new UnitType("Unicorn", 17f, 100, 100, 10, false, 800, false, 5, 0, 1, UnitType.HIGHER_TIER, "Forest");
+        UnitType houndType = new UnitType("Hound", 13, 60, 120, 35, false, 225, false, 0, 0, 1, UnitType.MIDDLE_TIER, "None");
         
         //Initialize players
         //Ai
@@ -49,8 +49,8 @@ public class GameController : MonoBehaviour {
         enemy.unitTypeList.Add(soldierType);
         enemy.unitTypeList.Add(fairyType);
         enemy.unitTypeList.Add(unicornType);
-        enemy.Income = 50;
-        enemy.Resources = 1000;
+        enemy.Income = 10;
+        enemy.Resources = 100;
         enemy.Technology.Add("None");
         GameObject.Find("AIController").GetComponent<AI>().SetAI(enemy);
         playerList.Add(enemy);
@@ -64,8 +64,8 @@ public class GameController : MonoBehaviour {
         player.unitTypeList.Add(evilMooseType);
         player.unitTypeList.Add(houndType);
 
-        player.Income = 50;
-        player.Resources = 1000;
+        player.Income = 10;
+        player.Resources = 200;
         player.Technology.Add("None");
 
         playerList.Add(player);
@@ -81,13 +81,13 @@ public class GameController : MonoBehaviour {
         //Setup basic spawn
         PlayerCastle.GetComponent<SpawnPoint>().Owner = player;
         PlayerCastle.GetComponent<Castle>().Owner = player;
-        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, player.unitTypeList[0], 10, player));
-        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, player.unitTypeList[0], 10, player));
+        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, player.unitTypeList[0], 5, player));
+        PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, player.unitTypeList[0], 5, player));
 
         EnemyCastle.GetComponent<SpawnPoint>().Owner = enemy;
         EnemyCastle.GetComponent<Castle>().Owner = enemy;
-        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, enemy.unitTypeList[0], 10, enemy));
-        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, enemy.unitTypeList[0], 10, enemy));
+        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(0, enemy.unitTypeList[0], 5, enemy));
+        EnemyCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(1, enemy.unitTypeList[0], 5, enemy));
         #endregion
 
 	}

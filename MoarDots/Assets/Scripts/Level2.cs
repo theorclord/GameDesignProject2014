@@ -8,7 +8,7 @@ public class Level2 : MonoBehaviour {
         for (int i = 1; i < 9; i++)
         {
             GameObject.Find("Mine" + i).GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/Goldmine", typeof(Sprite)) as Sprite;
-            GameObject.Find("Mine" + i).GetComponent<CaptureNode>().setpropertyChange(true, "Income", "50");
+            GameObject.Find("Mine" + i).GetComponent<CaptureNode>().setpropertyChange(true, "Income", "10");
         }
         for (int i = 1; i < 3; i++)
         {

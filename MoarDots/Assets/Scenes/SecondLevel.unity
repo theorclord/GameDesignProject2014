@@ -161,10 +161,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 110857686}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 523051a1fb3ceea4caf4dc02fe23fb85, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f1fe97bcdf33584abae59b07fc964f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolTipText: Your castle
+  toolTipText: 
 --- !u!114 &110857689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,7 +225,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1eef027ad6e7f7d4aa683858636958e9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3e5ac2c3f7a616741b9058bec9431e33, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &115217398
 GameObject:
@@ -314,6 +314,7 @@ MonoBehaviour:
   - {fileID: 904676742}
   TargetAI:
   - {fileID: 1031513800}
+  CustomDirection: 
   spawners: []
 --- !u!58 &141333663
 CircleCollider2D:
@@ -511,7 +512,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 243751810}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 590b4229455405d45b5d8382780c2058, type: 3}
+  m_Script: {fileID: 11500000, guid: 497b1d99ff14c9a47b6957ecc90fd0fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &243751812
@@ -563,6 +564,7 @@ MonoBehaviour:
   - {fileID: 1910066284}
   - {fileID: 1021949277}
   - {fileID: 1010942892}
+  CustomDirection: 
   spawners: []
 --- !u!58 &269969050
 CircleCollider2D:
@@ -858,18 +860,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 748524050}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0356bba84aba8944eb6af61184a7c716, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d2d9aaa03324b84c840ae215bfbc36b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombie: {fileID: 8300000, guid: 782d10f3692daad41b2420b88d106ee8, type: 3}
-  pixie: {fileID: 8300000, guid: 91ff40aa6ab3fdb498c7700839afe965, type: 3}
+  zombie: {fileID: 8300000, guid: 9be266ad22a2d2644bc0b042eebd68c2, type: 3}
+  pixie: {fileID: 8300000, guid: 542fca84cf94c214d95c66a82a239dbc, type: 3}
   z_archer: {fileID: 0}
-  princess: {fileID: 8300000, guid: 6d792b78e359956438cedb6bd057addd, type: 3}
-  evil_moose: {fileID: 8300000, guid: f658503f18dde9149aee594e836602e5, type: 3}
+  princess: {fileID: 0}
+  evil_moose: {fileID: 8300000, guid: 966acdd784956364ab3a61f31303d7b3, type: 3}
   unicorn: {fileID: 0}
-  soldier: {fileID: 8300000, guid: 90b76f8bc1aa55c40b1df0e0e0ed289b, type: 3}
-  hound: {fileID: 8300000, guid: db7caa6037df8194091c180d6ded537e, type: 3}
-  pugry: {fileID: 8300000, guid: db7caa6037df8194091c180d6ded537e, type: 3}
+  soldier: {fileID: 8300000, guid: 09196bad915bb0d48ae8178b28d927cb, type: 3}
+  hound: {fileID: 8300000, guid: d9aa26a8bbfbd8c4891a79b52c7b6554, type: 3}
+  pugry: {fileID: 0}
+  spawn: {fileID: 8300000, guid: dc070beb7283310418059e5f58e62bf9, type: 3}
+  cash: {fileID: 8300000, guid: 9c05c65f10fd2a148b0dc4d10c86c65e, type: 3}
 --- !u!82 &748524052
 AudioSource:
   m_ObjectHideFlags: 0
@@ -978,6 +982,7 @@ MonoBehaviour:
   - {fileID: 1031513800}
   TargetAI:
   - {fileID: 110857686}
+  CustomDirection: 
   spawners: []
 --- !u!58 &831800656
 CircleCollider2D:
@@ -1096,10 +1101,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 904676742}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 523051a1fb3ceea4caf4dc02fe23fb85, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f1fe97bcdf33584abae59b07fc964f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toolTipText: Enemy castle, conquer to win
+  toolTipText: 
 --- !u!114 &904676744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1160,7 +1165,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: abec7235853293146978ce8384c4ca8d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c85670eb59916404aa0633061e9bac62, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &904676748
 Transform:
@@ -1202,7 +1207,7 @@ AudioSource:
   m_GameObject: {fileID: 912610997}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 0d7de996edd0e1341bff36211ddef0be, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 713d5f128aaad45448b1e485752c16bb, type: 3}
   m_PlayOnAwake: 1
   m_Volume: .5
   m_Pitch: 1
@@ -1273,7 +1278,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 791212151
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9da5d6513317c1b4b92c6b26432303df, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 67b11b33523265d478706f5dec54824e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &912611000
 Transform:
@@ -1323,6 +1328,7 @@ MonoBehaviour:
   - {fileID: 269969048}
   TargetAI:
   - {fileID: 1741036067}
+  CustomDirection: 
   spawners: []
 --- !u!58 &1010942894
 CircleCollider2D:
@@ -1407,6 +1413,7 @@ MonoBehaviour:
   TargetAI:
   - {fileID: 1741036067}
   - {fileID: 1713411791}
+  CustomDirection: 
   spawners: []
 --- !u!58 &1021949279
 CircleCollider2D:
@@ -1493,6 +1500,7 @@ MonoBehaviour:
   - {fileID: 831800654}
   - {fileID: 1245226804}
   - {fileID: 1010942892}
+  CustomDirection: 
   spawners: []
 --- !u!58 &1031513802
 CircleCollider2D:
@@ -1571,8 +1579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpawnTimer: 15
-  castleMenu: {fileID: 100000, guid: 31799917bbd327648903f4671644fdda, type: 2}
-  townMenu: {fileID: 100000, guid: 44c630f79635aee4ca7e9a14d57685c7, type: 2}
+  nodeMenu: {fileID: 100000, guid: 058620a96ed30104e817ced00f2d04b4, type: 2}
   PlayerCastle: {fileID: 110857686}
   EnemyCastle: {fileID: 904676742}
 --- !u!4 &1075321770
@@ -1595,7 +1602,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1075321768}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2217bcf606597ca4a96018f4607659fd, type: 3}
+  m_Script: {fileID: 11500000, guid: 98931a45083c61342a223901663be328, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1137087874
@@ -1734,6 +1741,7 @@ MonoBehaviour:
   - {fileID: 1031513800}
   TargetAI:
   - {fileID: 831800654}
+  CustomDirection: 
   spawners: []
 --- !u!58 &1245226806
 CircleCollider2D:
@@ -2360,6 +2368,7 @@ MonoBehaviour:
   - {fileID: 1910066284}
   TargetAI:
   - {fileID: 110857686}
+  CustomDirection: 
   spawners: []
 --- !u!58 &1713411793
 CircleCollider2D:
@@ -2446,6 +2455,7 @@ MonoBehaviour:
   TargetAI:
   - {fileID: 831800654}
   - {fileID: 1713411791}
+  CustomDirection: 
   spawners: []
 --- !u!58 &1741036069
 CircleCollider2D:
@@ -2616,7 +2626,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1908665386}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 088c776687fdf0047b130cbe17effd59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!81 &1908665388
@@ -2723,6 +2733,7 @@ MonoBehaviour:
   - {fileID: 269969048}
   TargetAI:
   - {fileID: 1713411791}
+  CustomDirection: 
   spawners: []
 --- !u!58 &1910066286
 CircleCollider2D:
@@ -2796,21 +2807,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1999211827}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abe7342f1e8ff8c42b70a24199060ac9, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f9bf1edf9d3c7043b2d1df17234b376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windowRect:
-    serializedVersion: 2
-    x: 20
-    y: 20
-    width: 315
-    height: 100
-  zombie: {fileID: 2800000, guid: 3f9f2f70cf0e5b34eb7f86a9c7c7fa3d, type: 3}
-  skeleton: {fileID: 2800000, guid: 33b5239321ce2c34a81219bcc3ecb186, type: 3}
-  hound: {fileID: 2800000, guid: 6f67ac353ea344c4784c5dc630165150, type: 3}
-  moose: {fileID: 2800000, guid: 2a85a144c61a2a8428a6de1c2bddef0b, type: 3}
-  mines: {fileID: 2800000, guid: e8dbba9da6e4b894a9340948fd3728f3, type: 3}
-  woods: {fileID: 2800000, guid: a8709643126f60b4385a5877509acf0f, type: 3}
 --- !u!4 &1999211829
 Transform:
   m_ObjectHideFlags: 0
