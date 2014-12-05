@@ -102,7 +102,7 @@ public class PlayerGUI : MonoBehaviour {
                     activeLoc = false;
             }
             else {
-				if (GUI.Button(new Rect(horizontal, vertical, 50, 50), location, SelectedButtonStyle)) {
+                if (GUI.Button(new Rect(horizontal, vertical, 50, 50), location, ButtonStyle)) {
                     selectedLoc = i;
                     activeLoc = true;
             } }
@@ -125,6 +125,9 @@ public class PlayerGUI : MonoBehaviour {
                             UnitClick(selectedLoc, sp.UnitType);
                         horizontal += 27;
                     }
+                        if (GUI.Button(new Rect(horizontal, vertical, 25, 25), Resources.Load("Sprites/Head" + sp.UnitType.Name, typeof(Texture)) as Texture, ButtonStyle))
+                            UnitClick(selectedLoc, sp.UnitType);
+                        horizontal += 27;
                 }
             }
             #endregion

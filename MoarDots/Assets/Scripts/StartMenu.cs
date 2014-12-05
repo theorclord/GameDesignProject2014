@@ -34,7 +34,7 @@ public class StartMenu : MonoBehaviour {
         {
             if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 - 40, 100, 25), "Start game", guiStyle))
             {
-                Application.LoadLevel("TestLevel");
+                Application.LoadLevel("SecondLevel");
             }
             if (GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 - 10, 100, 25), "Instructions", guiStyle))
             {
