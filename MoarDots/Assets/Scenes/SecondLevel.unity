@@ -315,6 +315,8 @@ MonoBehaviour:
   TargetAI:
   - {fileID: 1031513800}
   CustomDirection: 
+  arrows:
+  - {fileID: 2800000, guid: be398fc8cafcfd84c9084956a0b56562, type: 3}
   spawners: []
 --- !u!58 &141333663
 CircleCollider2D:
@@ -565,6 +567,8 @@ MonoBehaviour:
   - {fileID: 1021949277}
   - {fileID: 1010942892}
   CustomDirection: 
+  arrows:
+  - {fileID: 2800000, guid: 77ad7978630f171418216f7702825e04, type: 3}
   spawners: []
 --- !u!58 &269969050
 CircleCollider2D:
@@ -983,6 +987,10 @@ MonoBehaviour:
   TargetAI:
   - {fileID: 110857686}
   CustomDirection: 
+  arrows:
+  - {fileID: 2800000, guid: 1b42a799cb4507c4e8d653d68da336ce, type: 3}
+  - {fileID: 2800000, guid: ea83c31033015f3458def57aa6ebdd5a, type: 3}
+  - {fileID: 2800000, guid: c3672467d4ac96e4abe82fe2c6981980, type: 3}
   spawners: []
 --- !u!58 &831800656
 CircleCollider2D:
@@ -1329,6 +1337,9 @@ MonoBehaviour:
   TargetAI:
   - {fileID: 1741036067}
   CustomDirection: 
+  arrows:
+  - {fileID: 2800000, guid: 3252483a15c2780479db4b4b9bdae8ff, type: 3}
+  - {fileID: 2800000, guid: 223d663e650da2e44903312a1d0fa21d, type: 3}
   spawners: []
 --- !u!58 &1010942894
 CircleCollider2D:
@@ -1414,6 +1425,8 @@ MonoBehaviour:
   - {fileID: 1741036067}
   - {fileID: 1713411791}
   CustomDirection: 
+  arrows:
+  - {fileID: 2800000, guid: 4a8b095c8d2e3514fba729ee5b7cf890, type: 3}
   spawners: []
 --- !u!58 &1021949279
 CircleCollider2D:
@@ -1501,6 +1514,8 @@ MonoBehaviour:
   - {fileID: 1245226804}
   - {fileID: 1010942892}
   CustomDirection: 
+  arrows:
+  - {fileID: 2800000, guid: ba69c61bb38cfc84cb142a1e0d6bbf28, type: 3}
   spawners: []
 --- !u!58 &1031513802
 CircleCollider2D:
@@ -1742,6 +1757,8 @@ MonoBehaviour:
   TargetAI:
   - {fileID: 831800654}
   CustomDirection: 
+  arrows:
+  - {fileID: 2800000, guid: 6571a027edac7c6439bc5fc4a00f0938, type: 3}
   spawners: []
 --- !u!58 &1245226806
 CircleCollider2D:
@@ -2369,6 +2386,10 @@ MonoBehaviour:
   TargetAI:
   - {fileID: 110857686}
   CustomDirection: 
+  arrows:
+  - {fileID: 2800000, guid: e3bf08a412a46cd4bad44b5a3c306f9c, type: 3}
+  - {fileID: 2800000, guid: 94847208b2e02d844a8fe3cec8e07470, type: 3}
+  - {fileID: 2800000, guid: 11fc8f3cd92ccd94ea0ca0fda6e8df0f, type: 3}
   spawners: []
 --- !u!58 &1713411793
 CircleCollider2D:
@@ -2456,6 +2477,10 @@ MonoBehaviour:
   - {fileID: 831800654}
   - {fileID: 1713411791}
   CustomDirection: 
+  arrows:
+  - {fileID: 2800000, guid: ea83c31033015f3458def57aa6ebdd5a, type: 3}
+  - {fileID: 2800000, guid: f8aeaaa9c1767f340b211408e448ed07, type: 3}
+  - {fileID: 2800000, guid: 13fbf1a1fb589d948b476b4e9cfaf5a0, type: 3}
   spawners: []
 --- !u!58 &1741036069
 CircleCollider2D:
@@ -2734,6 +2759,8 @@ MonoBehaviour:
   TargetAI:
   - {fileID: 1713411791}
   CustomDirection: 
+  arrows:
+  - {fileID: 2800000, guid: 197bff2677571ba44aa4899a48208003, type: 3}
   spawners: []
 --- !u!58 &1910066286
 CircleCollider2D:
