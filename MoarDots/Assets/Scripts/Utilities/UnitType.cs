@@ -70,7 +70,7 @@ public class UnitType {
 		case "Zombie":
 			this.UnitTypeNumber = 1;
 			break;
-		case "Soldier":
+		case "Gnome":
 			this.UnitTypeNumber = 3;
 			break;
 		case "Fairy":

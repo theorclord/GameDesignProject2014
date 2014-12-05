@@ -13,6 +13,7 @@ public class CaptureNode : MonoBehaviour {
     int nextPathEnemy;
     int nextPathPlayer;
     public List<int> CustomDirection;
+	public List<Texture> arrows;
 
     // attached spawners for unit spawning
     public List<GameObject> spawners;

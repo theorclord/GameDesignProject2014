@@ -33,7 +33,7 @@ public class GameController : MonoBehaviour {
         //initialize unit types
         // string name, int atk, float health, int range, int movespeed, bool isRanged, int price, bool isStructure
         //,float armour, float armourPen, float attackSpeed, unit tier
-        UnitType soldierType = new UnitType("Soldier", 10f, 50f, 100, 14, false,100, false, 0, 0, 1, UnitType.LOWER_TIER, "None");
+        UnitType soldierType = new UnitType("Gnome", 10f, 50f, 100, 14, false,100, false, 0, 0, 1, UnitType.LOWER_TIER, "None");
         UnitType skeletonType = new UnitType("Zombie", 10, 50f, 100, 14, false, 100, false, 0, 0, 1, UnitType.LOWER_TIER, "None");
         UnitType fairyType = new UnitType("Fairy", 7f, 25f, 350, 12, true, 175, false, 0, 0f, 1, UnitType.LOWER_TIER, "None");
         UnitType skeletonArcherType = new UnitType("Skeleton Archer", 7f, 25f, 350, 12, true, 175, false, 0, 0f, 1, UnitType.LOWER_TIER, "None");

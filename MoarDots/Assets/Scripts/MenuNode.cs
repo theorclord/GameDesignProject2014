@@ -43,16 +43,18 @@ public class MenuNode : MonoBehaviour {
 
         for (int i= captureNode.TargetPlayer.Count -1; i>-1;i--)
         {
+			string arrowLoc ="Sprites/"+captureNode.arrows[i];
             if (selectedLoc == i && activeLoc)
             {
-                if (GUI.Button(new Rect(5, inc, 50, 50), captureNode.TargetPlayer[i].GetComponent<SpriteRenderer>().sprite.texture, ButtonStyle))
+
+				if (GUI.Button(new Rect(5, inc, 50, 50),captureNode.arrows[i]/*captureNode.TargetPlayer[i].GetComponent<SpriteRenderer>().sprite.texture*/, ButtonStyle))
                 {
                     activeLoc = false;
                     paths.Remove(i);
                     selectedLoc = -1;
                 }
             }
-            if (GUI.Button(new Rect(5, inc, 50, 50), captureNode.TargetPlayer[i].GetComponent<SpriteRenderer>().sprite.texture))
+			if (GUI.Button(new Rect(5, inc, 50, 50), captureNode.arrows[i] /*captureNode.TargetPlayer[i].GetComponent<SpriteRenderer>().sprite.texture*/))
             {
                 selectedLoc = i;
                 activeLoc = true;

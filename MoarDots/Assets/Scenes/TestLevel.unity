@@ -151,6 +151,8 @@ MonoBehaviour:
   - {fileID: 446991856}
   - {fileID: 260326271}
   CustomDirection: 
+  arrows:
+  - {fileID: 2800000, guid: 5b93115e3db63294ea12b5ce2e5b8092, type: 3}
   spawners: []
 --- !u!58 &10157047
 CircleCollider2D:
@@ -228,7 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1c2a2c4a52bf884d80202e999f694f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnTimer: 15
+  SpawnTimer: 10
   nodeMenu: {fileID: 100000, guid: 058620a96ed30104e817ced00f2d04b4, type: 2}
   PlayerCastle: {fileID: 379132996}
   EnemyCastle: {fileID: 1055862043}
@@ -291,6 +293,8 @@ MonoBehaviour:
   - {fileID: 785147974}
   - {fileID: 446991856}
   CustomDirection: 
+  arrows:
+  - {fileID: 2800000, guid: c122919e726a6394791a1be813ae687b, type: 3}
   spawners: []
 --- !u!58 &238219031
 CircleCollider2D:
@@ -375,6 +379,9 @@ MonoBehaviour:
   TargetAI:
   - {fileID: 379132996}
   CustomDirection: 
+  arrows:
+  - {fileID: 2800000, guid: e3bf08a412a46cd4bad44b5a3c306f9c, type: 3}
+  - {fileID: 2800000, guid: c0d6014d2ddc41b4593cdf2b3a17724f, type: 3}
   spawners: []
 --- !u!58 &260326273
 CircleCollider2D:
@@ -657,6 +664,9 @@ MonoBehaviour:
   - {fileID: 785147974}
   - {fileID: 260326271}
   CustomDirection: 
+  arrows:
+  - {fileID: 2800000, guid: 4effcb72fb1227341a97e4ce1db8ceea, type: 3}
+  - {fileID: 2800000, guid: 46538f6fcb6ff1549a87dfba87a7d928, type: 3}
   spawners: []
 --- !u!58 &446991858
 CircleCollider2D:
@@ -1280,7 +1290,10 @@ MonoBehaviour:
   - {fileID: 238219029}
   TargetAI:
   - {fileID: 379132996}
-  CustomDirection: 
+  CustomDirection: 0000000000000000
+  arrows:
+  - {fileID: 2800000, guid: 29a12d86db1a865448eb77962110cad3, type: 3}
+  - {fileID: 2800000, guid: e1f1c6785b238d846bb50331ad670496, type: 3}
   spawners: []
 --- !u!58 &785147978
 CircleCollider2D:
@@ -2069,7 +2082,7 @@ MonoBehaviour:
   soldier: {fileID: 8300000, guid: 09196bad915bb0d48ae8178b28d927cb, type: 3}
   hound: {fileID: 8300000, guid: d9aa26a8bbfbd8c4891a79b52c7b6554, type: 3}
   pugry: {fileID: 0}
-  spawn: {fileID: 8300000, guid: dc070beb7283310418059e5f58e62bf9, type: 3}
+  spawn: {fileID: 8300000, guid: f42e0711a02a49e47a4ea6e3472a4bf4, type: 3}
   cash: {fileID: 8300000, guid: 9c05c65f10fd2a148b0dc4d10c86c65e, type: 3}
 --- !u!1001 &2051492649
 Prefab:

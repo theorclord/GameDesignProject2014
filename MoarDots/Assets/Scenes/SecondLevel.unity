@@ -1578,7 +1578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1c2a2c4a52bf884d80202e999f694f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpawnTimer: 15
+  SpawnTimer: 10
   nodeMenu: {fileID: 100000, guid: 058620a96ed30104e817ced00f2d04b4, type: 2}
   PlayerCastle: {fileID: 110857686}
   EnemyCastle: {fileID: 904676742}
