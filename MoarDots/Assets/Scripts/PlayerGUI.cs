@@ -55,7 +55,7 @@ public class PlayerGUI : MonoBehaviour {
         int size = 100;
         int horiOld = hori;
         foreach (UnitType ut in own.unitTypeList) {
-            if (ut.Name == "Evil Moose"){
+			if (ut.Name == "Ea Moose" || ut.Name == "Evil Moose"){
                 horiOld = hori;
                 hori = 135;
                 vert += 135;
@@ -69,7 +69,7 @@ public class PlayerGUI : MonoBehaviour {
                 buyUnit(ut.Name);
             GUI.Label(new Rect(hori, vert + size, size, 35), ut.Name + "\n" + ut.Price + "g", centeredStyle);
             hori += size + 5;
-            if (ut.Name == "Evil Moose")
+            if (ut.Name == "Ea Moose" || ut.Name == "Evil Moose")
             {
                 hori = horiOld;
                 vert -= 135;
@@ -84,17 +84,25 @@ public class PlayerGUI : MonoBehaviour {
         int vertical = 450;
         int horizontal = margin;
         int spacing = margin; // Var to offset from horizontal w. Location
-        for (int i = 0; i < point.getSpawners().Count; i++)
+        for (int i = point.getSpawners().Count - 1; i > -1; i--)
         {
+			string arrowLoc = "";
+			if(i > 0){
+				arrowLoc = "Sprites/arrow_level1_up";
+			}else{
+				arrowLoc = "Sprites/arrow_level1_down";
+			}
             #region Load location and set up button + logic for click
-            Texture2D location = point.spawners[i].GetComponent<UnitSpawner>().TargetDirection.GetComponent<SpriteRenderer>().sprite.texture;
+			Texture2D location = (Texture2D) Resources.Load(arrowLoc, typeof(Texture2D)) as Texture2D;
+				//point.spawners[i].GetComponent<UnitSpawner>().TargetDirection.GetComponent<SpriteRenderer>().sprite.texture;
             // Location type
             if (selectedLoc == i && activeLoc) {
-                if (GUI.Button(new Rect(horizontal, vertical, 50, 50), location, SelectedButtonStyle))
+
+				if (GUI.Button(new Rect(horizontal, vertical, 50, 50), location,ButtonStyle ))
                     activeLoc = false;
             }
             else {
-                if (GUI.Button(new Rect(horizontal, vertical, 50, 50), location, ButtonStyle)) {
+				if (GUI.Button(new Rect(horizontal, vertical, 50, 50), location, SelectedButtonStyle)) {
                     selectedLoc = i;
                     activeLoc = true;
             } }
@@ -117,6 +125,9 @@ public class PlayerGUI : MonoBehaviour {
                             UnitClick(selectedLoc, sp.UnitType);
                         horizontal += 27;
                     }
+                        if (GUI.Button(new Rect(horizontal, vertical, 25, 25), Resources.Load("Sprites/Head" + sp.UnitType.Name, typeof(Texture)) as Texture, ButtonStyle))
+                            UnitClick(selectedLoc, sp.UnitType);
+                        horizontal += 27;
                 }
             }
             #endregion
