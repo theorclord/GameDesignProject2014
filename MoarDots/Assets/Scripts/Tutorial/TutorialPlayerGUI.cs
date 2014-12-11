@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
-public class PlayerGUI : MonoBehaviour {
+public class TutorialPlayerGUI : MonoBehaviour {
 
     // GUI stuff
     private Rect windowRect = new Rect(20, 20, 300, 300);
@@ -11,7 +10,7 @@ public class PlayerGUI : MonoBehaviour {
     private GameObject PlayerCastle;
 
     // UnitWaves stuff
-    private int selectedLoc; 
+    private int selectedLoc;
     private bool activeLoc;
 
     private int margin = 55;
@@ -21,22 +20,24 @@ public class PlayerGUI : MonoBehaviour {
     private GUIStyle ButtonStyle = new GUIStyle();
     private GUIStyle SelectedButtonStyle = new GUIStyle();
 
-    private SpawnPoint point;
+    private TutorialSpawnPoint point;
 
     private int lastPath;
     // Use this for initialization
-	void Start () {
+    void Start()
+    {
         PlayerCastle = GameObject.Find("CastlePlayer");
-        point = PlayerCastle.GetComponent<SpawnPoint>();
+        point = PlayerCastle.GetComponent<TutorialSpawnPoint>();
         WindowStyle.normal.background = Resources.Load("Sprites/menu_bg", typeof(Texture2D)) as Texture2D;
         ButtonStyle.normal.background = Resources.Load("Sprites/menu_button_normal", typeof(Texture2D)) as Texture2D;
         SelectedButtonStyle.normal.background = Resources.Load("Sprites/menu_button_dark", typeof(Texture2D)) as Texture2D;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     void OnGUI()
     {
@@ -49,13 +50,15 @@ public class PlayerGUI : MonoBehaviour {
     {
         #region Buy Menu
         GUI.Label(new Rect(margin, 100, 310, 20), "Click a unit to add it to your wave!", centeredStyle);
-        Player own = PlayerCastle.GetComponent<SpawnPoint>().Owner;
+        Player own = PlayerCastle.GetComponent<TutorialSpawnPoint>().Owner;
         int hori = margin;
         int vert = 120;
         int size = 100;
         int horiOld = hori;
-        foreach (UnitType ut in own.unitTypeList) {
-            if (ut.Name == "Evil Moose"){
+        foreach (UnitType ut in own.unitTypeList)
+        {
+            if (ut.Name == "Evil Moose")
+            {
                 horiOld = hori;
                 hori = 135;
                 vert += 135;
@@ -63,7 +66,7 @@ public class PlayerGUI : MonoBehaviour {
                 if (point.Owner.Resources < ut.Price || !point.Owner.Technology.Contains("Forest"))
                     GUI.enabled = false;
             }
-            if(point.Owner.Resources < ut.Price)
+            if (point.Owner.Resources < ut.Price)
                 GUI.enabled = false;
             if (GUI.Button(new Rect(hori, vert, size, size), Resources.Load("Sprites/" + ut.Name, typeof(Texture)) as Texture, ButtonStyle))
                 buyUnit(ut.Name);
@@ -89,15 +92,19 @@ public class PlayerGUI : MonoBehaviour {
             #region Load location and set up button + logic for click
             Texture2D location = point.spawners[i].GetComponent<UnitSpawner>().TargetDirection.GetComponent<SpriteRenderer>().sprite.texture;
             // Location type
-            if (selectedLoc == i && activeLoc) {
+            if (selectedLoc == i && activeLoc)
+            {
                 if (GUI.Button(new Rect(horizontal, vertical, 50, 50), location, SelectedButtonStyle))
                     activeLoc = false;
             }
-            else {
-                if (GUI.Button(new Rect(horizontal, vertical, 50, 50), location, ButtonStyle)) {
+            else
+            {
+                if (GUI.Button(new Rect(horizontal, vertical, 50, 50), location, ButtonStyle))
+                {
                     selectedLoc = i;
                     activeLoc = true;
-            } }
+                }
+            }
             horizontal += margin;
             spacing += margin;
             #endregion
@@ -121,7 +128,7 @@ public class PlayerGUI : MonoBehaviour {
             }
             #endregion
             #region Post wave logic for next Location
-            horizontal = margin; 
+            horizontal = margin;
             vertical += 55;
             spacing = margin;
             #endregion
@@ -142,7 +149,7 @@ public class PlayerGUI : MonoBehaviour {
         if (!activeLoc)
         {
             lastPath++;
-            if (lastPath >= PlayerCastle.GetComponent<SpawnPoint>().spawners.Count)
+            if (lastPath >= PlayerCastle.GetComponent<TutorialSpawnPoint>().spawners.Count)
             {
                 lastPath = 0;
             }
@@ -152,23 +159,23 @@ public class PlayerGUI : MonoBehaviour {
         {
             currentPath = selectedLoc;
         }
-        
-        Player own = PlayerCastle.GetComponent<SpawnPoint>().Owner;
+
+        Player own = PlayerCastle.GetComponent<TutorialSpawnPoint>().Owner;
         foreach (UnitType ut in own.unitTypeList)
         {
-            if(ut.Name == unitNames)
+            if (ut.Name == unitNames)
             {
                 if (ut.Price <= own.Resources)
                 {
                     own.Resources -= ut.Price;
-                    PlayerCastle.GetComponent<SpawnPoint>().addState(new SpawnPair(currentPath, ut, 1, own));
-					GameObject sound = GameObject.Find ("SoundManager");
-					sound.GetComponent<SoundScript> ().playSound (98);
+                    PlayerCastle.GetComponent<TutorialSpawnPoint>().addState(new SpawnPair(currentPath, ut, 1, own));
+                    GameObject sound = GameObject.Find("SoundManager");
+                    sound.GetComponent<SoundScript>().playSound(98);
                 }
                 break;
             }
         }
-        
+
     }
 
     /// <summary>

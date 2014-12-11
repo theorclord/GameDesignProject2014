@@ -2814,18 +2814,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abe7342f1e8ff8c42b70a24199060ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windowRect:
-    serializedVersion: 2
-    x: 20
-    y: 20
-    width: 315
-    height: 100
-  zombie: {fileID: 2800000, guid: 3f9f2f70cf0e5b34eb7f86a9c7c7fa3d, type: 3}
-  skeleton: {fileID: 2800000, guid: 33b5239321ce2c34a81219bcc3ecb186, type: 3}
-  hound: {fileID: 2800000, guid: 6f67ac353ea344c4784c5dc630165150, type: 3}
-  moose: {fileID: 2800000, guid: 2a85a144c61a2a8428a6de1c2bddef0b, type: 3}
-  mines: {fileID: 2800000, guid: e8dbba9da6e4b894a9340948fd3728f3, type: 3}
-  woods: {fileID: 2800000, guid: a8709643126f60b4385a5877509acf0f, type: 3}
 --- !u!4 &1999211829
 Transform:
   m_ObjectHideFlags: 0
