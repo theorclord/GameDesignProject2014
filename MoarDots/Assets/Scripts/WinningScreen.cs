@@ -12,7 +12,7 @@ public class WinningScreen : MonoBehaviour {
 	void Update () {
         if (Input.GetKey(KeyCode.Return))
         {
-            Application.LoadLevel("TestLevel");
+            Application.LoadLevel("SecondLevel");
         }
 	
 	}

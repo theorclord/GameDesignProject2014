@@ -309,7 +309,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a95ce9e63b2fe845b66f3ac0aa74da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Technologi: 
+  Technologi: mine
   TargetPlayer:
   - {fileID: 904676742}
   TargetAI:
@@ -559,7 +559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a95ce9e63b2fe845b66f3ac0aa74da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Technologi: 
+  Technologi: mine
   TargetPlayer:
   - {fileID: 904676742}
   TargetAI:
@@ -979,7 +979,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a95ce9e63b2fe845b66f3ac0aa74da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Technologi: 
+  Technologi: mine
   TargetPlayer:
   - {fileID: 1741036067}
   - {fileID: 1245226804}
@@ -1330,7 +1330,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a95ce9e63b2fe845b66f3ac0aa74da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Technologi: 
+  Technologi: mine
   TargetPlayer:
   - {fileID: 1031513800}
   - {fileID: 269969048}
@@ -1418,7 +1418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a95ce9e63b2fe845b66f3ac0aa74da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Technologi: 
+  Technologi: mine
   TargetPlayer:
   - {fileID: 269969048}
   TargetAI:
@@ -1505,7 +1505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a95ce9e63b2fe845b66f3ac0aa74da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Technologi: 
+  Technologi: forest
   TargetPlayer:
   - {fileID: 141333661}
   TargetAI:
@@ -1751,7 +1751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a95ce9e63b2fe845b66f3ac0aa74da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Technologi: 
+  Technologi: mine
   TargetPlayer:
   - {fileID: 1031513800}
   TargetAI:
@@ -2378,7 +2378,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a95ce9e63b2fe845b66f3ac0aa74da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Technologi: 
+  Technologi: mine
   TargetPlayer:
   - {fileID: 1741036067}
   - {fileID: 1021949277}
@@ -2468,7 +2468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a95ce9e63b2fe845b66f3ac0aa74da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Technologi: 
+  Technologi: forest
   TargetPlayer:
   - {fileID: 1031513800}
   - {fileID: 1010942892}
@@ -2753,7 +2753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a95ce9e63b2fe845b66f3ac0aa74da0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Technologi: 
+  Technologi: mine
   TargetPlayer:
   - {fileID: 269969048}
   TargetAI:

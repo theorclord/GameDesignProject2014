@@ -55,7 +55,7 @@ public class PlayerGUI : MonoBehaviour {
         int size = 100;
         int horiOld = hori;
         foreach (UnitType ut in own.unitTypeList) {
-            if (ut.Name == "Evil Moose"){
+			if (ut.Name == "Ea Moose" || ut.Name == "Evil Moose"){
                 horiOld = hori;
                 hori = 135;
                 vert += 135;
@@ -69,7 +69,7 @@ public class PlayerGUI : MonoBehaviour {
                 buyUnit(ut.Name);
             GUI.Label(new Rect(hori, vert + size, size, 35), ut.Name + "\n" + ut.Price + "g", centeredStyle);
             hori += size + 5;
-            if (ut.Name == "Evil Moose")
+            if (ut.Name == "Ea Moose" || ut.Name == "Evil Moose")
             {
                 hori = horiOld;
                 vert -= 135;
@@ -102,7 +102,7 @@ public class PlayerGUI : MonoBehaviour {
                     activeLoc = false;
             }
             else {
-                if (GUI.Button(new Rect(horizontal, vertical, 50, 50), location, ButtonStyle)) {
+				if (GUI.Button(new Rect(horizontal, vertical, 50, 50), location, SelectedButtonStyle)) {
                     selectedLoc = i;
                     activeLoc = true;
             } }

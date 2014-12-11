@@ -87,7 +87,20 @@ public class CaptureNode : MonoBehaviour {
                 }
             }
             // changes color of the node
-            transform.gameObject.GetComponent<SpriteRenderer>().color = Owner.playerColor;
+            //transform.gameObject.GetComponent<SpriteRenderer>().color = Owner.playerColor;
+			if(Owner.playerColor == Color.cyan){
+				if(Technologi == "mine"){
+					transform.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/GoldMineEvil", typeof(Sprite)) as Sprite;
+				}else if(Technologi == "forest"){
+					transform.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/ForestEvil", typeof(Sprite)) as Sprite;
+				}
+			}else{
+				if(Technologi == "mine"){
+					transform.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/GoldMineFairy", typeof(Sprite)) as Sprite;
+				}else if(Technologi == "forest"){
+					transform.gameObject.GetComponent<SpriteRenderer>().sprite = Resources.Load("Sprites/ForestFairy", typeof(Sprite)) as Sprite;
+				}
+			}
             contested = false;
         }
     }

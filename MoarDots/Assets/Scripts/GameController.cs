@@ -35,11 +35,11 @@ public class GameController : MonoBehaviour {
         //,float armour, float armourPen, float attackSpeed, unit tier
         UnitType soldierType = new UnitType("Gnome", 10f, 50f, 100, 14, false,100, false, 0, 0, 1, UnitType.LOWER_TIER, "None");
         UnitType skeletonType = new UnitType("Zombie", 10, 50f, 100, 14, false, 100, false, 0, 0, 1, UnitType.LOWER_TIER, "None");
-        UnitType fairyType = new UnitType("Fairy", 7f, 25f, 350, 12, true, 175, false, 0, 0f, 1, UnitType.LOWER_TIER, "None");
+        UnitType fairyType = new UnitType("Fairy", 7f, 25f, 350, 12, true, 175, false, 0, 0f, 1, UnitType.LOWER_TIER, "None"); // Fairy / Ivan
         UnitType skeletonArcherType = new UnitType("Skeleton Archer", 7f, 25f, 350, 12, true, 175, false, 0, 0f, 1, UnitType.LOWER_TIER, "None");
-        UnitType evilMooseType = new UnitType("Evil Moose", 15f, 120, 100, 10, false, 800, false, 5, 0, 1, UnitType.HIGHER_TIER, "Forest");
+        UnitType evilMooseType = new UnitType("Evil Moose", 15f, 120, 100, 10, false, 800, false, 5, 0, 1, UnitType.HIGHER_TIER, "Forest"); // Evil Moose / Ea Moose
         UnitType unicornType = new UnitType("Unicorn", 17f, 100, 100, 10, false, 800, false, 5, 0, 1, UnitType.HIGHER_TIER, "Forest");
-        UnitType houndType = new UnitType("Hound", 13, 60, 120, 35, false, 225, false, 0, 0, 1, UnitType.MIDDLE_TIER, "None");
+        UnitType houndType = new UnitType("Hound", 13, 60, 120, 35, false, 225, false, 0, 0, 1, UnitType.MIDDLE_TIER, "None"); // Hound / Mats
         
         //Initialize players
         //Ai
